@@ -1,0 +1,81 @@
+"""generator 的单元测试。"""
+
+from __future__ import annotations
+
+import tempfile
+import unittest
+from pathlib import Path
+
+from leetcode_solutions.generator import SolutionGenerator
+
+
+class FakeClient:
+    """用于测试的模型客户端。"""
+
+    def __init__(self) -> None:
+        """记录调用次数并返回固定代码。"""
+
+        self.calls: list[str] = []
+
+    def generate(self, *, difficulty: str, system_prompt: str, problem_prompt: str, language_prompt: str) -> str:
+        """模拟一次模型生成。"""
+
+        self.calls.append(language_prompt)
+        return "class Solution:\n    pass"
+
+
+class FakeLogger:
+    """用于测试的日志器。"""
+
+    def __init__(self) -> None:
+        """保存日志和失败记录。"""
+
+        self.messages: list[str] = []
+        self.failures: list[dict] = []
+
+    def info(self, message: str) -> None:
+        """记录普通信息。"""
+
+        self.messages.append(message)
+
+    def warn(self, message: str) -> None:
+        """记录警告信息。"""
+
+        self.messages.append(message)
+
+    def error(self, message: str) -> None:
+        """记录错误信息。"""
+
+        self.messages.append(message)
+
+    def failure(self, record: dict) -> None:
+        """记录结构化失败。"""
+
+        self.failures.append(record)
+
+
+class GeneratorTest(unittest.TestCase):
+    """验证生成器主流程。"""
+
+    def test_generate_problem_writes_markdown(self) -> None:
+        """单题生成应写出 Markdown 文件。"""
+
+        problem = {
+            "frontend_id": "1",
+            "difficulty": "Easy",
+            "problem_slug": "two-sum",
+            "title": "Two Sum",
+            "code_snippets": {"python3": "class Solution:\n    pass"},
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            client = FakeClient()
+            path = SolutionGenerator(client, FakeLogger(), Path(tmp)).generate_problem(problem)
+            text = path.read_text(encoding="utf-8")
+
+        self.assertEqual(1, len(client.calls))
+        self.assertIn("## Python3", text)
+
+
+if __name__ == "__main__":
+    unittest.main()
+

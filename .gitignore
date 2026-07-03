@@ -1,3 +1,5 @@
 dataset/merged_problems.json
 logs/
 *.log
+__pycache__/
+*.pyc
