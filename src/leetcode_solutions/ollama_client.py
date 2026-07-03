@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
-from .config import MAX_OUTPUT_TOKENS, MODEL_NAME, RETRY_LIMIT
+from .config import MAX_OUTPUT_TOKENS, MODEL_NAME, RETRY_LIMIT, TEMPERATURE
 
 
 class ModelClient(Protocol):
@@ -24,6 +24,7 @@ class OllamaOptions:
 
     model: str = MODEL_NAME
     max_output_tokens: int = MAX_OUTPUT_TOKENS
+    temperature: float = TEMPERATURE
     retry_limit: int = RETRY_LIMIT
 
 
@@ -42,6 +43,7 @@ class OllamaClient:
         return {
             "think": self.think_by_difficulty[difficulty],
             "num_predict": self.options.max_output_tokens,
+            "temperature": self.options.temperature,
         }
 
     def generate(self, *, difficulty: str, system_prompt: str, problem_prompt: str, language_prompt: str) -> str:

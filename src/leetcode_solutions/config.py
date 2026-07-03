@@ -11,6 +11,7 @@ from pathlib import Path
 
 MODEL_NAME = "gpt-oss:120b"
 MAX_OUTPUT_TOKENS = 100_000
+TEMPERATURE = 0.1
 RETRY_LIMIT = 3
 DIFFICULTY_ORDER = ("Easy", "Medium", "Hard")
 THINK_BY_DIFFICULTY = {

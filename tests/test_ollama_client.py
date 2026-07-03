@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from leetcode_solutions.config import MAX_OUTPUT_TOKENS, THINK_BY_DIFFICULTY
+from leetcode_solutions.config import MAX_OUTPUT_TOKENS, TEMPERATURE, THINK_BY_DIFFICULTY
 from leetcode_solutions.ollama_client import OllamaClient, strip_code_fences
 
 
@@ -15,9 +15,13 @@ class OllamaClientTest(unittest.TestCase):
         """Easy/Medium/Hard 应映射到 low/medium/high，并包含 100k 输出限制。"""
 
         client = OllamaClient(THINK_BY_DIFFICULTY)
-        self.assertEqual({"think": "low", "num_predict": MAX_OUTPUT_TOKENS}, client.build_options("Easy"))
+        self.assertEqual(
+            {"think": "low", "num_predict": MAX_OUTPUT_TOKENS, "temperature": TEMPERATURE},
+            client.build_options("Easy"),
+        )
         self.assertEqual("medium", client.build_options("Medium")["think"])
         self.assertEqual("high", client.build_options("Hard")["think"])
+        self.assertEqual(0.1, client.build_options("Hard")["temperature"])
 
     def test_strip_code_fences(self) -> None:
         """模型误输出 Markdown 代码块时应清洗为纯代码。"""
@@ -33,4 +37,3 @@ class OllamaClientTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
