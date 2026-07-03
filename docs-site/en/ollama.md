@@ -13,6 +13,7 @@ Current generation options:
 - Easy think mode: `low`
 - Medium think mode: `medium`
 - Hard think mode: `high`
+- context length: `128k`, actually `131072` tokens
 - max output tokens: `100000`
 - temperature: `0.1`
 - retry limit: `3`
@@ -30,6 +31,46 @@ An alternate compute target is a single Ollama node with 2x NVIDIA H100 GPUs. Th
 Under the tested local setup, throughput can reach about 100 tokens per second. This matters because the project generates solutions for many languages per problem, so local throughput directly affects full-dataset generation time.
 
 For Apple Silicon, the documentation should mention MLX and MPS-oriented acceleration paths. For NVIDIA hardware, the 2x H100 node is the high-throughput option. The exact runtime choice can depend on the local Ollama build and model packaging, but the site should make it clear that this workflow is intended for high-memory local inference rather than a remote hosted API.
+
+## Server Source Build
+
+On our server, Ollama is prepared from source rather than treated only as a one-line installer. The reason is operational control: the server needs explicit native runtime, CUDA backend, and model-serving behavior, especially for the single-node 2x H100 setup.
+
+Ollama itself is a Go project, but inference includes native code. The build is therefore not just a plain `go build`. The official development flow uses Go, CMake, a C/C++ compiler, and Ninja. From the repository root, `go run . serve` is useful for Go-layer iteration, while CMake builds the full native runtime payload.
+
+The main NVIDIA server build path is:
+
+```bash
+git clone https://github.com/ollama/ollama.git
+cd ollama
+cmake -B build . -DOLLAMA_LLAMA_BACKENDS=cuda_v13 -DCMAKE_CUDA_ARCHITECTURES=native
+cmake --build build --parallel 8
+./ollama serve
+```
+
+If the MLX CUDA engine is used, the server also needs CUDA 13+ and cuDNN 9+, with `OLLAMA_MLX_BACKENDS` selecting the CUDA backend:
+
+```bash
+cmake -B build . -DOLLAMA_MLX_BACKENDS=cuda_v13
+cmake --build build --parallel 8
+```
+
+The Apple Silicon path is different. macOS arm64 builds target Metal inference by default; MLX Metal requires Xcode and the Metal toolchain. The M2 Ultra workstation is useful for validating prompts, logs, and resumable generation. The H100 node is the long-running full-generation target.
+
+```mermaid
+flowchart TD
+    A[Clone Ollama source] --> B[Install Go / CMake / C++ compiler / Ninja]
+    B --> C{Runtime platform}
+    C -->|M2 Ultra| D[macOS arm64: Metal / MLX Metal]
+    C -->|2x H100| E[Linux: CUDA backend]
+    E --> F[cmake -DOLLAMA_LLAMA_BACKENDS=cuda_v13]
+    F --> G[cmake --build build --parallel 8]
+    D --> G
+    G --> H[Start ./ollama serve]
+    H --> I[Python ollama client]
+    I --> J[generate_solutions.py]
+    J --> K[Write Easy / Medium / Hard Markdown]
+```
 
 ## Why Local Generation Fits This Project
 
