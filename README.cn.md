@@ -2,6 +2,10 @@
 
 本项目用于生成和整理 LeetCode 所有支持语言的准确最优解，并按难度、题号区间和题目 slug 输出为 Markdown 文件。
 
+文档站点：
+
+- https://billzi2016.github.io/Leetcode-All-Languages-Bset-Solutions/
+
 ## 支持语言
 
 本项目覆盖 LeetCode 数据集中提供 starter code 的全部语言。下面的代码头示例来自 LeetCode 1 `Two Sum`。

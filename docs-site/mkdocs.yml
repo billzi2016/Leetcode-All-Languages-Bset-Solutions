@@ -1,0 +1,49 @@
+site_name: LeetCode All Languages Best Solutions
+site_description: Accurate best LeetCode solutions across all supported programming languages.
+site_url: https://billzi2016.github.io/Leetcode-All-Languages-Bset-Solutions/
+docs_dir: .
+site_dir: ../docs-site-build
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - English:
+      - Overview: en/index.md
+      - LeetCode: en/leetcode.md
+      - Languages: en/languages.md
+      - Ollama Workflow: en/ollama.md
+      - MkDocs: en/mkdocs.md
+      - GitHub Actions: en/github-actions.md
+      - End-to-End Workflow: en/workflow.md
+      - PRD: en/prd.md
+      - MkDocs Site PRD: mkdocs_prd.md
+      - GitHub Actions PRD: github_action_prd.md
+  - 中文:
+      - 总览: cn/index.md
+      - LeetCode: cn/leetcode.md
+      - 支持语言: cn/languages.md
+      - Ollama 流程: cn/ollama.md
+      - MkDocs: cn/mkdocs.md
+      - GitHub Actions: cn/github-actions.md
+      - 端到端流程: cn/workflow.md
+      - PRD: cn/prd.md
+      - MkDocs 站点 PRD: cn/mkdocs_prd.md
+      - GitHub Actions PRD: cn/github_action_prd.md

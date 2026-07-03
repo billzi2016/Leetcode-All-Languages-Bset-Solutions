@@ -2,6 +2,10 @@
 
 This project generates and organizes accurate optimal LeetCode solutions for every supported language, then writes them as Markdown files grouped by difficulty, problem range, and problem slug.
 
+Documentation site:
+
+- https://billzi2016.github.io/Leetcode-All-Languages-Bset-Solutions/
+
 ## Supported Languages
 
 The project covers every language that appears in the LeetCode dataset with starter code. The signature examples below come from LeetCode 1, `Two Sum`.
@@ -164,4 +168,3 @@ Prompts are split into three layers to maximize reuse and cache hits:
 Changing the target language only changes `language_prompt`; changing the problem still keeps `SYSTEM_PROMPT` unchanged. This structure is the most cache-friendly.
 
 The LeetCode starter code and function header in `language_prompt` must appear in the final output. The generated code must preserve the submission entry point for the target language, such as `class Solution`, `impl Solution`, `func twoSum(...)`, or `def two_sum(...)`, so it can be pasted directly into LeetCode.
-

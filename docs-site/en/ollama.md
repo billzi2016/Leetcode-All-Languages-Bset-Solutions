@@ -1,0 +1,61 @@
+# Ollama Generation Workflow
+
+The project uses the Python `ollama` package as the model client wrapper. Direct HTTP calls through `requests` are intentionally avoided.
+
+Ollama removes most of the operational friction around running local models: model loading, local serving, and request handling are hidden behind a simple local API. For this project, the generator only needs to call that API through the Python `ollama` package.
+
+## Model Options
+
+Current generation options:
+
+- model: `gpt-oss:120b`
+- local runtime target: q4km-style deployment
+- Easy think mode: `low`
+- Medium think mode: `medium`
+- Hard think mode: `high`
+- max output tokens: `100000`
+- temperature: `0.1`
+- retry limit: `3`
+
+## Local Hardware Context
+
+The tested local workstation is an Apple M2 Ultra machine with:
+
+- 24 CPU cores
+- 76 GPU cores
+- 192 GB unified memory
+
+An alternate compute target is a single Ollama node with 2x NVIDIA H100 GPUs. This serves the same project workflow: one node runs Ollama, receives the problem/language prompts, and writes generated solutions through the same repository tooling.
+
+Under the tested local setup, throughput can reach about 100 tokens per second. This matters because the project generates solutions for many languages per problem, so local throughput directly affects full-dataset generation time.
+
+For Apple Silicon, the documentation should mention MLX and MPS-oriented acceleration paths. For NVIDIA hardware, the 2x H100 node is the high-throughput option. The exact runtime choice can depend on the local Ollama build and model packaging, but the site should make it clear that this workflow is intended for high-memory local inference rather than a remote hosted API.
+
+## Why Local Generation Fits This Project
+
+The project repeatedly sends a stable system prompt, a reusable problem prompt, and small language-specific prompts. This makes local generation attractive because:
+
+- the same problem context is reused across many languages,
+- the workflow can run without sending dataset content to a hosted API,
+- failed languages can be retried locally,
+- generated files can be resumed by checking existing Markdown output.
+
+## Prompt Layers
+
+```mermaid
+flowchart LR
+    S[SYSTEM_PROMPT] --> M[Ollama Messages]
+    P[problem_prompt] --> M
+    L[language_prompt] --> M
+    M --> O[Raw LeetCode Code]
+```
+
+- `SYSTEM_PROMPT`: global requirements shared by all problems and all languages.
+- `problem_prompt`: problem metadata, statement, examples, constraints, hints, and optional editorial reference.
+- `language_prompt`: target language plus that language's starter code.
+
+This structure maximizes prompt reuse because only the final language prompt changes when generating another language for the same problem.
+
+## Failure Behavior
+
+Each language can retry up to three times. After the retry limit, the failure is logged and generation continues with the next unit of work.
