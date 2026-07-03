@@ -95,6 +95,6 @@ hard/1-100/0004-median-of-two-sorted-arrays.md
 
 ## 文档
 
-- `PRD.md`: 产品需求和实现约束
-- `PROJECT_STRUCTURE.md`: 项目结构、模块职责、SOLID/DRY 和测试规划
+- `docs/PRD.md`: 产品需求和实现约束
+- `docs/PROJECT_STRUCTURE.md`: 项目结构、模块职责、SOLID/DRY 和测试规划
 - `dataset/dataset.md`: 数据集来源和字段说明
