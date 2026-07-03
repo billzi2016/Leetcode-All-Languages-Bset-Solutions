@@ -28,6 +28,34 @@
 | Erlang | 适合函数式并发语言风格。 | `-spec two_sum(Nums :: [integer()], Target :: integer()) -> [integer()].` |
 | Elixir | 适合函数式管道和模式匹配风格。 | `defmodule Solution do ... def two_sum(nums, target) do ... end` |
 
+## 输出目录示例
+
+```text
+easy/
+  1-100/
+    0001-two-sum.md
+    0009-palindrome-number.md
+    0013-roman-to-integer.md
+    0014-longest-common-prefix.md
+    0020-valid-parentheses.md
+
+medium/
+  1-100/
+    0002-add-two-numbers.md
+    0003-longest-substring-without-repeating-characters.md
+    0005-longest-palindromic-substring.md
+    0006-zigzag-conversion.md
+    0007-reverse-integer.md
+
+hard/
+  1-100/
+    0004-median-of-two-sorted-arrays.md
+    0010-regular-expression-matching.md
+    0023-merge-k-sorted-lists.md
+    0025-reverse-nodes-in-k-group.md
+    0030-substring-with-concatenation-of-all-words.md
+```
+
 ## 当前状态
 
 当前已完成基础工程结构和核心流程：
@@ -109,34 +137,6 @@ PYTHONPATH=src python scripts/generate_solutions.py --difficulty Hard
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py
-```
-
-输出目录示例：
-
-```text
-easy/
-  1-100/
-    0001-two-sum.md
-    0009-palindrome-number.md
-    0013-roman-to-integer.md
-    0014-longest-common-prefix.md
-    0020-valid-parentheses.md
-
-medium/
-  1-100/
-    0002-add-two-numbers.md
-    0003-longest-substring-without-repeating-characters.md
-    0005-longest-palindromic-substring.md
-    0006-zigzag-conversion.md
-    0007-reverse-integer.md
-
-hard/
-  1-100/
-    0004-median-of-two-sorted-arrays.md
-    0010-regular-expression-matching.md
-    0023-merge-k-sorted-lists.md
-    0025-reverse-nodes-in-k-group.md
-    0030-substring-with-concatenation-of-all-words.md
 ```
 
 ## 文档
