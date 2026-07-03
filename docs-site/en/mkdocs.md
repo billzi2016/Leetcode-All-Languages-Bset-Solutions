@@ -14,12 +14,14 @@ The documentation site should be implemented as an independent MkDocs project un
 ```text
 docs-site/
   mkdocs.yml
-  docs/
-    en/
-    cn/
+  index.md
+  en/
+  cn/
 ```
 
-The current planning documents live directly under `docs-site/en/` and `docs-site/cn/`. A later implementation can move or copy them into `docs-site/docs/` if a full MkDocs project is created.
+The current site uses `docs-site/` directly as `docs_dir`. The root `index.md` is the language entry page, while `en/` and `cn/` hold the bilingual content. This keeps the structure flat and ensures the GitHub Pages project root gets a real homepage.
+
+`site_dir` points to `../docs-site-build`, so generated output stays outside the source tree and is ignored by Git.
 
 ## Navigation
 
@@ -34,3 +36,8 @@ The English and Chinese navigation should mirror each other:
 - End-to-End Workflow
 - PRD
 
+## Design Intent
+
+MkDocs only publishes Markdown as a static site. It does not participate in solution generation. This lets GitHub Actions build documentation with a lightweight Python environment, without installing Ollama, downloading models, or reading the local dataset.
+
+English and Chinese pages keep parallel names so every content change has an obvious translation target. The root homepage is only an entry point, preventing mixed-language content from accumulating at the project root.

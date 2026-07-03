@@ -148,6 +148,33 @@ PYTHONPATH=src python scripts/generate_solutions.py --difficulty Hard
 PYTHONPATH=src python scripts/generate_solutions.py
 ```
 
+使用 tmux 后台生成全部题解：
+
+```bash
+scripts/tmux_all.sh
+```
+
+这个脚本会先执行 `python -m pip install -r requirements.txt`，再启动名为 `leetcode-all` 的 tmux session。这样依赖缺失会先在当前终端暴露，而不是让后台生成任务静默失败。
+
+查看和进入后台任务：
+
+```bash
+tmux ls
+tmux attach -t leetcode-all
+```
+
+取消当前生成任务：
+
+```bash
+tmux kill-session -t leetcode-all
+```
+
+取消所有 tmux session：
+
+```bash
+tmux kill-server
+```
+
 ## 文档
 
 - `docs/PRD.md`: 英文产品需求和实现约束
@@ -168,3 +195,11 @@ prompt 分为三层，以最大化复用和缓存命中：
 切换语言时只改变 `language_prompt`；切换题目时 `SYSTEM_PROMPT` 仍保持不变。这个结构对 prompt cache 最友好。
 
 `language_prompt` 中的 LeetCode starter code 和函数头必须出现在最终输出中。生成结果必须保留对应语言的提交入口，例如 `class Solution`、`impl Solution`、`func twoSum(...)` 或 `def two_sum(...)`，确保代码可以直接提交到 LeetCode。
+
+## 设计意图
+
+这个项目的核心不是把题目重新存一遍，而是把题目中的有效信息压缩成稳定输入，用来生成可直接提交的多语言最优解。题目正文、examples、constraints、topics、hints 和可选 editorial 都用于生成 prompt；最终 Markdown 只保存各语言代码，避免输出目录变成题目镜像。
+
+生成流程默认按 Easy、Medium、Hard 推进。Easy 先跑可以快速验证依赖、日志、输出格式和断点续跑；Medium 再扩大覆盖；Hard 最后使用更高 think 强度，减少复杂题失败率。失败不会阻塞全局任务，而是写入 `logs/<日期时间>/failures.jsonl`，方便后续只重跑失败项。
+
+日志分成 stdout、stderr 和 failures 三类，是为了把正常进度、模型/环境警告和结构化失败记录分开。屏幕能实时看到进度，文件日志保留完整现场，长时间 tmux 运行时也方便排查。

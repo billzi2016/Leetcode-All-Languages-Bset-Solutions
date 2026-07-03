@@ -1,6 +1,8 @@
 site_name: LeetCode All Languages Best Solutions
 site_description: Accurate best LeetCode solutions across all supported programming languages.
 site_url: https://billzi2016.github.io/Leetcode-All-Languages-Bset-Solutions/
+repo_url: https://github.com/billzi2016/Leetcode-All-Languages-Bset-Solutions
+repo_name: billzi2016/Leetcode-All-Languages-Bset-Solutions
 docs_dir: .
 site_dir: ../docs-site-build
 

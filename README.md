@@ -148,6 +148,33 @@ Generate all difficulties:
 PYTHONPATH=src python scripts/generate_solutions.py
 ```
 
+Generate all solutions in a background tmux session:
+
+```bash
+scripts/tmux_all.sh
+```
+
+This script runs `python -m pip install -r requirements.txt` before starting the `leetcode-all` tmux session. Missing dependencies therefore fail in the foreground instead of causing a silent background generation failure.
+
+Inspect and attach to the background task:
+
+```bash
+tmux ls
+tmux attach -t leetcode-all
+```
+
+Cancel the current generation task:
+
+```bash
+tmux kill-session -t leetcode-all
+```
+
+Cancel all tmux sessions:
+
+```bash
+tmux kill-server
+```
+
 ## Documentation
 
 - `docs/PRD.md`: Product requirements and implementation constraints
@@ -168,3 +195,11 @@ Prompts are split into three layers to maximize reuse and cache hits:
 Changing the target language only changes `language_prompt`; changing the problem still keeps `SYSTEM_PROMPT` unchanged. This structure is the most cache-friendly.
 
 The LeetCode starter code and function header in `language_prompt` must appear in the final output. The generated code must preserve the submission entry point for the target language, such as `class Solution`, `impl Solution`, `func twoSum(...)`, or `def two_sum(...)`, so it can be pasted directly into LeetCode.
+
+## Design Intent
+
+The project is not meant to mirror LeetCode problem statements. It turns the useful problem data into stable generation input, then stores only submit-ready multilingual solution code. Problem statements, examples, constraints, topics, hints, and optional editorials are used in prompts; the final Markdown files stay focused on code.
+
+Generation proceeds in Easy, Medium, then Hard order. Easy validates dependencies, logging, output layout, and resume behavior quickly. Medium expands coverage. Hard runs last with the highest think mode to reduce failures on complex problems. A failed language does not block the full run; it is written to `logs/<datetime>/failures.jsonl` for later targeted reruns.
+
+stdout, stderr, and failures are intentionally separated. Progress remains visible on screen, file logs preserve the run context, and long tmux jobs can be debugged without mixing normal progress with warnings or structured failure data.
