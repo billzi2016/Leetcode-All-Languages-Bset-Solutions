@@ -15,16 +15,16 @@ Current generation options:
 - Easy think mode: `low`
 - Medium think mode: `medium`
 - Hard think mode: `high`
-- context length: `128k`, actually `131072` tokens
-- max output tokens: `100000`
+- context length: `128k`, actually `131_072` tokens
+- max output tokens: `100_000`
 - temperature: `0.1`
 - retry limit: `3`
 
 Parameter intent:
 
 - `gpt-oss:120b` is used because the project needs algorithm knowledge and correct submission shapes across many languages.
-- `128k / 131072` context leaves enough room for statements, examples, constraints, hints, and optional editorial references.
-- `100000` max output tokens is a per-language ceiling, preventing long or complex outputs from being truncated too early.
+- `128k / 131_072` context leaves enough room for statements, examples, constraints, hints, and optional editorial references.
+- `100_000` max output tokens is a per-language ceiling, preventing long or complex outputs from being truncated too early.
 - `0.1` temperature reduces randomness and keeps repeated runs stable.
 - Think mode increases with problem difficulty so reasoning budget is spent where it matters.
 

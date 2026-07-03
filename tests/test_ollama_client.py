@@ -9,10 +9,10 @@ from leetcode_solutions.ollama_client import OllamaClient, strip_code_fences
 
 
 class OllamaClientTest(unittest.TestCase):
-    """验证 think 映射、100k 限制和输出清洗。"""
+    """验证 think 映射、100_000 限制和输出清洗。"""
 
-    def test_options_include_think_and_100k_limit(self) -> None:
-        """Easy/Medium/Hard 应映射到 low/medium/high，并包含 100k 输出限制。"""
+    def test_options_include_think_and_100_000_limit(self) -> None:
+        """Easy/Medium/Hard 应映射到 low/medium/high，并包含 100_000 输出限制。"""
 
         client = OllamaClient(THINK_BY_DIFFICULTY)
         self.assertEqual(

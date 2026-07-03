@@ -413,7 +413,7 @@ Tests must cover:
 - Retry-3 failure behavior that records logs and continues with the next problem.
 - Ollama client uses the Python `ollama` package, not `requests`.
 - Ollama smoke test: use `hello` to verify `low`, `medium`, and `high` think modes are accepted locally.
-- Ollama option tests: verify the 100k token output limit and temperature `0.1`.
+- Ollama option tests: verify the 100_000 token output limit and temperature `0.1`.
 - CLI argument tests: support multiple problem ids, such as `--frontend-ids 1 2 4`.
 - Formal-flow tests for LeetCode 1 / 2 / 4, covering Easy, Medium, and Hard:
   - LeetCode 1 `Two Sum` -> `easy/1-100/0001-two-sum.md`
@@ -459,7 +459,7 @@ Model calls must support:
 - System prompt.
 - Shared problem prompt.
 - Language user prompt.
-- Maximum output limit of 100k tokens per problem/language generation.
+- Maximum output limit of 100_000 tokens per problem/language generation.
 - Temperature `0.1`.
 - Timeout control.
 - Retry control, with at most 3 retries per language.
@@ -481,7 +481,7 @@ Phase 1:
 - stdout/stderr are written both to screen and the current run's log directory.
 - failures are written as structured records to `failures.jsonl`.
 - Core modules have `unittest` coverage under `tests/`.
-- Ollama client tests cover the `ollama` package call, three think modes, 100k token output limit, and temperature `0.1`.
+- Ollama client tests cover the `ollama` package call, three think modes, 100_000 token output limit, and temperature `0.1`.
 - LeetCode 1 / 2 / 4 can pass the formal flow and skip correctly on the second run.
 - Missing fields are skipped.
 - Resume is supported.

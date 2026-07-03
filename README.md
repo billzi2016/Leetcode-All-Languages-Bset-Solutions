@@ -71,7 +71,7 @@ The foundational project structure and core flow are implemented:
 - Prompt construction with `images` excluded
 - Python `ollama` library client wrapper
 - Easy / Medium / Hard think modes: `low` / `medium` / `high`
-- 100k-token output limit per language generation
+- 100_000-token output limit per language generation
 - Temperature fixed at `0.1`
 - Markdown output paths and file format
 - Resume support and completed-problem skipping

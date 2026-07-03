@@ -51,7 +51,7 @@ hard/1-100/0004-median-of-two-sorted-arrays.md
   - Medium -> think `medium`
   - Hard -> think `high`
   - temperature `0.1`
-  - 单语言生成最大输出 `100000` tokens
+  - 单语言生成最大输出 `100_000` tokens
 
 这些内容应作为项目运行说明，不写成营销文案。
 

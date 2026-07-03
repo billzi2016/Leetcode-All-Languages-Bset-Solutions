@@ -38,7 +38,7 @@ This document describes the recommended project layout and module responsibiliti
 │   ├── test_markdown_writer.py     # output path, filename, and Markdown format tests
 │   ├── test_resume.py              # resume detection tests
 │   ├── test_logger.py              # stdout/stderr/failures log separation tests
-│   ├── test_ollama_client.py       # ollama library, think mode, and 100k limit tests
+│   ├── test_ollama_client.py       # ollama library, think mode, and 100_000 limit tests
 │   ├── test_cli.py                 # CLI argument parsing tests
 │   ├── test_generator.py           # main generator orchestration tests
 │   └── test_e2e_selected.py        # LeetCode 1/2/4 formal-flow and skip tests
@@ -75,7 +75,7 @@ Tests should cover:
 - Retry-3 failure behavior that records logs and continues with the next problem.
 - Ollama client usage through the Python `ollama` package, not `requests`.
 - Ollama `hello` smoke tests for `low`, `medium`, and `high` think modes.
-- Ollama options including a 100k token output limit and temperature `0.1`.
+- Ollama options including a 100_000 token output limit and temperature `0.1`.
 - CLI support for multiple problem ids, such as `--frontend-ids 1 2 4`.
 - Formal-flow tests for LeetCode 1 / 2 / 4, covering Easy, Medium, and Hard, plus second-run skip behavior.
 

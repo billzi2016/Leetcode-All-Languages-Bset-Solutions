@@ -1,6 +1,6 @@
 """Ollama 模型客户端封装。
 
-项目使用 Python `ollama` 库，不直接使用 requests 调 HTTP。本模块集中管理模型参数、think 模式和 100k 输出限制。
+项目使用 Python `ollama` 库，不直接使用 requests 调 HTTP。本模块集中管理模型参数、think 模式和 100_000 输出限制。
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ class OllamaClient:
         self.options = options or OllamaOptions()
 
     def build_options(self, difficulty: str) -> dict:
-        """构造包含 think 模式和 100k 输出限制的 Ollama options。"""
+        """构造包含 think 模式和 100_000 输出限制的 Ollama options。"""
 
         return {
             "think": self.think_by_difficulty[difficulty],

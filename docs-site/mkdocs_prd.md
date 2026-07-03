@@ -104,7 +104,7 @@ Explain the local generation setup in practical terms:
 - observed throughput can reach about 100 tokens/second in the tested setup
 - MLX or MPS acceleration paths are relevant for Apple Silicon, while the 2x H100 node is the high-throughput NVIDIA option
 - temperature is fixed at `0.1`
-- output limit is `100000` tokens
+- output limit is `100_000` tokens
 - Easy/Medium/Hard map to low/medium/high think modes
 
 ### Prompt Reuse

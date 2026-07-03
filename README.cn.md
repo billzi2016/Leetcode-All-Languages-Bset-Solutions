@@ -71,7 +71,7 @@ hard/
 - prompt 构造，并排除 `images` 字段
 - Python `ollama` 库调用封装
 - Easy / Medium / Hard 对应 think 模式：`low` / `medium` / `high`
-- 单次语言生成 100k tokens 输出限制
+- 单次语言生成 100_000 tokens 输出限制
 - 温度固定为 `0.1`
 - Markdown 输出路径和文件格式
 - 断点续跑和已生成题目跳过

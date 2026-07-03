@@ -51,7 +51,7 @@ The generation system uses a local Ollama model flow. The important documentatio
   - Medium -> think `medium`
   - Hard -> think `high`
   - temperature `0.1`
-  - max output `100000` tokens per language generation
+  - max output `100_000` tokens per language generation
 
 The documentation should present these as runtime notes for the project, not as marketing copy.
 
