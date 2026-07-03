@@ -17,6 +17,8 @@ echo
 echo "Attach:"
 echo "  tmux attach -t $SESSION_NAME"
 echo
-echo "Cancel:"
 echo
+echo "Cancel:"
+echo "  tmux kill-session -t $SESSION_NAME"
+echo "Cancel all tmux sessions:"
 echo "  tmux kill-server"
