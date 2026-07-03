@@ -1,34 +1,34 @@
 # LeetCode All Languages Best Solutions
 
-本项目用于生成和整理 LeetCode 所有支持语言的准确最优解，并按难度、题号区间和题目 slug 输出为 Markdown 文件。
+This project generates and organizes accurate optimal LeetCode solutions for every supported language, then writes them as Markdown files grouped by difficulty, problem range, and problem slug.
 
-## 支持语言
+## Supported Languages
 
-本项目覆盖 LeetCode 数据集中提供 starter code 的全部语言。下面的代码头示例来自 LeetCode 1 `Two Sum`。
+The project covers every language that appears in the LeetCode dataset with starter code. The signature examples below come from LeetCode 1, `Two Sum`.
 
-| 语言 | 简介 | LeetCode 代码头示例 |
+| Language | Short Description | LeetCode Signature Example |
 | --- | --- | --- |
-| C | 适合底层数组和指针操作。 | `int* twoSum(int* nums, int numsSize, int target, int* returnSize)` |
-| C++ | 适合使用 STL 容器和算法。 | `class Solution { public: vector<int> twoSum(vector<int>& nums, int target) }` |
-| Java | 适合强类型面向对象实现。 | `class Solution { public int[] twoSum(int[] nums, int target) }` |
-| Python | 适合简洁表达算法逻辑。 | `class Solution(object): def twoSum(self, nums, target)` |
-| Python3 | 适合类型标注和现代 Python 写法。 | `class Solution: def twoSum(self, nums: List[int], target: int) -> List[int]` |
-| C# | 适合 .NET 风格强类型实现。 | `public class Solution { public int[] TwoSum(int[] nums, int target) }` |
-| JavaScript | 适合动态类型函数提交。 | `var twoSum = function(nums, target)` |
-| TypeScript | 适合带类型约束的 JavaScript 写法。 | `function twoSum(nums: number[], target: number): number[]` |
-| PHP | 适合类方法形式提交。 | `class Solution { function twoSum($nums, $target) }` |
-| Swift | 适合 Apple 生态强类型实现。 | `class Solution { func twoSum(_ nums: [Int], _ target: Int) -> [Int] }` |
-| Kotlin | 适合 JVM 上的现代强类型写法。 | `class Solution { fun twoSum(nums: IntArray, target: Int): IntArray }` |
-| Dart | 适合 Dart 生态语法。 | `class Solution { List<int> twoSum(List<int> nums, int target) }` |
-| Go | 适合简洁函数式提交。 | `func twoSum(nums []int, target int) []int` |
-| Ruby | 适合脚本风格表达。 | `def two_sum(nums, target)` |
-| Scala | 适合 JVM 上的函数式和面向对象混合写法。 | `object Solution { def twoSum(nums: Array[Int], target: Int): Array[Int] }` |
-| Rust | 适合强安全约束和高性能实现。 | `impl Solution { pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> }` |
-| Racket | 适合函数式表达和 contract 定义。 | `(define/contract (two-sum nums target) ...)` |
-| Erlang | 适合函数式并发语言风格。 | `-spec two_sum(Nums :: [integer()], Target :: integer()) -> [integer()].` |
-| Elixir | 适合函数式管道和模式匹配风格。 | `defmodule Solution do ... def two_sum(nums, target) do ... end` |
+| C | Good for low-level array and pointer work. | `int* twoSum(int* nums, int numsSize, int target, int* returnSize)` |
+| C++ | Good for STL containers and algorithmic implementations. | `class Solution { public: vector<int> twoSum(vector<int>& nums, int target) }` |
+| Java | Good for strongly typed object-oriented solutions. | `class Solution { public int[] twoSum(int[] nums, int target) }` |
+| Python | Good for concise algorithm expression. | `class Solution(object): def twoSum(self, nums, target)` |
+| Python3 | Good for modern Python with type annotations. | `class Solution: def twoSum(self, nums: List[int], target: int) -> List[int]` |
+| C# | Good for .NET-style strongly typed solutions. | `public class Solution { public int[] TwoSum(int[] nums, int target) }` |
+| JavaScript | Good for dynamic function submissions. | `var twoSum = function(nums, target)` |
+| TypeScript | Good for JavaScript-style solutions with type constraints. | `function twoSum(nums: number[], target: number): number[]` |
+| PHP | Good for class-method submissions. | `class Solution { function twoSum($nums, $target) }` |
+| Swift | Good for strongly typed Apple ecosystem code. | `class Solution { func twoSum(_ nums: [Int], _ target: Int) -> [Int] }` |
+| Kotlin | Good for modern strongly typed JVM code. | `class Solution { fun twoSum(nums: IntArray, target: Int): IntArray }` |
+| Dart | Good for Dart ecosystem syntax. | `class Solution { List<int> twoSum(List<int> nums, int target) }` |
+| Go | Good for concise function submissions. | `func twoSum(nums []int, target int) []int` |
+| Ruby | Good for script-style expression. | `def two_sum(nums, target)` |
+| Scala | Good for mixed functional and object-oriented JVM code. | `object Solution { def twoSum(nums: Array[Int], target: Int): Array[Int] }` |
+| Rust | Good for memory-safe and high-performance implementations. | `impl Solution { pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> }` |
+| Racket | Good for functional solutions with contracts. | `(define/contract (two-sum nums target) ...)` |
+| Erlang | Good for functional concurrent-language style. | `-spec two_sum(Nums :: [integer()], Target :: integer()) -> [integer()].` |
+| Elixir | Good for functional pipeline and pattern-matching style. | `defmodule Solution do ... def two_sum(nums, target) do ... end` |
 
-## 输出目录示例
+## Output Layout Example
 
 ```text
 easy/
@@ -38,6 +38,7 @@ easy/
     0013-roman-to-integer.md
     0014-longest-common-prefix.md
     0020-valid-parentheses.md
+    ...
 
 medium/
   1-100/
@@ -46,6 +47,7 @@ medium/
     0005-longest-palindromic-substring.md
     0006-zigzag-conversion.md
     0007-reverse-integer.md
+    ...
 
 hard/
   1-100/
@@ -54,93 +56,112 @@ hard/
     0023-merge-k-sorted-lists.md
     0025-reverse-nodes-in-k-group.md
     0030-substring-with-concatenation-of-all-words.md
+    ...
 ```
 
-## 当前状态
+## Current Status
 
-当前已完成基础工程结构和核心流程：
+The foundational project structure and core flow are implemented:
 
-- 数据集读取和按难度/题号筛选
-- prompt 构造，并排除 `images` 字段
-- Python `ollama` 库调用封装
-- Easy / Medium / Hard 对应 think 模式：`low` / `medium` / `high`
-- 单次语言生成 100k tokens 输出限制
-- Markdown 输出路径和文件格式
-- 断点续跑和已生成题目跳过
-- stdout / stderr / failures 日志分流
-- `unittest` 测试覆盖
+- Dataset loading and filtering by difficulty/problem id
+- Prompt construction with `images` excluded
+- Python `ollama` library client wrapper
+- Easy / Medium / Hard think modes: `low` / `medium` / `high`
+- 100k-token output limit per language generation
+- Temperature fixed at `0.1`
+- Markdown output paths and file format
+- Resume support and completed-problem skipping
+- stdout / stderr / failures log separation
+- `unittest` coverage
 
-## 数据集
+## Dataset
 
-本仓库不提交 `dataset/merged_problems.json`。如需运行生成流程，请先自行下载：
+This repository does not commit `dataset/merged_problems.json`. Download it locally before running generation:
 
 ```bash
 curl -L -o dataset/merged_problems.json https://raw.githubusercontent.com/neenza/leetcode-problems/master/merged_problems.json
 ```
 
-数据字段说明见：
+Dataset field documentation:
 
 - `dataset/dataset.md`
+- `dataset/dataset.cn.md`
 
-## 安装依赖
+## Install Dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-依赖包括：
+Dependencies:
 
 - `ollama`
 - `tqdm`
 
-## 运行测试
+## Run Tests
 
 ```bash
 PYTHONPATH=src python -m unittest discover -s tests
 ```
 
-测试包含 LeetCode 1 / 2 / 4 的正式流程测试，分别覆盖 Easy、Medium、Hard，并验证第二次运行能正常跳过已生成文件。
+The tests include formal-flow coverage for LeetCode 1 / 2 / 4, covering Easy, Medium, and Hard, and verify that a second run skips already generated files.
 
-## 生成单题
+## Generate Problems
 
-生成 LeetCode 1：
+Generate LeetCode 1:
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py --only-frontend-id 1
 ```
 
-一次生成 LeetCode 1 / 2 / 4：
+Generate LeetCode 1 / 2 / 4 in one run:
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py --frontend-ids 1 2 4
 ```
 
-生成某个难度：
+Generate one difficulty:
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py --difficulty Easy
 ```
 
-生成 Medium：
+Generate Medium:
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py --difficulty Medium
 ```
 
-生成 Hard：
+Generate Hard:
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py --difficulty Hard
 ```
 
-生成全部难度：
+Generate all difficulties:
 
 ```bash
 PYTHONPATH=src python scripts/generate_solutions.py
 ```
 
-## 文档
+## Documentation
 
-- `docs/PRD.md`: 产品需求和实现约束
-- `docs/PROJECT_STRUCTURE.md`: 项目结构、模块职责、SOLID/DRY 和测试规划
-- `dataset/dataset.md`: 数据集来源和字段说明
+- `docs/PRD.md`: Product requirements and implementation constraints
+- `docs/PRD.cn.md`: Chinese version of the PRD
+- `docs/PROJECT_STRUCTURE.md`: Project structure, module responsibilities, SOLID/DRY, and test plan
+- `docs/PROJECT_STRUCTURE.cn.md`: Chinese version of the project structure document
+- `dataset/dataset.md`: Dataset source and field documentation
+- `dataset/dataset.cn.md`: Chinese version of the dataset documentation
+
+## Prompt Reuse Strategy
+
+Prompts are split into three layers to maximize reuse and cache hits:
+
+- `SYSTEM_PROMPT`: identical for every problem and every language; contains global generation requirements and output constraints.
+- `problem_prompt`: identical for all languages of the same problem; contains problem metadata, description, examples, constraints, hints, and optional solution reference.
+- `language_prompt`: contains only the target language and that language's LeetCode starter code; this is the smallest changing part of each call.
+
+Changing the target language only changes `language_prompt`; changing the problem still keeps `SYSTEM_PROMPT` unchanged. This structure is the most cache-friendly.
+
+The LeetCode starter code and function header in `language_prompt` must appear in the final output. The generated code must preserve the submission entry point for the target language, such as `class Solution`, `impl Solution`, `func twoSum(...)`, or `def two_sum(...)`, so it can be pasted directly into LeetCode.
+

@@ -1,47 +1,47 @@
 # LeetCode Problems Dataset
 
-本目录用于说明如何获取 LeetCode 题目合并数据文件。数据文件 `merged_problems.json` 不随本仓库提交，如需使用请自行下载到本目录。
+This directory documents how to obtain the merged LeetCode problem dataset. The data file `merged_problems.json` is not committed to this repository; download it into this directory when needed.
 
-- 本地数据文件：`merged_problems.json`
-- 来源仓库：https://github.com/neenza/leetcode-problems/tree/master
-- 原始文件：https://github.com/neenza/leetcode-problems/blob/master/merged_problems.json
-- 直接下载地址：https://raw.githubusercontent.com/neenza/leetcode-problems/master/merged_problems.json
+- Local data file: `merged_problems.json`
+- Source repository: https://github.com/neenza/leetcode-problems/tree/master
+- Original file: https://github.com/neenza/leetcode-problems/blob/master/merged_problems.json
+- Direct download URL: https://raw.githubusercontent.com/neenza/leetcode-problems/master/merged_problems.json
 
-## 这个 JSON 是怎么来的
+## Where This JSON Comes From
 
-`merged_problems.json` 来自 `neenza/leetcode-problems` 仓库根目录。该上游仓库同时包含一个 `problems/` 目录和一个已经合并好的 `merged_problems.json` 文件。
+`merged_problems.json` comes from the root directory of `neenza/leetcode-problems`. That upstream repository contains both a `problems/` directory and a pre-merged `merged_problems.json` file.
 
-本项目没有重新爬取或重新生成 LeetCode 数据。需要使用数据时，请从上游仓库下载已经整理好的合并 JSON 文件，用于后续读取、分析或转换为其他语言/格式的题目数据。
+This project does not re-crawl or regenerate LeetCode data. When data is needed, download the already merged JSON file from the upstream repository for local reading, analysis, or conversion into solution artifacts.
 
-## 数据结构
+## Data Structure
 
-`merged_problems.json` 顶层包含 `questions` 字段，里面是题目对象数组。每个题目 JSON 对象通常包含以下字段：
+`merged_problems.json` contains a top-level `questions` field, which is an array of problem objects. Each problem object usually contains the following fields:
 
 Some fields (like solutions, images, follow_ups) may be missing for certain problems.
 
-- `title`: 题目名称，例如 `Container With Most Water`。
-- `problem_id`: LeetCode 内部题目 ID，字符串格式。
-- `frontend_id`: LeetCode 前端展示 ID，字符串格式。
-- `difficulty`: 题目难度，通常是 `Easy`、`Medium` 或 `Hard`。
-- `problem_slug`: URL 友好的题目名称，例如 `container-with-most-water`。
-- `topics`: 题目标签数组，例如 `Array`、`Two Pointers`。
-- `description`: 完整题目描述，通常是 Markdown 或文本格式。
-- `examples`: 示例数组，每个示例对象通常包含：
-  - `example_num`: 示例编号。
-  - `example_text`: 输入、输出和解释文本。
-  - `images`: 图片 URL 数组，如果该示例包含图片则会出现在这里；生成模型 prompt 时不使用该字段。
-- `constraints`: 题目约束条件数组。
-- `follow_ups`: follow-up 问题数组，如果没有则通常为空数组。
-- `hints`: 解题提示数组。
-- `code_snippets`: 多语言 starter code 对象，例如 `python`、`cpp`、`java` 等。
-- `solutions`: 部分题目包含的官方题解或 editorial 内容，通常是 HTML 字符串。
+- `title`: Problem title, for example `Container With Most Water`.
+- `problem_id`: Internal LeetCode problem ID, stored as a string.
+- `frontend_id`: LeetCode frontend display ID, stored as a string.
+- `difficulty`: Difficulty level, usually `Easy`, `Medium`, or `Hard`.
+- `problem_slug`: URL-friendly problem name, for example `container-with-most-water`.
+- `topics`: Array of topic tags, such as `Array` and `Two Pointers`.
+- `description`: Full problem statement, usually Markdown or text.
+- `examples`: Array of examples. Each example object usually contains:
+  - `example_num`: Example number.
+  - `example_text`: Input, output, and explanation text.
+  - `images`: Array of image URLs if the example contains images; this field is not used in model prompts.
+- `constraints`: Array of problem constraints.
+- `follow_ups`: Array of follow-up questions, usually empty when none exist.
+- `hints`: Array of solving hints.
+- `code_snippets`: Object containing starter code for multiple languages, such as `python`, `cpp`, and `java`.
+- `solution` / `solutions`: Official solution or editorial content for some problems, usually as an HTML string.
 
-## 如何更新
+## How to Download or Update
 
-如果需要使用该数据，或需要同步上游最新版，可以在本仓库根目录下载：
+To use the dataset or sync the latest upstream version, run this command from the repository root:
 
 ```bash
 curl -L -o dataset/merged_problems.json https://raw.githubusercontent.com/neenza/leetcode-problems/master/merged_problems.json
 ```
 
-更新后建议检查文件是否为合法 JSON，并根据需要记录上游仓库的 commit 或下载日期。
+After updating, it is recommended to verify that the file is valid JSON and optionally record the upstream commit or download date.

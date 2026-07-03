@@ -1,36 +1,36 @@
 # PRD: LeetCode All Languages Best Solutions
 
-## 目标
+## Goal
 
-本项目目标是基于 `dataset/merged_problems.json` 中的 LeetCode 题目数据，使用 Ollama 本地模型 `gpt-oss:120b` 为每一道题生成所有可用编程语言的最优解，并按难度、题号区间和题目 slug 组织为 Markdown 文件。
+This project uses the LeetCode problem data in `dataset/merged_problems.json` to generate optimal solutions for every available programming language, then organizes the generated Markdown files by difficulty, problem-id range, and problem slug.
 
-最终产物不是题目集，而是题解集。每个题目的 Markdown 文件只保存各种语言的最优解代码，不重复放入题目正文。
+The final artifact is a solution set, not a problem statement dataset. Each problem Markdown file stores only the best solution code for each language and does not repeat the full problem text.
 
-## 模型与推理强度
+## Model and Think Strength
 
-使用 Ollama 调用 `gpt-oss:120b`。
+Generation uses Ollama with `gpt-oss:120b`.
 
-根据题目难度设置模型 think 强度：
+Think strength is selected by problem difficulty:
 
 - Easy: `low`
 - Medium: `medium`
 - Hard: `high`
 
-生成顺序固定为：
+Generation order is fixed:
 
 1. Easy
 2. Medium
 3. Hard
 
-这样可以先完成简单题，快速验证流程和输出格式，再逐步处理更复杂的题目。
+This allows the project to validate the flow on easier problems before moving to more complex ones.
 
-## 数据来源
+## Data Source
 
-输入数据来自：
+Input data comes from:
 
 - `dataset/merged_problems.json`
 
-顶层字段为 `questions`，每个元素是一道题。生成时需要优先使用题目中对解法正确性有帮助的信息，包括：
+The top-level field is `questions`, and each item is one problem. Generation should use the information that improves solution correctness:
 
 - `title`
 - `problem_id`
@@ -46,61 +46,64 @@
 - `solutions`
 - `code_snippets`
 
-其中 `solutions` 如果存在，可以作为 editorial 思路材料传给模型，以提升最优解正确性；如果不存在则跳过。
+If `solutions` exists, it can be used as editorial reference material to improve correctness. If it is missing, skip it.
 
-部分字段可能缺失，例如 `solutions`、`images`、`follow_ups`。生成逻辑必须把这些字段视为可选字段，不能因为缺失而中断。
+Some fields may be missing, including `solutions`, `images`, and `follow_ups`. Missing fields must be treated as optional and must not stop generation.
 
-`images` 字段只作为数据字段保留，不传入模型 prompt。`gpt-oss:120b` 不是多模态模型，不能直接理解图片 URL 或图片内容。
+The `images` field is kept only as a dataset field and must not be sent into model prompts. `gpt-oss:120b` is not a multimodal model and cannot directly understand image URLs or image content.
 
-## Prompt 设计
+## Prompt Design
 
-Prompt 分为三层：
+Prompts are split into three layers:
 
-1. 固定 system prompt
-2. 可缓存的题目公共信息 prompt
-3. 每种语言单独的 user prompt
+1. Fixed system prompt
+2. Cacheable shared problem prompt
+3. Language-specific user prompt
 
 ### System Prompt
 
-System prompt 放入所有稳定要求，避免每种语言重复构造不同规则。
+The system prompt contains stable requirements so every language does not rebuild different rules.
 
-输入 prompt 可以使用 Markdown 或结构化文本组织信息，以帮助模型理解题目；输出必须严格限制为纯代码。
+Input prompts may use Markdown or structured text to help the model understand the problem. Output must be strictly limited to raw code.
 
-核心要求：
+Core requirements:
 
-- 你是专业算法工程师和 LeetCode 题解生成器。
-- 只生成目标语言的最优解。
-- 优先选择时间复杂度和空间复杂度最优、可通过 LeetCode 的解法。
-- 必须严格匹配 LeetCode 函数签名和 starter code 风格。
-- 不要输出题目描述。
-- 不要输出 Markdown 正文解释。
-- 不要输出复杂度分析，除非未来明确需要。
-- 不要输出测试代码、main 函数或额外 I/O。
-- 最终输出只包含纯代码。
-- 不要使用 Markdown 代码块包裹，不要输出 ``` 或 ```language。
-- 如果题目有官方 editorial 或 solution 信息，可以参考其思路，但必须输出干净、可提交的代码。
+- You are a senior algorithm engineer and LeetCode solution generator.
+- Generate only the optimal solution for the target language.
+- Prefer the best time and space complexity accepted by LeetCode.
+- Strictly match the LeetCode function signature and starter-code style.
+- Do not output the problem statement.
+- Do not output Markdown prose.
+- Do not output complexity analysis unless explicitly required later.
+- Do not output tests, `main` functions, or extra I/O.
+- The final output must contain raw code only.
+- Do not wrap output in Markdown code fences. Do not output ``` or ```language.
+- The final answer must include the LeetCode submission entry point from the starter code, such as the `Solution` class, `impl` block, function signature, module, or contract header.
+- The final answer must be directly pasteable into the LeetCode editor for the target language.
+- Think concisely, directly, and forcefully.
+- If official editorial or solution content is provided, use it only as reference and still output clean submit-ready code.
 
-System prompt 也负责固定输出质量要求：
+Output quality requirements:
 
-- 代码必须完整。
-- 代码必须能直接替换 LeetCode 编辑器中的 starter code。
-- 不允许使用不存在的库或非 LeetCode 默认环境依赖。
-- 不允许省略关键逻辑。
-- 不允许输出伪代码。
+- Code must be complete.
+- Code must directly replace the LeetCode editor starter code.
+- Code must not depend on unsupported libraries or non-default LeetCode environment features.
+- Code must not omit key logic.
+- Code must not be pseudocode.
 
-### 可缓存题目公共 Prompt
+### Cacheable Shared Problem Prompt
 
-题目公共 prompt 由题目有用信息拼接而成，对同一道题的所有语言都相同，因此可以缓存和复用。
+The shared problem prompt is built from useful problem fields. It is identical for every language of the same problem, so it can be cached and reused.
 
-缓存策略：
+Cache strategy:
 
-- System prompt 是全局稳定内容，跨题目、跨语言都应复用。
-- 题目公共 prompt 包含除 `images` 之外的题目有效字段，同一道题的所有语言复用。
-- 语言 user prompt 只包含目标语言和该语言 starter code。
-- 即使切换题目，system prompt 仍保持相同，可以最大化模型侧 prompt cache 命中。
-- 缺失字段直接跳过，不影响缓存结构和生成流程。
+- `SYSTEM_PROMPT` is globally stable and should be reused across problems and languages.
+- The shared problem prompt contains useful problem fields except `images`; all languages for the same problem reuse it.
+- The language user prompt contains only the target language and that language's starter code.
+- Even when the problem changes, the system prompt stays unchanged, maximizing prompt-cache hits.
+- Missing fields are skipped and do not affect the cache structure or generation flow.
 
-建议包含：
+Recommended content:
 
 ```text
 Problem Metadata:
@@ -131,20 +134,20 @@ Editorial / Solution Reference:
 - solutions, if present
 ```
 
-字段缺失时直接跳过，不写空字段占位。
+Skip missing fields instead of writing empty placeholders.
 
-如果示例中包含 `images`，生成 prompt 时跳过该字段，只使用文本形式的 `example_text`。
+If an example contains `images`, skip that field when building prompts and use only textual `example_text`.
 
-### 语言 User Prompt
+### Language User Prompt
 
-语言 user prompt 只放每种语言不同的内容：
+The language user prompt contains only language-specific content:
 
-- 目标语言名称
-- 该语言对应的 `code_snippets` starter code
+- Target language name
+- The corresponding `code_snippets` starter code
 
-示例结构：
+Example structure:
 
-```text
+````text
 Target Language: python3
 
 Use this LeetCode starter code signature and style:
@@ -157,13 +160,13 @@ class Solution:
 
 Generate the optimal accepted solution for this language.
 Return raw code only. Do not wrap the answer in Markdown code fences.
-```
+````
 
-这样可以让 system prompt 和题目公共 prompt 保持一致，只有语言层输入变化，便于缓存、断点续跑和排查错误。
+This keeps the system prompt and shared problem prompt stable. Only the language layer changes, which improves cache reuse, resume behavior, and debugging.
 
-## 输出结构
+## Output Structure
 
-生成结果按难度分为三个目录：
+Generated results are split into three difficulty directories:
 
 ```text
 easy/
@@ -171,7 +174,7 @@ medium/
 hard/
 ```
 
-每个难度目录内按 `frontend_id` 每 100 题分桶：
+Inside each difficulty directory, files are bucketed by `frontend_id` in groups of 100:
 
 ```text
 easy/
@@ -189,26 +192,26 @@ hard/
   101-200/
 ```
 
-文件名格式：
+Filename format:
 
 ```text
-{frontend_id 四位补零}-{problem_slug}.md
+{zero-padded four-digit frontend_id}-{problem_slug}.md
 ```
 
-示例：
+Examples:
 
 ```text
 0001-two-sum.md
 0011-container-with-most-water.md
 ```
 
-如果 `frontend_id` 不是纯数字，需要记录为异常题目并跳过或单独处理。
+If `frontend_id` is not numeric, record it as an exceptional problem and skip or handle it separately.
 
-## 单题 Markdown 格式
+## Per-Problem Markdown Format
 
-每个 `.md` 文件只包含各语言题解，不包含题目正文。
+Each `.md` file contains only language solutions, not the problem statement.
 
-推荐格式：
+Recommended format:
 
 ````markdown
 # 0001. Two Sum
@@ -233,13 +236,13 @@ public:
 ```
 ````
 
-标题只保留题号和题名，用于定位文件内容；不放题目描述、examples、constraints、hints 或 editorial。
+The title keeps only the problem id and problem title for identification. Do not include the problem description, examples, constraints, hints, or editorial content.
 
-## 语言范围
+## Language Scope
 
-语言列表来自每道题的 `code_snippets` 字段。
+The language list comes from each problem's `code_snippets` field.
 
-生成逻辑应遍历该对象中的所有语言 key，例如：
+Generation should iterate over every language key in that object, such as:
 
 - `python3`
 - `python`
@@ -261,19 +264,19 @@ public:
 - `erlang`
 - `elixir`
 
-不同题目的可用语言可能不完全一致，以该题实际存在的 `code_snippets` 为准。
+Available languages may vary by problem. Use the actual `code_snippets` present for that problem.
 
-## 进度条
+## Progress Bars
 
-生成进度用 `tqdm` 实现，按难度顺序串行处理：
+Use `tqdm` for progress and process difficulties sequentially:
 
-1. Easy 题目进度跑完到 100%。
-2. Medium 题目进度跑完到 100%。
-3. Hard 题目进度跑完到 100%。
+1. Run Easy until the Easy problem progress reaches 100%.
+2. Run Medium until the Medium problem progress reaches 100%.
+3. Run Hard until the Hard problem progress reaches 100%.
 
-每个难度阶段使用一个外层 `tqdm`，统计当前难度下已完成的题目数。处理单题时，使用一个内层 `tqdm`，统计当前题目已完成的语言数。
+Each difficulty stage uses one outer `tqdm` for the number of completed problems. Each problem uses an inner `tqdm` for completed languages.
 
-伪代码结构：
+Pseudo-code:
 
 ```python
 for difficulty in ["Easy", "Medium", "Hard"]:
@@ -284,44 +287,44 @@ for difficulty in ["Easy", "Medium", "Hard"]:
             generate_solution(problem, language)
 ```
 
-先保持实现简单，不需要手写文本进度条，也不需要同时展示 Easy、Medium、Hard 三条进度。
+Keep the implementation simple. Do not hand-roll text progress bars or display Easy, Medium, and Hard progress bars simultaneously.
 
-进度统计以题目 Markdown 文件为主：
+Progress is primarily tracked by problem Markdown files:
 
-- 外层 `tqdm` 表示当前难度下的题目 `.md` 完成进度。
-- 内层 `tqdm` 只表示当前题目的语言生成进度。
-- Easy 和 Medium 在单题所有语言生成完成并写入 `.md` 后，外层进度加 1。
-- Hard 每生成完一个语言就更新一次该题 `.md`，但外层进度仍然在该题所有语言完成后加 1。
+- Outer `tqdm` represents completed `.md` files for the current difficulty.
+- Inner `tqdm` represents language generation progress for the current problem only.
+- Easy and Medium increment the outer progress after all languages for a problem are generated and written once.
+- Hard updates the problem `.md` after each generated language, but the outer progress still increments only after all languages for that problem are complete.
 
-## 断点续跑
+## Resume Behavior
 
-生成过程可能很长，必须支持断点续跑。
+Generation may run for a long time and must support resume.
 
-建议策略：
+Recommended strategy:
 
-- 如果目标 `.md` 已存在且包含所有目标语言标题，则跳过该题。
-- 如果文件存在但语言不完整，只补生成缺失语言。
-- Easy 和 Medium 题目：先在内存中收集该题所有语言结果，全部成功后一次性写入目标 `.md`，减少 SSD 写入次数。
-- Hard 题目：每生成完成一种语言就更新一次目标 `.md`，降低长耗时任务中断后的损失。
-- 写文件时使用临时文件再替换，避免中断导致文件损坏。
+- If the target `.md` already exists and contains all target language headings, skip the problem.
+- If the file exists but is missing languages, generate only the missing languages.
+- Easy and Medium: collect all language results for the problem in memory, then write the target `.md` once after all languages succeed. This reduces SSD writes.
+- Hard: update the target `.md` after each completed language to reduce loss from interruption.
+- Use a temporary file and replace the target file to avoid corrupting files during interruption.
 
-## 日志要求
+## Logging Requirements
 
-日志必须同时满足排查问题和实时观察进度：
+Logs must support both debugging and real-time observation:
 
-- 输出路径分为两条：一条打印到屏幕，另一条写入本次运行的日志目录。
-- stdout 信息打印到屏幕 stdout，同时写入 `stdout.log`。
-- stderr 信息打印到屏幕 stderr，同时写入 `stderr.log`。
-- 日志目录使用 `logs/`，该目录不提交到 Git。
-- 每次运行按日期时间创建独立日志目录。
-- stdout 写入本次运行目录下的 `stdout.log`。
-- stderr 写入本次运行目录下的 `stderr.log`。
-- 失败记录写入本次运行目录下的 `failures.jsonl`。
-- 每条日志必须包含日期时间。
-- stdout、stderr、failure 三类信息必须分开写，不要混在同一个文件。
-- 模型调用失败、重试、超时、返回格式异常、字段缺失跳过等都要写日志。
+- Output has two paths: one to the screen and one to the current run's log directory.
+- stdout messages print to screen stdout and write to `stdout.log`.
+- stderr messages print to screen stderr and write to `stderr.log`.
+- The log root is `logs/`, which is not committed to Git.
+- Each run creates a dedicated timestamped log directory.
+- stdout writes to `stdout.log` in the current run directory.
+- stderr writes to `stderr.log` in the current run directory.
+- Failure records write to `failures.jsonl` in the current run directory.
+- Every log line must include a timestamp.
+- stdout, stderr, and failure records must be separated and must not be mixed into one file.
+- Model failures, retries, timeouts, invalid return formats, and skipped missing fields must be logged.
 
-日志目录示例：
+Log directory example:
 
 ```text
 logs/
@@ -331,46 +334,46 @@ logs/
     failures.jsonl
 ```
 
-stdout 日志示例：
+stdout example:
 
 ```text
 2026-07-03 03:15:20 [INFO] Starting Easy generation
 2026-07-03 03:16:10 [INFO] Finished 0001-two-sum
 ```
 
-stderr 日志示例：
+stderr example:
 
 ```text
 2026-07-03 03:15:24 [WARN] ollama warning: ...
 2026-07-03 03:16:02 [ERROR] 0001-two-sum python3 retry=2 timeout
 ```
 
-`failures.jsonl` 只保存结构化失败记录，不保存普通 stdout/stderr 文本。
+`failures.jsonl` stores only structured failure records, not normal stdout/stderr text.
 
-## 错误处理
+## Error Handling
 
-需要处理以下情况：
+Handle these cases:
 
-- 题目缺失 `code_snippets`：记录并跳过。
-- 单个语言缺失 starter code：跳过该语言。
-- 模型返回非代码块：记录失败并重试。
-- 模型调用超时：重试，超过 3 次后记录失败。
-- JSON 字段缺失：跳过缺失字段，不中断。
-- `frontend_id` 无法解析为数字：记录异常。
+- Missing `code_snippets`: log and skip the problem.
+- Missing starter code for one language: skip that language.
+- Model returns non-code output: record failure and retry.
+- Model call timeout: retry; after 3 attempts, record failure.
+- Missing JSON field: skip the field and continue.
+- `frontend_id` cannot be parsed as a number: record as exceptional.
 
-每个语言最多 retry 3 次。3 次仍失败后，不阻塞主流程，必须：
+Each language can retry at most 3 times. After 3 failures, do not block the main flow. The system must:
 
-1. 写入本次运行目录的 `stderr.log`。
-2. 写入本次运行目录的 `failures.jsonl`。
-3. 继续处理下一个题目或下一个可处理单元。
+1. Write to the current run's `stderr.log`.
+2. Write to the current run's `failures.jsonl`.
+3. Continue with the next problem or next processable unit.
 
-失败日志路径：
+Failure log path:
 
 ```text
 logs/{run_datetime}/failures.jsonl
 ```
 
-每行记录：
+Each record contains:
 
 - `frontend_id`
 - `problem_slug`
@@ -379,116 +382,118 @@ logs/{run_datetime}/failures.jsonl
 - `error`
 - `retry_count`
 
-## 代码质量要求
+## Code Quality Requirements
 
-实现代码必须保持长期可维护：
+Implementation must remain maintainable:
 
-- 每个代码文件开头必须有意图注释，说明这个文件负责什么、不负责什么。
-- 每个公开函数或核心函数必须有注释，说明输入、输出和副作用。
-- 长逻辑、复杂条件、重试策略、断点续跑、文件替换、日志 tee 等关键位置必须有重点注释。
-- 注释要解释意图和边界，不写无意义的逐行翻译。
-- 模块设计必须遵循 SOLID 原则。
-- 重复逻辑必须抽成函数或模块，遵循 DRY 原则。
-- Prompt 构造、Ollama 调用、Markdown 写入、进度展示、日志记录、数据读取应拆分为独立模块。
-- 单个模块只承担清晰职责，避免把全流程堆在一个大脚本里。
+- Every code file must start with an intent comment explaining what the file owns and does not own.
+- Every public or core function must have a comment/docstring describing inputs, outputs, and side effects.
+- Long logic, complex conditions, retry policy, resume behavior, file replacement, and log tee behavior must have focused comments.
+- Comments should explain intent and edge cases, not restate every line.
+- Module design must follow SOLID.
+- Repeated logic must be extracted into functions or modules, following DRY.
+- Prompt construction, Ollama calls, Markdown writing, progress display, logging, and dataset reading should be split into separate modules.
+- A single module should have a clear responsibility; avoid putting the entire flow into one large script.
 
-## 测试要求
+## Testing Requirements
 
-所有单元测试统一放在 `tests/` 目录，并使用 Python 标准库 `unittest`。
+All unit tests live in `tests/` and use Python's standard `unittest` library.
 
-运行 Python 命令时统一使用 `python`，不要在文档和脚本说明里写 `python3`。
+Use `python` for Python commands. Do not write `python3` in docs or script instructions.
 
-测试需要覆盖：
+Tests must cover:
 
-- dataset 读取、字段缺失、难度筛选和题号排序。
-- prompt 构造，特别是 `images` 跳过、`solutions` 可选、语言 starter code 拼接。
-- Markdown 输出路径、题号分桶、文件名格式和语言章节格式。
-- Easy/Medium 一题写一次、Hard 一语言写一次的写入策略。
-- 断点续跑对完整题目和缺失语言的判断。
-- stdout/stderr/failures 三类日志分流。
-- retry 3 次失败后记录日志并继续处理下一个题目的行为。
-- Ollama client 使用 Python `ollama` 库，不使用 `requests`。
-- Ollama smoke test：用 `hello` 分别测试 `low`、`medium`、`high` 三种 think 模式能被本机 Ollama 识别。
-- Ollama 调用参数测试：确认单次语言生成的最大输出限制为 100k tokens。
-- CLI 参数测试：支持一次指定多个题号，例如 `--frontend-ids 1 2 4`。
-- LeetCode 1 / 2 / 4 必须有正式流程测试，分别覆盖 Easy、Medium、Hard：
+- Dataset loading, missing fields, difficulty filtering, and problem-id sorting.
+- Prompt construction, especially `images` exclusion, optional `solutions`, and language starter-code insertion.
+- Markdown output path, 100-problem buckets, filename format, and language section format.
+- Easy/Medium write-once-per-problem behavior and Hard write-once-per-language behavior.
+- Resume detection for complete problems and missing languages.
+- stdout/stderr/failures log separation.
+- Filtering for known requests dependency warnings in the current environment.
+- Retry-3 failure behavior that records logs and continues with the next problem.
+- Ollama client uses the Python `ollama` package, not `requests`.
+- Ollama smoke test: use `hello` to verify `low`, `medium`, and `high` think modes are accepted locally.
+- Ollama option tests: verify the 100k token output limit and temperature `0.1`.
+- CLI argument tests: support multiple problem ids, such as `--frontend-ids 1 2 4`.
+- Formal-flow tests for LeetCode 1 / 2 / 4, covering Easy, Medium, and Hard:
   - LeetCode 1 `Two Sum` -> `easy/1-100/0001-two-sum.md`
   - LeetCode 2 `Add Two Numbers` -> `medium/1-100/0002-add-two-numbers.md`
   - LeetCode 4 `Median of Two Sorted Arrays` -> `hard/1-100/0004-median-of-two-sorted-arrays.md`
-- LeetCode 1 / 2 / 4 生成完成后必须再跑一次跳过测试：第二次运行应识别对应 `.md` 已完整存在，正常跳过，不重复调用模型。
+- After LeetCode 1 / 2 / 4 are generated, running again must detect complete `.md` files and skip model calls.
 
-## Git Commit 要求
+## Git Commit Requirements
 
-提交时 commit message 必须清晰、详细、说明意图。不要只写 `update`、`fix`、`change` 这类模糊信息。
+Commit messages must be clear, detailed, and intention-revealing. Do not write vague messages such as `update`, `fix`, or `change`.
 
-推荐 commit message 结构：
+Recommended commit message structure:
 
 ```text
-实现 LeetCode 多语言题解生成器基础流程
+Implement the base LeetCode multi-language solution generator flow
 
-说明本次提交为什么需要做：
-- 使用 dataset/merged_problems.json 作为题目输入
-- 按 Easy、Medium、Hard 顺序生成，降低全量任务验证风险
-- 拆分 prompt 构造、模型调用、文件写入和日志模块，便于后续维护
+Why this commit is needed:
+- Use dataset/merged_problems.json as the problem input
+- Generate in Easy, Medium, Hard order to reduce full-run validation risk
+- Split prompt construction, model calls, file writes, and logging for maintainability
 
-说明本次提交具体改了什么：
-- 新增 Ollama gpt-oss:120b 调用封装
-- 新增按难度和题号分桶的 Markdown 输出
-- 新增 tqdm 题目进度和语言子进度
-- 新增 logs/failures.jsonl 失败记录
+What changed:
+- Add Ollama gpt-oss:120b client wrapper
+- Add difficulty and problem-id bucketed Markdown output
+- Add tqdm problem progress and language sub-progress
+- Add logs/failures.jsonl failure records
 
-说明影响范围：
-- 生成产物目录为 easy/、medium/、hard/
-- dataset/merged_problems.json 仍然由用户自行下载，不提交到仓库
+Impact:
+- Generated artifact directories are easy/, medium/, and hard/
+- dataset/merged_problems.json is still downloaded by users and is not committed
 ```
 
-Commit message 要让后续维护者能直接看懂本次提交的目的、设计取舍和影响范围。
+Commit messages should let future maintainers understand the purpose, design tradeoffs, and impact of the change.
 
-## Ollama 调用要求
+## Ollama Call Requirements
 
-模型调用需要支持：
+Model calls must support:
 
-- 模型名：`gpt-oss:120b`
-- 使用 Python `ollama` 库调用模型，不直接使用 `requests` 调 HTTP。
-- think 强度：根据难度传入 `low`、`medium`、`high`
-- think 强度必须有 smoke test，确认本机 Ollama 能识别 `low`、`medium`、`high`
-- system prompt
-- 题目公共 prompt
-- 语言 user prompt
-- 单个问题或单次语言生成的最大输出限制为 100k tokens。
-- 超时控制
-- 重试控制，单个语言最多 retry 3 次
+- Model name: `gpt-oss:120b`
+- Python `ollama` package; do not call HTTP directly with `requests`.
+- Think strength based on difficulty: `low`, `medium`, `high`.
+- Think strength smoke tests to verify local Ollama accepts `low`, `medium`, and `high`.
+- System prompt.
+- Shared problem prompt.
+- Language user prompt.
+- Maximum output limit of 100k tokens per problem/language generation.
+- Temperature `0.1`.
+- Timeout control.
+- Retry control, with at most 3 retries per language.
 
-如果 Ollama API 对 think 参数的实际字段名不同，应在实现阶段以本机 Ollama 版本支持的 API 为准。
+If the actual Ollama API uses a different field name for think mode, implementation should follow the local Ollama version.
 
-## 验收标准
+## Acceptance Criteria
 
-第一阶段验收：
+Phase 1:
 
-- 能读取 `dataset/merged_problems.json`。
-- 能按 Easy -> Medium -> Hard 排序处理。
-- 能按题目难度选择 think 强度。
-- 能为单题所有 `code_snippets` 语言生成一个 `.md` 文件。
-- 能按 `easy/1-100/0001-two-sum.md` 结构落盘。
-- 能展示难度进度条和语言子进度条。
-- Easy 和 Medium 每题只在所有语言完成后写一次 `.md`。
-- Hard 每生成完成一种语言就更新一次 `.md`。
-- stdout、stderr 分别同时输出到屏幕和本次运行日志目录。
-- failures 结构化写入本次运行目录的 `failures.jsonl`。
-- 核心模块有 `tests/` 下的 `unittest` 覆盖。
-- Ollama client 测试覆盖 `ollama` 库调用、三种 think 模式和 100k tokens 输出限制。
-- LeetCode 1 / 2 / 4 能通过正式流程生成，并能在第二次运行时正常跳过。
-- 能跳过缺失字段。
-- 能断点续跑。
+- Can read `dataset/merged_problems.json`.
+- Can process in Easy -> Medium -> Hard order.
+- Can select think strength by problem difficulty.
+- Can generate one `.md` file containing all `code_snippets` languages for a problem.
+- Can write files under paths such as `easy/1-100/0001-two-sum.md`.
+- Can show difficulty progress and language sub-progress.
+- Easy and Medium write each problem `.md` once after all languages are complete.
+- Hard updates the `.md` after each generated language.
+- stdout/stderr are written both to screen and the current run's log directory.
+- failures are written as structured records to `failures.jsonl`.
+- Core modules have `unittest` coverage under `tests/`.
+- Ollama client tests cover the `ollama` package call, three think modes, 100k token output limit, and temperature `0.1`.
+- LeetCode 1 / 2 / 4 can pass the formal flow and skip correctly on the second run.
+- Missing fields are skipped.
+- Resume is supported.
 
-第二阶段验收：
+Phase 2:
 
-- 全量 Easy 题生成完成。
-- 随机抽查题解可以直接粘贴到 LeetCode 对应语言提交。
-- 失败日志可复跑。
+- Full Easy generation is complete.
+- Randomly sampled solutions can be pasted directly into LeetCode for their target languages.
+- Failure logs can be replayed.
 
-第三阶段验收：
+Phase 3:
 
-- Medium 全量完成。
-- Hard 全量完成。
-- 所有生成文件结构稳定，可被后续脚本索引、搜索或发布。
+- Full Medium generation is complete.
+- Full Hard generation is complete.
+- All generated file structures are stable and can be indexed, searched, or published by later scripts.

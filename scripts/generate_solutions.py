@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import argparse
+import warnings
 from pathlib import Path
 
 from leetcode_solutions.config import DIFFICULTY_ORDER, Paths, THINK_BY_DIFFICULTY
@@ -14,6 +15,18 @@ from leetcode_solutions.dataset_loader import filter_by_difficulty, find_by_fron
 from leetcode_solutions.generator import SolutionGenerator
 from leetcode_solutions.logger import RunLogger
 from leetcode_solutions.ollama_client import OllamaClient
+
+
+def suppress_environment_warnings() -> None:
+    """屏蔽当前 Python 环境里无法由本项目直接修复的 requests 依赖版本告警。"""
+
+    warnings.filterwarnings(
+        "ignore",
+        message=r"urllib3 .* or chardet .*/charset_normalizer .* doesn't match a supported version!",
+    )
+
+
+suppress_environment_warnings()
 
 
 def parse_args() -> argparse.Namespace:
