@@ -25,28 +25,53 @@ class ProblemAudit:
     """
 
     frontend_id: str
+    """LeetCode 展示题号，保持字符串形式方便直接打印。"""
+
     problem_slug: str
+    """题目 slug，用于日志和路径识别。"""
+
     difficulty: str
+    """题目难度，通常是 Easy、Medium 或 Hard。"""
+
     path: Path
+    """按当前路径规则计算出来的目标 Markdown 文件路径。"""
+
     missing: list[str]
+    """目标文件中缺失的语言 key；非空时需要补跑模型。"""
+
     existing_order: list[str]
+    """目标文件中已经存在的语言 key 顺序。"""
+
     expected_order: list[str]
+    """在当前缺失状态下，已有语言应该呈现的标准顺序。"""
 
     @property
     def exists(self) -> bool:
-        """目标 Markdown 文件是否已经存在。"""
+        """目标 Markdown 文件是否已经存在。
+
+        返回：
+            bool: 文件存在时为 True。
+        """
 
         return self.path.exists()
 
     @property
     def has_issues(self) -> bool:
-        """是否存在缺失语言或语言顺序异常。"""
+        """是否存在缺失语言或语言顺序异常。
+
+        返回：
+            bool: 需要补跑或可被生成器重写修复时为 True。
+        """
 
         return bool(self.missing) or self.order_mismatch
 
     @property
     def order_mismatch(self) -> bool:
-        """完整语言集合存在但顺序和数据集语言顺序不同。"""
+        """完整语言集合存在但顺序和数据集语言顺序不同。
+
+        返回：
+            bool: 没有缺失语言、但文件中语言顺序不符合 dataset 顺序时为 True。
+        """
 
         return not self.missing and self.existing_order != self.expected_order
 
@@ -54,9 +79,17 @@ class ProblemAudit:
 def audit_problem(problem: Problem, output_root: Path) -> ProblemAudit:
     """扫描单题目标文件，计算缺失语言和已有语言顺序。
 
-    调用方传入 dataset 中的一道题和输出根目录；本函数按同一套路径规则
-    找到目标 Markdown，并复用 resume/markdown_writer 的解析逻辑判断
-    该题是否需要补跑或只需要顺序修复。
+    参数：
+        problem: dataset 中的一道题。
+        output_root: 题解输出根目录。
+
+    返回：
+        ProblemAudit: 包含路径、缺失语言、已有顺序和期望顺序的审计结果。
+
+    说明：
+        调用方传入 dataset 中的一道题和输出根目录；本函数按同一套路径规则
+        找到目标 Markdown，并复用 resume/markdown_writer 的解析逻辑判断
+        该题是否需要补跑或只需要顺序修复。
     """
 
     path = problem_output_path(problem, output_root)
@@ -78,8 +111,13 @@ def audit_problem(problem: Problem, output_root: Path) -> ProblemAudit:
 def audit_problems(problems: list[Problem], output_root: Path) -> list[ProblemAudit]:
     """返回所有有缺失语言或顺序异常的题目。
 
-    返回列表只包含有问题的题目，方便 CLI 直接打印报告，也方便测试
-    对结果做精确断言。
+    参数：
+        problems: 要扫描的题目列表。
+        output_root: 题解输出根目录。
+
+    返回：
+        list[ProblemAudit]: 只包含有问题的题目，方便 CLI 直接打印报告，
+        也方便测试对结果做精确断言。
     """
 
     return [result for result in (audit_problem(problem, output_root) for problem in problems) if result.has_issues]

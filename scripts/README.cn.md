@@ -19,6 +19,25 @@ PYTHONPATH=src python scripts/generate_solutions.py --frontend-ids 1 2 4
 
 这个脚本会调用 Ollama，也会写入或更新题解 Markdown 文件。
 
+## `generate_difficulty_readmes.py`
+
+为每个难度目录生成英文和中文题目清单：
+
+```text
+easy/README.md
+easy/README.cn.md
+medium/README.md
+medium/README.cn.md
+hard/README.md
+hard/README.cn.md
+```
+
+它读取 `dataset/merged_problems.json`，复用生成器的路径规则，写入四位补零题号、题名链接和 topics 分类。
+
+```bash
+PYTHONPATH=src python scripts/generate_difficulty_readmes.py
+```
+
 ## `tmux_all.sh`
 
 先用 `requirements.txt` 安装 Python 依赖，然后启动一个后台 tmux session 跑完整生成流程。
@@ -70,4 +89,3 @@ tmux attach -t leetcode-all
 tmux kill-session -t leetcode-all
 tmux kill-server
 ```
-

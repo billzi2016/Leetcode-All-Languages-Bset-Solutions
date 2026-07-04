@@ -1,5 +1,19 @@
 #!/usr/bin/env python
-"""Generate README indexes for easy, medium, and hard solution directories."""
+"""生成 Easy、Medium、Hard 目录下的题目清单 README。
+
+这个脚本读取 `dataset/merged_problems.json`，按难度生成 6 个文件：
+
+- `easy/README.md`
+- `easy/README.cn.md`
+- `medium/README.md`
+- `medium/README.cn.md`
+- `hard/README.md`
+- `hard/README.cn.md`
+
+每个清单包含题号、题名链接和 topics。链接路径复用
+`leetcode_solutions.markdown_writer.problem_output_path()`，确保 README 中的
+路径规则和实际生成题解文件的路径规则始终一致。
+"""
 
 from __future__ import annotations
 
@@ -12,7 +26,11 @@ from leetcode_solutions.markdown_writer import problem_output_path
 
 
 def parse_args() -> argparse.Namespace:
-    """Parse command-line arguments."""
+    """解析命令行参数。
+
+    返回：
+        argparse.Namespace: 目前只包含 `root`，表示仓库根目录。
+    """
 
     parser = argparse.ArgumentParser(description="Generate difficulty README indexes.")
     parser.add_argument("--root", type=Path, default=Path.cwd(), help="Project root path.")
@@ -20,7 +38,14 @@ def parse_args() -> argparse.Namespace:
 
 
 def format_topics(problem: dict) -> str:
-    """Return a comma-separated topic list for one problem."""
+    """把单题 topics 格式化成逗号分隔文本。
+
+    参数：
+        problem: dataset 中的一道题。
+
+    返回：
+        str: 形如 `Array, Hash Table` 的分类文本；没有分类时返回 `-`。
+    """
 
     topics = problem.get("topics") or []
     if not topics:
@@ -29,7 +54,15 @@ def format_topics(problem: dict) -> str:
 
 
 def problem_row(problem: dict, root: Path) -> str:
-    """Render one Markdown table row."""
+    """渲染 README 表格中的一行题目信息。
+
+    参数：
+        problem: dataset 中的一道题。
+        root: 仓库根目录，用于计算相对难度目录的链接路径。
+
+    返回：
+        str: Markdown 表格行，包含四位补零题号、题名链接和 topics。
+    """
 
     frontend_id = int(str(problem.get("frontend_id", "")).strip())
     title = str(problem.get("title", "")).strip()
@@ -40,7 +73,17 @@ def problem_row(problem: dict, root: Path) -> str:
 
 
 def render_readme(difficulty: str, problems: list[dict], root: Path, language: str) -> str:
-    """Render one difficulty README."""
+    """渲染某个难度的英文或中文 README 内容。
+
+    参数：
+        difficulty: 难度名，例如 `Easy`。
+        problems: 该难度下按题号排序的题目列表。
+        root: 仓库根目录。
+        language: 输出语言，`en` 表示英文，`cn` 表示中文。
+
+    返回：
+        str: 完整 Markdown 文本，末尾包含一个换行。
+    """
 
     lines: list[str] = []
     if language == "cn":
@@ -75,7 +118,15 @@ def render_readme(difficulty: str, problems: list[dict], root: Path, language: s
 
 
 def write_readmes(root: Path) -> None:
-    """Write English and Chinese README files for all difficulty directories."""
+    """为三个难度目录写入英文和中文 README。
+
+    参数：
+        root: 仓库根目录。
+
+    副作用：
+        创建或覆盖 `easy/`、`medium/`、`hard/` 下的 `README.md` 和
+        `README.cn.md`。
+    """
 
     paths = Paths.from_root(root)
     questions = load_questions(paths.dataset)
@@ -88,7 +139,11 @@ def write_readmes(root: Path) -> None:
 
 
 def main() -> int:
-    """Run the README generation."""
+    """执行 README 生成流程。
+
+    返回：
+        int: 生成成功返回 0。
+    """
 
     args = parse_args()
     write_readmes(args.root)

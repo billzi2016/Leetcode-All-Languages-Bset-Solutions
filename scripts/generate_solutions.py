@@ -1,7 +1,18 @@
 #!/usr/bin/env python
-"""命令行入口。
+"""题解生成命令行入口。
 
-本脚本负责把用户参数转换为生成器调用，不承载核心业务逻辑；核心逻辑放在 `src/leetcode_solutions/`。
+本脚本负责把用户输入的 CLI 参数转换为生成器调用。它不承载核心业务逻辑；
+题目筛选、prompt 构造、模型调用、Markdown 写入和日志记录都放在
+`src/leetcode_solutions/` 中。
+
+典型用法：
+
+- 不传参数：按 Easy、Medium、Hard 顺序生成全部题目；
+- `--difficulty Easy`：只生成某个难度；
+- `--only-frontend-id 1`：只生成单个题号；
+- `--frontend-ids 1 2 4`：生成多个指定题号。
+
+脚本会调用 Ollama，并可能写入或更新题解 Markdown 文件。
 """
 
 from __future__ import annotations
@@ -18,7 +29,13 @@ from leetcode_solutions.ollama_client import OllamaClient
 
 
 def suppress_environment_warnings() -> None:
-    """屏蔽当前 Python 环境里无法由本项目直接修复的 requests 依赖版本告警。"""
+    """屏蔽当前 Python 环境里无法由本项目直接修复的 requests 依赖版本告警。
+
+    背景：
+        某些本机 Python 环境会在导入依赖时打印 requests/urllib3/chardet
+        版本组合 warning。项目实际模型调用使用 Python `ollama` 包，不直接
+        通过 requests 调接口，因此这里屏蔽该环境噪音，避免长任务日志被污染。
+    """
 
     warnings.filterwarnings(
         "ignore",
@@ -30,7 +47,12 @@ suppress_environment_warnings()
 
 
 def parse_args() -> argparse.Namespace:
-    """解析命令行参数。"""
+    """解析命令行参数。
+
+    返回：
+        argparse.Namespace: 包含 root、only_frontend_id、frontend_ids、
+        difficulty 的参数对象。
+    """
 
     parser = argparse.ArgumentParser(description="Generate LeetCode all-language solutions.")
     parser.add_argument("--root", type=Path, default=Path.cwd(), help="Project root path.")
@@ -45,7 +67,19 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
-    """执行生成流程并返回进程退出码。"""
+    """执行生成流程并返回进程退出码。
+
+    返回：
+        int: 成功执行参数对应流程时返回 0。单个题号不存在时会记录错误并
+        继续处理其它题号，不把整个进程置为失败。
+
+    执行顺序：
+        1. 解析路径、读取 dataset；
+        2. 创建日志器和 Ollama client；
+        3. 如果指定题号，则按题号逐个生成；
+        4. 否则按难度顺序批量生成；
+        5. finally 中关闭日志文件。
+    """
 
     args = parse_args()
     paths = Paths.from_root(args.root)

@@ -1,15 +1,17 @@
 #!/usr/bin/env python
-"""扫描生成输出，列出缺失语言和可自修复的顺序异常。
+"""扫描生成输出，列出缺失语言和可由生成器修复的顺序异常。
 
 调用示例：
 
-`PYTHONPATH=src python scripts/audit_missing_solutions.py`
-`PYTHONPATH=src python scripts/audit_missing_solutions.py --difficulty Hard`
-`PYTHONPATH=src python scripts/audit_missing_solutions.py --frontend-ids 4 10`
+`PYTHONPATH=src python migrate/audit_missing_solutions.py`
+`PYTHONPATH=src python migrate/audit_missing_solutions.py --difficulty Hard`
+`PYTHONPATH=src python migrate/audit_missing_solutions.py --frontend-ids 4 10`
 
 脚本只读扫描，不调用模型、不写输出文件、不修改题解 Markdown。退出码
 `0` 表示没有发现缺失或顺序异常；退出码 `1` 表示打印了需要补跑或可修复
 的题目清单，适合放进 shell/CI 检查。
+
+这个脚本放在 `migrate/` 下，是因为它属于维护和审计工具，不是常规生成入口。
 """
 
 from __future__ import annotations
@@ -25,8 +27,12 @@ from leetcode_solutions.dataset_loader import filter_by_difficulty, find_by_fron
 def parse_args() -> argparse.Namespace:
     """解析命令行参数。
 
-    `--difficulty` 用于大范围按难度扫描；`--frontend-ids` 用于小范围
-    点查问题题号。两个参数同时出现时，以显式题号为准。
+    返回：
+        argparse.Namespace: 包含 root、difficulty 和 frontend_ids。
+
+    说明：
+        `--difficulty` 用于大范围按难度扫描；`--frontend-ids` 用于小范围
+        点查问题题号。两个参数同时出现时，以显式题号为准。
     """
 
     parser = argparse.ArgumentParser(description="Audit generated LeetCode solution Markdown files.")
@@ -43,8 +49,15 @@ def parse_args() -> argparse.Namespace:
 def select_questions(args: argparse.Namespace) -> list[dict]:
     """按参数选择要扫描的题目。
 
-    题目来源始终是本地 dataset，保证审计脚本和生成脚本使用完全相同
-    的语言列表与题目路径规则。
+    参数：
+        args: `parse_args()` 返回的命令行参数。
+
+    返回：
+        list[dict]: 需要扫描的题目列表。
+
+    说明：
+        题目来源始终是本地 dataset，保证审计脚本和生成脚本使用完全相同
+        的语言列表与题目路径规则。
     """
 
     paths = Paths.from_root(args.root)
@@ -69,8 +82,16 @@ def select_questions(args: argparse.Namespace) -> list[dict]:
 def format_audit(result: ProblemAudit, root: Path) -> str:
     """把单题审计结果格式化成一行。
 
-    一行包含题号、slug、难度、相对路径、缺失语言，以及顺序异常时的
-    实际顺序和期望顺序，便于直接复制题号去执行小范围补跑。
+    参数：
+        result: 单题审计结果。
+        root: 仓库根目录，用于把绝对路径压缩成相对路径。
+
+    返回：
+        str: 适合打印到终端的一行审计结果。
+
+    说明：
+        一行包含题号、slug、难度、相对路径、缺失语言，以及顺序异常时的
+        实际顺序和期望顺序，便于直接复制题号去执行小范围补跑。
     """
 
     relative_path = result.path.relative_to(root) if result.path.is_relative_to(root) else result.path
@@ -90,8 +111,12 @@ def format_audit(result: ProblemAudit, root: Path) -> str:
 def main() -> int:
     """执行审计并返回适合 shell 使用的退出码。
 
-    这里不做任何修复；真正修复发生在后续运行 `generate_solutions.py`
-    时，由生成器按最小补跑策略处理。
+    返回：
+        int: 没有问题返回 0；发现缺失或顺序异常返回 1。
+
+    说明：
+        这里不做任何修复；真正修复发生在后续运行 `generate_solutions.py`
+        时，由生成器按最小补跑策略处理。
     """
 
     args = parse_args()

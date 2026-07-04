@@ -19,6 +19,25 @@ PYTHONPATH=src python scripts/generate_solutions.py --frontend-ids 1 2 4
 
 This script can call Ollama and write or update solution Markdown files.
 
+## `generate_difficulty_readmes.py`
+
+Generates English and Chinese problem index files for each difficulty directory:
+
+```text
+easy/README.md
+easy/README.cn.md
+medium/README.md
+medium/README.cn.md
+hard/README.md
+hard/README.cn.md
+```
+
+It reads `dataset/merged_problems.json`, keeps the same path rules as the generator, and writes rows with the zero-padded problem id, problem title link, and topic list.
+
+```bash
+PYTHONPATH=src python scripts/generate_difficulty_readmes.py
+```
+
 ## `tmux_all.sh`
 
 Installs Python dependencies from `requirements.txt`, then starts a detached tmux session that runs the full generation flow.
@@ -70,4 +89,3 @@ tmux attach -t leetcode-all
 tmux kill-session -t leetcode-all
 tmux kill-server
 ```
-

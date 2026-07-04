@@ -1,6 +1,17 @@
-"""构造题目和语言 prompt。
+"""构造题目级 prompt 和语言级 prompt。
 
-prompt 构造与模型调用分离，方便测试准确验证哪些字段进入模型。`images` 会被排除，因为目标 Ollama 模型不是多模态模型。
+prompt 构造与模型调用分离，目的是让测试可以准确验证哪些字段会进入模型，
+也让模型客户端只负责发送请求，不掺杂业务格式化逻辑。
+
+本模块有两个层次：
+
+- `build_problem_prompt()`：同一道题所有语言共用，包含题目元数据、题面、
+  示例、约束、follow up、hint 和可用的参考解；
+- `build_language_prompt()`：每种语言单独构造，重点传入目标语言和 LeetCode
+  starter code，约束模型必须保留提交入口。
+
+上游数据中可能包含 `images` 字段，但当前目标模型不是多模态模型，因此
+格式化结构化字段时会排除图片 URL，避免把无用信息塞进上下文。
 """
 
 from __future__ import annotations
@@ -24,7 +35,13 @@ correctness and produce clean submit-ready code.
 
 
 def _append_section(lines: list[str], title: str, value: Any) -> None:
-    """只在字段有值时追加一个 prompt 小节。"""
+    """只在字段有值时追加一个 prompt 小节。
+
+    参数：
+        lines: 正在构造的 prompt 行列表，会被原地追加内容。
+        title: 小节标题，例如 `Problem Statement`。
+        value: 小节内容。支持字符串、列表、字典；空值会被跳过。
+    """
 
     if value in (None, "", [], {}):
         return
@@ -37,7 +54,15 @@ def _append_section(lines: list[str], title: str, value: Any) -> None:
 
 
 def _format_value(value: Any) -> str:
-    """格式化结构化字段，同时排除图片 URL。"""
+    """格式化结构化字段，同时排除图片 URL。
+
+    参数：
+        value: dataset 中的任意字段值，可能是字符串、列表或字典。
+
+    返回：
+        str: 适合放进 prompt 的文本。字典会展开成 `- key: value`，
+        列表会逐项展开，普通值直接转成字符串。
+    """
 
     if isinstance(value, dict):
         filtered = {k: v for k, v in value.items() if k != "images" and v not in (None, "", [], {})}
@@ -48,7 +73,15 @@ def _format_value(value: Any) -> str:
 
 
 def build_problem_prompt(problem: dict[str, Any]) -> str:
-    """构造同一道题所有语言复用的题目公共 prompt。"""
+    """构造同一道题所有语言复用的题目公共 prompt。
+
+    参数：
+        problem: dataset 中的一道题，可能包含题面、示例、约束、提示、
+            topics 和参考解等字段。
+
+    返回：
+        str: 以 `# Problem Context` 开头的题目上下文 prompt。
+    """
 
     lines: list[str] = ["# Problem Context"]
     metadata = {
@@ -74,7 +107,16 @@ def build_problem_prompt(problem: dict[str, Any]) -> str:
 
 
 def build_language_prompt(language: str, starter_code: str) -> str:
-    """构造单个语言的 user prompt。"""
+    """构造单个语言的 user prompt。
+
+    参数：
+        language: dataset 中的目标语言 key。
+        starter_code: LeetCode 官方 starter code。模型必须沿用这里的函数
+            签名、类名或模块入口。
+
+    返回：
+        str: 只针对当前语言的 prompt，要求模型返回 raw code。
+    """
 
     return (
         f"Target Language: {language}\n\n"

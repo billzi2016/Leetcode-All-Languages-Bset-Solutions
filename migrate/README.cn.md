@@ -19,3 +19,25 @@ PYTHONPATH=src python migrate/audit_missing_solutions.py --frontend-ids 4 10
 
 这个脚本是只读的。它不会调用 Ollama，不会重新生成代码，也不会修改 Markdown 文件。如果它报告问题，再用 `scripts/generate_solutions.py` 针对对应题目补齐或修复。
 
+## `rename_bucket_dirs.py`
+
+把旧分桶目录重命名为固定宽度范围：
+
+```text
+1-100 -> 0001-0100
+101-200 -> 0101-0200
+```
+
+只预览，不修改：
+
+```bash
+python migrate/rename_bucket_dirs.py
+```
+
+实际执行重命名：
+
+```bash
+python migrate/rename_bucket_dirs.py --apply
+```
+
+这个迁移逻辑刻意和生成器分开。生成器只负责按新规则写新路径；历史目录需要调整时，用这个脚本单独处理。
