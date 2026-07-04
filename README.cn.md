@@ -155,6 +155,23 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 测试包含 LeetCode 1 / 2 / 4 的正式流程测试，分别覆盖 Easy、Medium、Hard，并验证第二次运行能正常跳过已生成文件。
 
+## 验证生成题解
+
+`validate/` 提供容器化题解验证环境。它从 `dataset/merged_problems.json` 读取 LeetCode 样例，解析已经生成的 Markdown 题解代码块，按语言编译或运行，并按难度写出 CSV 矩阵：
+
+```text
+validate/reports/easy.csv
+validate/reports/medium.csv
+validate/reports/hard.csv
+```
+
+构建和运行：
+
+```bash
+docker build -f validate/Dockerfile -t leetcode-solutions-validate .
+docker run --rm -v "$PWD":/workspace leetcode-solutions-validate
+```
+
 ## 生成单题
 
 生成 LeetCode 1：

@@ -41,6 +41,7 @@ nav:
           - Medium: en/solution-indexes/medium/index.md
           - Hard: en/solution-indexes/hard/index.md
       - Languages: en/languages.md
+      - Validation: en/validation.md
       - Ollama and Compute Nodes: en/ollama.md
       - Ollama Install: en/ollama-install.md
       - Agent Generation Flow: en/agent.md
@@ -59,6 +60,7 @@ nav:
           - Medium: cn/solution-indexes/medium/index.md
           - Hard: cn/solution-indexes/hard/index.md
       - 支持语言: cn/languages.md
+      - 题解验证: cn/validation.md
       - Ollama 和计算节点: cn/ollama.md
       - Ollama 安装: cn/ollama-install.md
       - Agent 生成流程: cn/agent.md

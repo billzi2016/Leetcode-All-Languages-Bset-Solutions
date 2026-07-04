@@ -155,6 +155,23 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 The tests include formal-flow coverage for LeetCode 1 / 2 / 4, covering Easy, Medium, and Hard, and verify that a second run skips already generated files.
 
+## Validate Generated Solutions
+
+`validate/` provides a containerized validation environment for generated Markdown solutions. It reads examples from `dataset/merged_problems.json`, extracts solution code blocks, compiles or runs supported language sections, and writes CSV matrices by difficulty:
+
+```text
+validate/reports/easy.csv
+validate/reports/medium.csv
+validate/reports/hard.csv
+```
+
+Build and run:
+
+```bash
+docker build -f validate/Dockerfile -t leetcode-solutions-validate .
+docker run --rm -v "$PWD":/workspace leetcode-solutions-validate
+```
+
 ## Generate Problems
 
 Generate LeetCode 1:

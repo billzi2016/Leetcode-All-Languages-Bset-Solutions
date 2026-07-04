@@ -1,7 +1,17 @@
+# Local dataset
 dataset/merged_problems.json
+
+# Runtime logs
 logs/
 *.log
+
+# Python cache files
 __pycache__/
 *.pyc
+
+# Documentation build output
 docs-site-build/
+
+# Local maintenance and validation reports
 migrate/suspicious_solutions_report.md
+validate/reports/
