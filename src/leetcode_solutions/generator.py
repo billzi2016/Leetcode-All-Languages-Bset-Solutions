@@ -12,7 +12,13 @@ from tqdm import tqdm
 
 from .config import RETRY_LIMIT
 from .dataset_loader import Problem
-from .markdown_writer import problem_output_path, read_existing_solutions, write_problem
+from .markdown_writer import (
+    order_solutions,
+    problem_output_path,
+    read_existing_language_order,
+    read_existing_solutions,
+    write_problem,
+)
 from .prompt_builder import SYSTEM_PROMPT, build_language_prompt, build_problem_prompt
 from .resume import missing_languages
 
@@ -34,14 +40,18 @@ class SolutionGenerator:
         output_path = problem_output_path(problem, self.output_root)
         snippets = problem.get("code_snippets") or {}
         languages = list(snippets.keys())
-        todo = missing_languages(output_path, languages)
-        if not todo:
-            self.logger.info(f"Skipping complete problem {problem.get('frontend_id')} {problem.get('problem_slug')}")
-            return output_path
-
         existing_solutions: OrderedDict[str, str] = OrderedDict()
         if output_path.exists():
             existing_solutions = read_existing_solutions(output_path, languages)
+
+        todo = missing_languages(output_path, languages)
+        if not todo:
+            if self._repair_language_order(output_path, problem, languages, existing_solutions):
+                self.logger.warn(f"Repaired language order for {output_path}")
+            self.logger.info(f"Skipping complete problem {problem.get('frontend_id')} {problem.get('problem_slug')}")
+            return output_path
+
+        if output_path.exists():
             self.logger.warn(f"Regenerating missing languages for {output_path}")
 
         problem_prompt = build_problem_prompt(problem)
@@ -54,11 +64,28 @@ class SolutionGenerator:
                 continue
             existing_solutions[language] = code
             if write_per_language:
-                write_problem(output_path, problem, existing_solutions)
+                write_problem(output_path, problem, order_solutions(languages, existing_solutions))
 
         if existing_solutions and not write_per_language:
-            write_problem(output_path, problem, existing_solutions)
+            write_problem(output_path, problem, order_solutions(languages, existing_solutions))
         return output_path
+
+    def _repair_language_order(
+        self,
+        output_path: Path,
+        problem: Problem,
+        languages: list[str],
+        existing_solutions: OrderedDict[str, str],
+    ) -> bool:
+        """完整文件如果语言顺序异常，就无模型调用地重写为标准顺序。"""
+
+        actual_order = read_existing_language_order(output_path, languages)
+        expected_order = [language for language in languages if language in existing_solutions]
+        if actual_order == expected_order:
+            return False
+
+        write_problem(output_path, problem, order_solutions(languages, existing_solutions))
+        return True
 
     def generate_many(self, problems: list[Problem], desc: str) -> None:
         """用 tqdm 跟踪并生成一组题目。"""

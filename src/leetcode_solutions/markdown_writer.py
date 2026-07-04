@@ -118,6 +118,32 @@ def read_existing_languages(path: Path) -> set[str]:
     return languages
 
 
+def read_existing_language_order(path: Path, languages: list[str]) -> list[str]:
+    """按文件中出现顺序读取带非空代码块的语言 key。"""
+
+    if not path.exists():
+        return []
+
+    text = path.read_text(encoding="utf-8")
+    heading_to_language = {language_heading(language): language for language in languages}
+    existing_order: list[str] = []
+    heading_matches = list(re.finditer(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
+
+    for index, match in enumerate(heading_matches):
+        language = heading_to_language.get(match.group(1))
+        if language is None:
+            continue
+
+        section_start = match.end()
+        section_end = heading_matches[index + 1].start() if index + 1 < len(heading_matches) else len(text)
+        section = text[section_start:section_end]
+        code_match = re.search(r"```[^\n]*\n(.*?)\n```", section, flags=re.DOTALL)
+        if code_match and code_match.group(1).strip():
+            existing_order.append(language)
+
+    return existing_order
+
+
 def read_existing_solutions(path: Path, languages: list[str]) -> OrderedDict[str, str]:
     """按预期语言顺序读取已有 Markdown 里的代码块。"""
 
@@ -143,3 +169,9 @@ def read_existing_solutions(path: Path, languages: list[str]) -> OrderedDict[str
             parsed[language] = code_match.group(1).rstrip()
 
     return OrderedDict((language, parsed[language]) for language in languages if language in parsed)
+
+
+def order_solutions(languages: list[str], solutions: dict[str, str]) -> OrderedDict[str, str]:
+    """按数据集语言顺序排列已有和新生成的代码。"""
+
+    return OrderedDict((language, solutions[language]) for language in languages if language in solutions)

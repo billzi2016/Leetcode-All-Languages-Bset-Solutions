@@ -116,6 +116,8 @@ Hard uses language-level resume. The generator reads existing language code bloc
 
 If a Hard run stops while generating Kotlin, the next run keeps earlier sections such as Cpp, Java, and Python, then resumes from the missing Kotlin section instead of restarting that problem from Cpp.
 
+The same scan repairs old malformed output when it can do so safely. A file that only contains Kotlin is treated as missing the earlier language sections and is backfilled on the next run. A complete file with languages in the wrong order is rewritten into the dataset language order without calling the model.
+
 ## Logs and Failure Handling
 
 ```mermaid

@@ -8,7 +8,9 @@ from pathlib import Path
 
 from leetcode_solutions.markdown_writer import (
     bucket_name,
+    order_solutions,
     problem_output_path,
+    read_existing_language_order,
     read_existing_languages,
     read_existing_solutions,
     write_problem,
@@ -75,9 +77,19 @@ class MarkdownWriterTest(unittest.TestCase):
             )
             languages = read_existing_languages(path)
             solutions = read_existing_solutions(path, ["cpp", "kotlin", "java"])
+            order = read_existing_language_order(path, ["cpp", "kotlin", "java"])
 
         self.assertEqual({"Java"}, languages)
         self.assertEqual(["java"], list(solutions.keys()))
+        self.assertEqual(["java"], order)
+
+    def test_order_solutions_uses_dataset_language_order(self) -> None:
+        """合并旧结果和新结果时应恢复数据集语言顺序。"""
+
+        solutions = {"kotlin": "kotlin code", "cpp": "cpp code", "java": "java code"}
+        ordered = order_solutions(["cpp", "java", "kotlin"], solutions)
+
+        self.assertEqual(["cpp", "java", "kotlin"], list(ordered.keys()))
 
 
 if __name__ == "__main__":
