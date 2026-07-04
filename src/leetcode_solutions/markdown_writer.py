@@ -21,6 +21,7 @@ from collections import OrderedDict
 from dataclasses import dataclass
 from pathlib import Path
 
+from .config import DIFFICULTY_DIRS
 from .dataset_loader import frontend_id_as_int
 
 
@@ -106,14 +107,15 @@ def problem_output_path(problem: dict, output_root: Path) -> Path:
         output_root: 输出根目录，当前项目中通常是仓库根目录。
 
     返回：
-        Path: 形如 `easy/0001-0100/0001-two-sum.md` 的完整路径。
+        Path: 形如 `Leetcode-Easy/0001-0100/0001-two-sum.md` 的完整路径。
     """
 
     frontend_id = frontend_id_as_int(problem)
-    difficulty = str(problem.get("difficulty", "")).lower()
+    difficulty = str(problem.get("difficulty", "")).strip()
+    difficulty_dir = DIFFICULTY_DIRS.get(difficulty, difficulty)
     slug = str(problem.get("problem_slug", "")).strip()
     filename = f"{frontend_id:04d}-{slug}.md"
-    return output_root / difficulty / bucket_name(frontend_id) / filename
+    return output_root / difficulty_dir / bucket_name(frontend_id) / filename
 
 
 def language_heading(language: str) -> str:

@@ -45,7 +45,7 @@ class NormalizeMarkdownLanguageSectionsTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            path = root / "easy/0101-0200/0175-combine-two-tables.md"
+            path = root / "Leetcode-Easy/0101-0200/0175-combine-two-tables.md"
             path.parent.mkdir(parents=True)
             original = "# 0175. Combine Two Tables\n\n## Mysql\n\n```mysql\nSELECT 1;\n```\n"
             path.write_text(original, encoding="utf-8")

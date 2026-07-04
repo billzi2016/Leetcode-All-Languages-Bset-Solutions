@@ -44,12 +44,12 @@
 │   ├── test_generator.py           # 主流程调度测试
 │   └── test_e2e_selected.py        # LeetCode 1/2/4 正式流程和跳过行为测试
 ├── logs/                           # 运行日志，不提交 Git
-├── easy/                           # 生成的 Easy 题解
-├── medium/                         # 生成的 Medium 题解
-└── hard/                           # 生成的 Hard 题解
+├── Leetcode-Easy/                           # 生成的 Easy 题解
+├── Leetcode-Medium/                         # 生成的 Medium 题解
+└── Leetcode-Hard/                           # 生成的 Hard 题解
 ```
 
-当前仓库已经包含基础代码、脚本和测试；`logs/`、`easy/`、`medium/`、`hard/` 会在运行生成流程时按需创建。
+当前仓库已经包含基础代码、脚本和测试；`logs/`、`Leetcode-Easy/`、`Leetcode-Medium/`、`Leetcode-Hard/` 会在运行生成流程时按需创建。
 
 ## 模块职责
 

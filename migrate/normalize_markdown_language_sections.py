@@ -28,7 +28,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DIFFICULTY_DIRS = ("easy", "medium", "hard")
+DIFFICULTY_DIRS = ("Leetcode-Easy", "Leetcode-Medium", "Leetcode-Hard")
 HEADING_REWRITES = {
     "mysql": "MySQL",
     "mssql": "MSSQL",

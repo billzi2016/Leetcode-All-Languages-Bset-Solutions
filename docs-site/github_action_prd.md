@@ -21,17 +21,17 @@ The default source language for this PRD is English. The Chinese version lives a
 This repository generates accurate optimal LeetCode solutions across all supported languages. The generated solution files are organized into:
 
 ```text
-easy/
-medium/
-hard/
+Leetcode-Easy/
+Leetcode-Medium/
+Leetcode-Hard/
 ```
 
 Each difficulty directory is further split into 100-problem buckets, for example:
 
 ```text
-easy/0001-0100/0001-two-sum.md
-medium/0001-0100/0002-add-two-numbers.md
-hard/0001-0100/0004-median-of-two-sorted-arrays.md
+Leetcode-Easy/0001-0100/0001-two-sum.md
+Leetcode-Medium/0001-0100/0002-add-two-numbers.md
+Leetcode-Hard/0001-0100/0004-median-of-two-sorted-arrays.md
 ```
 
 The documentation site should explain both the generated artifact structure and the engineering workflow used to produce it.

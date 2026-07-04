@@ -35,7 +35,7 @@
 ## 输出目录示例
 
 ```text
-easy/
+Leetcode-Easy/
   0001-0100/
     0001-two-sum.md
     0009-palindrome-number.md
@@ -59,7 +59,7 @@ easy/
     ...
   ...
 
-medium/
+Leetcode-Medium/
   0001-0100/
     0002-add-two-numbers.md
     0003-longest-substring-without-repeating-characters.md
@@ -83,7 +83,7 @@ medium/
     ...
   ...
 
-hard/
+Leetcode-Hard/
   0001-0100/
     0004-median-of-two-sorted-arrays.md
     0010-regular-expression-matching.md

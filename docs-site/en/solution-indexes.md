@@ -4,9 +4,9 @@ The generated problem indexes live in the repository difficulty directories. The
 
 | Difficulty | English index | Chinese index |
 | --- | --- | --- |
-| Easy | [Easy index](solution-indexes/easy/index.md) | [Easy 中文清单](../cn/solution-indexes/easy/index.md) |
-| Medium | [Medium index](solution-indexes/medium/index.md) | [Medium 中文清单](../cn/solution-indexes/medium/index.md) |
-| Hard | [Hard index](solution-indexes/hard/index.md) | [Hard 中文清单](../cn/solution-indexes/hard/index.md) |
+| Easy | [Easy index](solution-indexes/Leetcode-Easy/index.md) | [Easy 中文清单](../cn/solution-indexes/Leetcode-Easy/index.md) |
+| Medium | [Medium index](solution-indexes/Leetcode-Medium/index.md) | [Medium 中文清单](../cn/solution-indexes/Leetcode-Medium/index.md) |
+| Hard | [Hard index](solution-indexes/Leetcode-Hard/index.md) | [Hard 中文清单](../cn/solution-indexes/Leetcode-Hard/index.md) |
 
 Regenerate these files with:
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-"""生成 Easy、Medium、Hard 目录下的题目清单 README。
+"""生成 Leetcode-Easy、Leetcode-Medium、Leetcode-Hard 目录下的题目清单 README。
 
 这个脚本读取 `dataset/merged_problems.json`，按难度生成 6 个文件：
 
-- `easy/README.md`
-- `easy/README.cn.md`
-- `medium/README.md`
-- `medium/README.cn.md`
-- `hard/README.md`
-- `hard/README.cn.md`
+- `Leetcode-Easy/README.md`
+- `Leetcode-Easy/README.cn.md`
+- `Leetcode-Medium/README.md`
+- `Leetcode-Medium/README.cn.md`
+- `Leetcode-Hard/README.md`
+- `Leetcode-Hard/README.cn.md`
 
 每个清单包含题号、题名链接和 topics。链接路径复用
 `leetcode_solutions.markdown_writer.problem_output_path()`，确保 README 中的
@@ -20,7 +20,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from leetcode_solutions.config import DIFFICULTY_ORDER, Paths
+from leetcode_solutions.config import DIFFICULTY_DIRS, DIFFICULTY_ORDER, Paths
 from leetcode_solutions.dataset_loader import filter_by_difficulty, load_questions
 from leetcode_solutions.markdown_writer import problem_output_path
 
@@ -67,7 +67,8 @@ def problem_row(problem: dict, root: Path) -> str:
     frontend_id = int(str(problem.get("frontend_id", "")).strip())
     title = str(problem.get("title", "")).strip()
     path = problem_output_path(problem, root)
-    relative_link = path.relative_to(root / str(problem.get("difficulty", "")).lower())
+    difficulty_dir = DIFFICULTY_DIRS[str(problem.get("difficulty", "")).strip()]
+    relative_link = path.relative_to(root / difficulty_dir)
     topics = format_topics(problem)
     return f"| {frontend_id:04d} | [{title}]({relative_link.as_posix()}) | {topics} |"
 
@@ -124,15 +125,15 @@ def write_readmes(root: Path) -> None:
         root: 仓库根目录。
 
     副作用：
-        创建或覆盖 `easy/`、`medium/`、`hard/` 下的 `README.md` 和
-        `README.cn.md`。
+        创建或覆盖 `Leetcode-Easy/`、`Leetcode-Medium/`、
+        `Leetcode-Hard/` 下的 `README.md` 和 `README.cn.md`。
     """
 
     paths = Paths.from_root(root)
     questions = load_questions(paths.dataset)
     for difficulty in DIFFICULTY_ORDER:
         problems = filter_by_difficulty(questions, difficulty)
-        output_dir = root / difficulty.lower()
+        output_dir = root / DIFFICULTY_DIRS[difficulty]
         output_dir.mkdir(parents=True, exist_ok=True)
         (output_dir / "README.md").write_text(render_readme(difficulty, problems, root, "en"), encoding="utf-8")
         (output_dir / "README.cn.md").write_text(render_readme(difficulty, problems, root, "cn"), encoding="utf-8")

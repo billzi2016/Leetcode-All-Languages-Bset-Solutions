@@ -1,6 +1,6 @@
 # Containerized Solution Validation
 
-`validate/` contains a reproducible validation environment for generated LeetCode solution Markdown files. It reads examples from `dataset/merged_problems.json`, extracts language sections from the repository output, compiles or runs supported languages, and writes one CSV matrix per difficulty.
+`validate/` contains a reproducible validation environment for generated LeetCode solution Markdown files. It reads examples from `dataset/merged_problems.json`, extracts language sections from `Leetcode-Easy/`, `Leetcode-Medium/`, and `Leetcode-Hard/`, compiles or runs supported languages, and writes one CSV matrix per difficulty.
 
 CSV output:
 

@@ -22,6 +22,11 @@ MAX_OUTPUT_TOKENS = 100_000
 TEMPERATURE = 0.1
 RETRY_LIMIT = 3
 DIFFICULTY_ORDER = ("Easy", "Medium", "Hard")
+DIFFICULTY_DIRS = {
+    "Easy": "Leetcode-Easy",
+    "Medium": "Leetcode-Medium",
+    "Hard": "Leetcode-Hard",
+}
 THINK_BY_DIFFICULTY = {
     "Easy": "low",
     "Medium": "medium",
@@ -39,7 +44,8 @@ class Paths:
         dataset: 本地 LeetCode 合并数据集路径。当前项目约定为
             `dataset/merged_problems.json`。
         output_root: 题解 Markdown 的输出根目录。当前就是仓库根目录，
-            因为题解按 `easy/`、`medium/`、`hard/` 直接落盘。
+            因为题解按 `Leetcode-Easy/`、`Leetcode-Medium/`、
+            `Leetcode-Hard/` 直接落盘。
         logs_root: 每次生成运行的日志根目录，具体运行会在其下创建
             时间戳子目录。
     """

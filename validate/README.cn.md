@@ -1,6 +1,6 @@
 # 容器化题解验证
 
-`validate/` 提供一个可复现的题解验证环境。它从 `dataset/merged_problems.json` 读取 LeetCode 样例，解析仓库中已经生成的题解 Markdown，提取各语言代码块，按语言编译或运行，并按难度写出 CSV 矩阵。
+`validate/` 提供一个可复现的题解验证环境。它从 `dataset/merged_problems.json` 读取 LeetCode 样例，解析 `Leetcode-Easy/`、`Leetcode-Medium/`、`Leetcode-Hard/` 中已经生成的题解 Markdown，提取各语言代码块，按语言编译或运行，并按难度写出 CSV 矩阵。
 
 CSV 输出：
 

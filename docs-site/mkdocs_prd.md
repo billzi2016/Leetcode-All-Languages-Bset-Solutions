@@ -23,7 +23,7 @@ The MkDocs site should help readers understand:
 
 - what this repository produces,
 - where the dataset comes from,
-- why the output is split into `easy/`, `medium/`, and `hard/`,
+- why the output is split into `Leetcode-Easy/`, `Leetcode-Medium/`, and `Leetcode-Hard/`,
 - how each problem file contains all generated language solutions,
 - how prompt reuse works,
 - how Ollama runs locally,
@@ -105,7 +105,7 @@ Explain the local generation setup in practical terms:
 - MLX or MPS acceleration paths are relevant for Apple Silicon, while the 2x H100 node is the high-throughput NVIDIA option
 - temperature is fixed at `0.1`
 - output limit is `100_000` tokens
-- Easy/Medium/Hard map to low/medium/high think modes
+- Easy/Medium/Hard map to low/Leetcode-Medium/high think modes
 
 ### Prompt Reuse
 

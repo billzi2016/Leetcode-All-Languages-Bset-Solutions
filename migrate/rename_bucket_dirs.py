@@ -21,7 +21,7 @@ import argparse
 from pathlib import Path
 
 
-DIFFICULTY_DIRS = ("easy", "medium", "hard")
+DIFFICULTY_DIRS = ("Leetcode-Easy", "Leetcode-Medium", "Leetcode-Hard")
 
 
 def parse_args() -> argparse.Namespace:

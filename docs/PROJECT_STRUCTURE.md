@@ -43,9 +43,9 @@ This document describes the recommended project layout and module responsibiliti
 │   ├── test_generator.py           # main generator orchestration tests
 │   └── test_e2e_selected.py        # LeetCode 1/2/4 formal-flow and skip tests
 ├── logs/                           # runtime logs, not committed to Git
-├── easy/                           # generated Easy solutions
-├── medium/                         # generated Medium solutions
-└── hard/                           # generated Hard solutions
+├── Leetcode-Easy/                           # generated Easy solutions
+├── Leetcode-Medium/                         # generated Medium solutions
+└── Leetcode-Hard/                           # generated Hard solutions
 ```
 
 ## Module Responsibilities

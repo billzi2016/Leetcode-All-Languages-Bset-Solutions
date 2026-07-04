@@ -4,9 +4,9 @@
 
 | 难度 | 英文清单 | 中文清单 |
 | --- | --- | --- |
-| Easy | [Easy index](../en/solution-indexes/easy/index.md) | [Easy 中文清单](solution-indexes/easy/index.md) |
-| Medium | [Medium index](../en/solution-indexes/medium/index.md) | [Medium 中文清单](solution-indexes/medium/index.md) |
-| Hard | [Hard index](../en/solution-indexes/hard/index.md) | [Hard 中文清单](solution-indexes/hard/index.md) |
+| Easy | [Easy index](../en/solution-indexes/Leetcode-Easy/index.md) | [Easy 中文清单](solution-indexes/Leetcode-Easy/index.md) |
+| Medium | [Medium index](../en/solution-indexes/Leetcode-Medium/index.md) | [Medium 中文清单](solution-indexes/Leetcode-Medium/index.md) |
+| Hard | [Hard index](../en/solution-indexes/Leetcode-Hard/index.md) | [Hard 中文清单](solution-indexes/Leetcode-Hard/index.md) |
 
 重新生成这些文件：
 

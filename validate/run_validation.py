@@ -2,7 +2,8 @@
 """运行题解样例验证并输出按难度拆分的 CSV 矩阵。
 
 脚本从 `dataset/merged_problems.json` 读取题目和 LeetCode examples，
-从仓库的 `easy/`、`medium/`、`hard/` 目录读取已经生成的 Markdown 题解。
+从仓库的 `Leetcode-Easy/`、`Leetcode-Medium/`、`Leetcode-Hard/`
+目录读取已经生成的 Markdown 题解。
 每个语言代码块会被包装成对应语言的最小 LeetCode 测试入口，并在临时
 工作目录里编译或运行。
 
@@ -32,6 +33,11 @@ from typing import Any, Callable
 
 
 DIFFICULTIES = ("Easy", "Medium", "Hard")
+DIFFICULTY_DIRS = {
+    "Easy": "Leetcode-Easy",
+    "Medium": "Leetcode-Medium",
+    "Hard": "Leetcode-Hard",
+}
 LANGUAGE_HEADINGS = {
     "Bash": "bash",
     "C": "c",
@@ -221,7 +227,7 @@ def solution_path(repo_root: Path, problem: ValidationProblem) -> Path:
     frontend_id = int(problem.frontend_id)
     return (
         repo_root
-        / problem.difficulty.lower()
+        / DIFFICULTY_DIRS.get(problem.difficulty, problem.difficulty)
         / bucket_name(frontend_id)
         / f"{frontend_id:04d}-{problem.slug}.md"
     )

@@ -2,7 +2,7 @@
 
 The `validate/` directory provides a containerized validation environment for generated LeetCode solution Markdown files.
 
-It reads examples from `dataset/merged_problems.json`, extracts language code blocks from `easy/`, `medium/`, and `hard/`, runs the supported executable sections, and writes CSV matrices by difficulty:
+It reads examples from `dataset/merged_problems.json`, extracts language code blocks from `Leetcode-Easy/`, `Leetcode-Medium/`, and `Leetcode-Hard/`, runs the supported executable sections, and writes CSV matrices by difficulty:
 
 ```text
 validate/reports/easy.csv

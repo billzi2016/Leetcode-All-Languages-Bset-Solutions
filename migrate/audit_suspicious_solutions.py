@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 """动态审计疑似异常的题解代码块，并生成 Markdown 报告。
 
-这个脚本只读扫描 `easy/`、`medium/`、`hard/` 下已经生成的 Markdown 题解，
+这个脚本只读扫描 `Leetcode-Easy/`、`Leetcode-Medium/`、
+`Leetcode-Hard/` 下已经生成的 Markdown 题解，
 不会修改任何题解文件。它用于发现模型生成过程中可能出现的异常输出，例如：
 
 - 某个语言代码块相对同难度、同语言的历史分布明显过长；
@@ -26,7 +27,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DIFFICULTIES = ("easy", "medium", "hard")
+DIFFICULTIES = ("Leetcode-Easy", "Leetcode-Medium", "Leetcode-Hard")
 DEFAULT_REPORT = Path("migrate/suspicious_solutions_report.md")
 MIN_GROUP_SIZE = 20
 MIN_LANGUAGE_SIZE = 30

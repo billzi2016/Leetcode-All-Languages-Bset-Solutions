@@ -6,7 +6,7 @@
 
 题解生成主入口。
 
-它会读取 `dataset/merged_problems.json`，按题号或难度选择题目，调用 `src/leetcode_solutions/` 里的生成逻辑，并把 Markdown 输出到 `easy/`、`medium/`、`hard/`。
+它会读取 `dataset/merged_problems.json`，按题号或难度选择题目，调用 `src/leetcode_solutions/` 里的生成逻辑，并把 Markdown 输出到 `Leetcode-Easy/`、`Leetcode-Medium/`、`Leetcode-Hard/`。
 
 示例：
 
@@ -24,12 +24,12 @@ PYTHONPATH=src python scripts/generate_solutions.py --frontend-ids 1 2 4
 为每个难度目录生成英文和中文题目清单：
 
 ```text
-easy/README.md
-easy/README.cn.md
-medium/README.md
-medium/README.cn.md
-hard/README.md
-hard/README.cn.md
+Leetcode-Easy/README.md
+Leetcode-Easy/README.cn.md
+Leetcode-Medium/README.md
+Leetcode-Medium/README.cn.md
+Leetcode-Hard/README.md
+Leetcode-Hard/README.cn.md
 ```
 
 它读取 `dataset/merged_problems.json`，复用生成器的路径规则，写入四位补零题号、题名链接和 topics 分类。

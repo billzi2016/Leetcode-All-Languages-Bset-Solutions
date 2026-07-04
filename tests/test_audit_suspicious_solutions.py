@@ -16,7 +16,7 @@ class SuspiciousSolutionAuditTest(unittest.TestCase):
 
         python_blocks = [
             CodeBlock(
-                path=Path(f"easy/0001-0100/{index:04d}-sample.md"),
+                path=Path(f"Leetcode-Easy/0001-0100/{index:04d}-sample.md"),
                 difficulty="easy",
                 language="Python3",
                 code="return x",
@@ -26,7 +26,7 @@ class SuspiciousSolutionAuditTest(unittest.TestCase):
             for index in range(1, 40)
         ]
         sql_block = CodeBlock(
-            path=Path("easy/0101-0200/0175-combine-two-tables.md"),
+            path=Path("Leetcode-Easy/0101-0200/0175-combine-two-tables.md"),
             difficulty="easy",
             language="MySQL",
             code="\n".join(["SELECT Person.firstName, Person.lastName, Address.city, Address.state"] * 90),

@@ -29,14 +29,14 @@ class MarkdownWriterTest(unittest.TestCase):
         self.assertEqual("0001-0100", bucket_name(1))
         self.assertEqual("0101-0200", bucket_name(101))
         self.assertEqual("1301-1400", bucket_name(1301))
-        self.assertEqual(Path("/tmp/out/easy/0001-0100/0001-two-sum.md"), path)
+        self.assertEqual(Path("/tmp/out/Leetcode-Easy/0001-0100/0001-two-sum.md"), path)
 
     def test_write_and_read_languages(self) -> None:
         """写出的 Markdown 应能被 resume 逻辑读回语言标题。"""
 
         problem = {"frontend_id": "1", "difficulty": "Easy", "problem_slug": "two-sum", "title": "Two Sum"}
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "easy/0001-0100/0001-two-sum.md"
+            path = Path(tmp) / "Leetcode-Easy/0001-0100/0001-two-sum.md"
             write_problem(path, problem, {"python3": "class Solution:\n    pass"})
             text = path.read_text(encoding="utf-8")
             languages = read_existing_languages(path)
@@ -51,7 +51,7 @@ class MarkdownWriterTest(unittest.TestCase):
 
         problem = {"frontend_id": "175", "difficulty": "Easy", "problem_slug": "combine-two-tables", "title": "Combine Two Tables"}
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "easy/0101-0200/0175-combine-two-tables.md"
+            path = Path(tmp) / "Leetcode-Easy/0101-0200/0175-combine-two-tables.md"
             write_problem(
                 path,
                 problem,
@@ -76,7 +76,7 @@ class MarkdownWriterTest(unittest.TestCase):
         """旧文件中的简单首字母大写标题不应被新标题规则判成缺失。"""
 
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "easy/0101-0200/0175-combine-two-tables.md"
+            path = Path(tmp) / "Leetcode-Easy/0101-0200/0175-combine-two-tables.md"
             path.parent.mkdir(parents=True)
             path.write_text(
                 "# 0175. Combine Two Tables\n\n"
@@ -101,7 +101,7 @@ class MarkdownWriterTest(unittest.TestCase):
 
         problem = {"frontend_id": "1", "difficulty": "Hard", "problem_slug": "two-sum", "title": "Two Sum"}
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "hard/0001-0100/0001-two-sum.md"
+            path = Path(tmp) / "Leetcode-Hard/0001-0100/0001-two-sum.md"
             write_problem(path, problem, {"python3": "python code", "cpp": "cpp code"})
             solutions = read_existing_solutions(path, ["cpp", "python3", "kotlin"])
 
@@ -113,7 +113,7 @@ class MarkdownWriterTest(unittest.TestCase):
         """只有标题或空代码块不应被当作已完成语言。"""
 
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "hard/0001-0100/0004-median-of-two-sorted-arrays.md"
+            path = Path(tmp) / "Leetcode-Hard/0001-0100/0004-median-of-two-sorted-arrays.md"
             path.parent.mkdir(parents=True)
             path.write_text(
                 "# 0004. Median of Two Sorted Arrays\n\n"

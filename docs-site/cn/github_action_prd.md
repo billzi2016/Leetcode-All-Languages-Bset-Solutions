@@ -21,17 +21,17 @@
 本仓库生成 LeetCode 所有支持语言的准确最优解。生成结果按难度组织：
 
 ```text
-easy/
-medium/
-hard/
+Leetcode-Easy/
+Leetcode-Medium/
+Leetcode-Hard/
 ```
 
 每个难度目录再按 100 题分桶，例如：
 
 ```text
-easy/0001-0100/0001-two-sum.md
-medium/0001-0100/0002-add-two-numbers.md
-hard/0001-0100/0004-median-of-two-sorted-arrays.md
+Leetcode-Easy/0001-0100/0001-two-sum.md
+Leetcode-Medium/0001-0100/0002-add-two-numbers.md
+Leetcode-Hard/0001-0100/0004-median-of-two-sorted-arrays.md
 ```
 
 文档站点需要解释这些产物结构，以及生成它们的工程流程。

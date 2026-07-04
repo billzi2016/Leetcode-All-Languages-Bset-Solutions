@@ -6,7 +6,7 @@ This directory contains the runnable entry points for generating LeetCode soluti
 
 Main CLI entry point for solution generation.
 
-It reads `dataset/merged_problems.json`, selects problems by id or difficulty, calls the generator in `src/leetcode_solutions/`, and writes Markdown output under `easy/`, `medium/`, and `hard/`.
+It reads `dataset/merged_problems.json`, selects problems by id or difficulty, calls the generator in `src/leetcode_solutions/`, and writes Markdown output under `Leetcode-Easy/`, `Leetcode-Medium/`, and `Leetcode-Hard/`.
 
 Examples:
 
@@ -24,12 +24,12 @@ This script can call Ollama and write or update solution Markdown files.
 Generates English and Chinese problem index files for each difficulty directory:
 
 ```text
-easy/README.md
-easy/README.cn.md
-medium/README.md
-medium/README.cn.md
-hard/README.md
-hard/README.cn.md
+Leetcode-Easy/README.md
+Leetcode-Easy/README.cn.md
+Leetcode-Medium/README.md
+Leetcode-Medium/README.cn.md
+Leetcode-Hard/README.md
+Leetcode-Hard/README.cn.md
 ```
 
 It reads `dataset/merged_problems.json`, keeps the same path rules as the generator, and writes rows with the zero-padded problem id, problem title link, and topic list.

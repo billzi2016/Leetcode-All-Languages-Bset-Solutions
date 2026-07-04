@@ -2,7 +2,7 @@
 
 `validate/` 目录提供容器化题解验证环境，用于验证已经生成的 LeetCode 题解 Markdown 文件。
 
-它从 `dataset/merged_problems.json` 读取 LeetCode 样例，从 `easy/`、`medium/`、`hard/` 提取各语言代码块，运行支持的可执行语言 section，并按难度写出 CSV 矩阵：
+它从 `dataset/merged_problems.json` 读取 LeetCode 样例，从 `Leetcode-Easy/`、`Leetcode-Medium/`、`Leetcode-Hard/` 提取各语言代码块，运行支持的可执行语言 section，并按难度写出 CSV 矩阵：
 
 ```text
 validate/reports/easy.csv

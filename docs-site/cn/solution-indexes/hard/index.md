@@ -1,1 +1,0 @@
-../../../../hard/README.cn.md
