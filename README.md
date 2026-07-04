@@ -263,3 +263,11 @@ The project is not meant to mirror LeetCode problem statements. It turns the use
 Generation proceeds in Easy, Medium, then Hard order. Easy validates dependencies, logging, output layout, and resume behavior quickly. Medium expands coverage. Hard runs last with the highest think mode to reduce failures on complex problems. A failed language does not block the full run; it is written to `logs/<datetime>/failures.jsonl` for later targeted reruns.
 
 stdout, stderr, and failures are intentionally separated. Progress remains visible on screen, file logs preserve the run context, and long tmux jobs can be debugged without mixing normal progress with warnings or structured failure data.
+
+## Resume Rules
+
+Resume detection is based on the target Markdown file for each problem.
+
+- Easy and Medium use problem-level resume. If a problem file already contains all expected language sections, the problem is skipped. If it is incomplete, the generator fills the missing languages and writes the problem file once after the run has collected the available results.
+- Hard uses language-level resume. The generator reads the existing language sections from the problem Markdown, skips languages that are already present, and writes the file after each newly generated language.
+- If a Hard run stops or fails while generating Kotlin, the next run keeps the earlier sections such as Cpp, Java, and Python, then resumes from the missing Kotlin section instead of restarting the problem from Cpp.

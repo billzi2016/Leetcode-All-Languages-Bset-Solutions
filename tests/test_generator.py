@@ -75,7 +75,39 @@ class GeneratorTest(unittest.TestCase):
         self.assertEqual(1, len(client.calls))
         self.assertIn("## Python3", text)
 
+    def test_hard_resume_keeps_existing_languages(self) -> None:
+        """Hard 续跑补缺失语言时不应覆盖已有语言。"""
+
+        problem = {
+            "frontend_id": "4",
+            "difficulty": "Hard",
+            "problem_slug": "median-of-two-sorted-arrays",
+            "title": "Median of Two Sorted Arrays",
+            "code_snippets": {"cpp": "class Solution {};", "kotlin": "class Solution {}"},
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            output_root = Path(tmp)
+            existing_path = output_root / "hard/1-100/0004-median-of-two-sorted-arrays.md"
+            existing_path.parent.mkdir(parents=True)
+            existing_path.write_text(
+                "# 0004. Median of Two Sorted Arrays\n\n"
+                "## Cpp\n\n"
+                "```cpp\n"
+                "class ExistingCpp {}\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            client = FakeClient()
+            path = SolutionGenerator(client, FakeLogger(), output_root).generate_problem(problem)
+            text = path.read_text(encoding="utf-8")
+
+        self.assertEqual(1, len(client.calls))
+        self.assertIn("## Cpp", text)
+        self.assertIn("class ExistingCpp {}", text)
+        self.assertIn("## Kotlin", text)
+        self.assertIn("class Solution:", text)
+
 
 if __name__ == "__main__":
     unittest.main()
-

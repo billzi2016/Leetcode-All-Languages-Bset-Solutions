@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 from .config import RETRY_LIMIT
 from .dataset_loader import Problem
-from .markdown_writer import problem_output_path, write_problem
+from .markdown_writer import problem_output_path, read_existing_solutions, write_problem
 from .prompt_builder import SYSTEM_PROMPT, build_language_prompt, build_problem_prompt
 from .resume import missing_languages
 
@@ -41,8 +41,7 @@ class SolutionGenerator:
 
         existing_solutions: OrderedDict[str, str] = OrderedDict()
         if output_path.exists():
-            # 当前对部分文件保持保守策略：发现文件不完整时，只补缺失语言。
-            # 后续如果需要保留既有代码块，可在 markdown_writer 中增加完整解析。
+            existing_solutions = read_existing_solutions(output_path, languages)
             self.logger.warn(f"Regenerating missing languages for {output_path}")
 
         problem_prompt = build_problem_prompt(problem)

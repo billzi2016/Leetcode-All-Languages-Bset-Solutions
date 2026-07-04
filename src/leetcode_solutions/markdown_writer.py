@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import os
 import re
+from collections import OrderedDict
 from pathlib import Path
 
 from .dataset_loader import frontend_id_as_int
@@ -106,3 +107,30 @@ def read_existing_languages(path: Path) -> set[str]:
         return set()
     text = path.read_text(encoding="utf-8")
     return set(re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
+
+
+def read_existing_solutions(path: Path, languages: list[str]) -> OrderedDict[str, str]:
+    """按预期语言顺序读取已有 Markdown 里的代码块。"""
+
+    if not path.exists():
+        return OrderedDict()
+
+    text = path.read_text(encoding="utf-8")
+    heading_to_language = {language_heading(language): language for language in languages}
+    parsed: dict[str, str] = {}
+    heading_matches = list(re.finditer(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
+
+    for index, match in enumerate(heading_matches):
+        heading = match.group(1)
+        language = heading_to_language.get(heading)
+        if language is None:
+            continue
+
+        section_start = match.end()
+        section_end = heading_matches[index + 1].start() if index + 1 < len(heading_matches) else len(text)
+        section = text[section_start:section_end]
+        code_match = re.search(r"```[^\n]*\n(.*?)\n```", section, flags=re.DOTALL)
+        if code_match:
+            parsed[language] = code_match.group(1).rstrip()
+
+    return OrderedDict((language, parsed[language]) for language in languages if language in parsed)

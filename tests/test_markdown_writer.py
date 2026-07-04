@@ -6,7 +6,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from leetcode_solutions.markdown_writer import bucket_name, problem_output_path, read_existing_languages, write_problem
+from leetcode_solutions.markdown_writer import (
+    bucket_name,
+    problem_output_path,
+    read_existing_languages,
+    read_existing_solutions,
+    write_problem,
+)
 
 
 class MarkdownWriterTest(unittest.TestCase):
@@ -34,6 +40,19 @@ class MarkdownWriterTest(unittest.TestCase):
         self.assertIn("## Python3", text)
         self.assertIn("```python", text)
         self.assertEqual({"Python3"}, languages)
+
+    def test_read_existing_solutions_preserves_language_order(self) -> None:
+        """已有 Markdown 代码块应按数据集语言顺序读回。"""
+
+        problem = {"frontend_id": "1", "difficulty": "Hard", "problem_slug": "two-sum", "title": "Two Sum"}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "hard/1-100/0001-two-sum.md"
+            write_problem(path, problem, {"python3": "python code", "cpp": "cpp code"})
+            solutions = read_existing_solutions(path, ["cpp", "python3", "kotlin"])
+
+        self.assertEqual(["cpp", "python3"], list(solutions.keys()))
+        self.assertEqual("cpp code", solutions["cpp"])
+        self.assertEqual("python code", solutions["python3"])
 
 
 if __name__ == "__main__":

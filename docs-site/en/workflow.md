@@ -96,18 +96,25 @@ tmux kill-server
 ```mermaid
 flowchart TD
     A[Prepare problem Markdown] --> B{Target file exists?}
-    B -->|Yes| C[Skip problem]
-    B -->|No| D[Iterate all languages]
-    D --> E{Language generated?}
-    E -->|Yes| F[Keep generated result in memory]
-    E -->|No| G[Retry up to 3 times]
-    G --> H{Still failed?}
-    H -->|Yes| I[Write failures.jsonl and continue]
-    H -->|No| F
-    F --> J[Write Markdown by difficulty]
+    B -->|No| C[Iterate all languages]
+    B -->|Yes| D[Read existing language sections]
+    D --> E[Build missing-language todo list]
+    E --> F[Iterate only missing languages]
+    C --> G{Language generated?}
+    F --> G
+    G -->|Yes| H[Merge with existing results]
+    G -->|No| I[Retry up to 3 times]
+    I --> J{Still failed?}
+    J -->|Yes| K[Write failures.jsonl and continue]
+    J -->|No| H
+    H --> L[Write Markdown by difficulty]
 ```
 
-Easy and Medium write each problem Markdown once. Hard writes at language granularity. This reduces repeated I/O for normal cases while giving complex problems finer save points.
+Easy and Medium use problem-level resume. If a problem file already contains all expected language sections, the problem is skipped; otherwise the generator fills the missing languages and writes the Markdown once after the problem run.
+
+Hard uses language-level resume. The generator reads existing language code blocks from the Markdown file, skips languages that are already present, and writes the merged file after each newly generated language.
+
+If a Hard run stops while generating Kotlin, the next run keeps earlier sections such as Cpp, Java, and Python, then resumes from the missing Kotlin section instead of restarting that problem from Cpp.
 
 ## Logs and Failure Handling
 
