@@ -174,22 +174,22 @@ medium/
 hard/
 ```
 
-Inside each difficulty directory, files are bucketed by `frontend_id` in groups of 100:
+Inside each difficulty directory, files are bucketed by `frontend_id` in groups of 100. Directory names use fixed-width ranges so lexical sorting stays stable:
 
 ```text
 easy/
-  1-100/
+  0001-0100/
     0001-two-sum.md
-  101-200/
+  0101-0200/
     0101-symmetric-tree.md
 
 medium/
-  1-100/
-  101-200/
+  0001-0100/
+  0101-0200/
 
 hard/
-  1-100/
-  101-200/
+  0001-0100/
+  0101-0200/
 ```
 
 Filename format:
@@ -416,9 +416,9 @@ Tests must cover:
 - Ollama option tests: verify the 100_000 token output limit and temperature `0.1`.
 - CLI argument tests: support multiple problem ids, such as `--frontend-ids 1 2 4`.
 - Formal-flow tests for LeetCode 1 / 2 / 4, covering Easy, Medium, and Hard:
-  - LeetCode 1 `Two Sum` -> `easy/1-100/0001-two-sum.md`
-  - LeetCode 2 `Add Two Numbers` -> `medium/1-100/0002-add-two-numbers.md`
-  - LeetCode 4 `Median of Two Sorted Arrays` -> `hard/1-100/0004-median-of-two-sorted-arrays.md`
+  - LeetCode 1 `Two Sum` -> `easy/0001-0100/0001-two-sum.md`
+  - LeetCode 2 `Add Two Numbers` -> `medium/0001-0100/0002-add-two-numbers.md`
+  - LeetCode 4 `Median of Two Sorted Arrays` -> `hard/0001-0100/0004-median-of-two-sorted-arrays.md`
 - After LeetCode 1 / 2 / 4 are generated, running again must detect complete `.md` files and skip model calls.
 
 ## Git Commit Requirements
@@ -474,7 +474,7 @@ Phase 1:
 - Can process in Easy -> Medium -> Hard order.
 - Can select think strength by problem difficulty.
 - Can generate one `.md` file containing all `code_snippets` languages for a problem.
-- Can write files under paths such as `easy/1-100/0001-two-sum.md`.
+- Can write files under paths such as `easy/0001-0100/0001-two-sum.md`.
 - Can show difficulty progress and language sub-progress.
 - Easy and Medium write each problem `.md` once after all languages are complete.
 - Hard updates the `.md` after each generated language.

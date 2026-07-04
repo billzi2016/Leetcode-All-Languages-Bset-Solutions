@@ -87,7 +87,7 @@ class GeneratorTest(unittest.TestCase):
         }
         with tempfile.TemporaryDirectory() as tmp:
             output_root = Path(tmp)
-            existing_path = output_root / "hard/1-100/0004-median-of-two-sorted-arrays.md"
+            existing_path = output_root / "hard/0001-0100/0004-median-of-two-sorted-arrays.md"
             existing_path.parent.mkdir(parents=True)
             existing_path.write_text(
                 "# 0004. Median of Two Sorted Arrays\n\n"
@@ -124,7 +124,7 @@ class GeneratorTest(unittest.TestCase):
         }
         with tempfile.TemporaryDirectory() as tmp:
             output_root = Path(tmp)
-            existing_path = output_root / "hard/1-100/0004-median-of-two-sorted-arrays.md"
+            existing_path = output_root / "hard/0001-0100/0004-median-of-two-sorted-arrays.md"
             existing_path.parent.mkdir(parents=True)
             existing_path.write_text(
                 "# 0004. Median of Two Sorted Arrays\n\n"
@@ -156,7 +156,7 @@ class GeneratorTest(unittest.TestCase):
         }
         with tempfile.TemporaryDirectory() as tmp:
             output_root = Path(tmp)
-            existing_path = output_root / "hard/1-100/0004-median-of-two-sorted-arrays.md"
+            existing_path = output_root / "hard/0001-0100/0004-median-of-two-sorted-arrays.md"
             existing_path.parent.mkdir(parents=True)
             existing_path.write_text(
                 "# 0004. Median of Two Sorted Arrays\n\n"

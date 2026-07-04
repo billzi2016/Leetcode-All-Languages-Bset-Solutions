@@ -5,8 +5,8 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
-from scripts.audit_missing_solutions import parse_args as parse_audit_args
 from scripts.generate_solutions import parse_args
+from migrate.audit_missing_solutions import parse_args as parse_audit_args
 
 
 class CliTest(unittest.TestCase):

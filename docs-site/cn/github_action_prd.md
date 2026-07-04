@@ -29,9 +29,9 @@ hard/
 每个难度目录再按 100 题分桶，例如：
 
 ```text
-easy/1-100/0001-two-sum.md
-medium/1-100/0002-add-two-numbers.md
-hard/1-100/0004-median-of-two-sorted-arrays.md
+easy/0001-0100/0001-two-sum.md
+medium/0001-0100/0002-add-two-numbers.md
+hard/0001-0100/0004-median-of-two-sorted-arrays.md
 ```
 
 文档站点需要解释这些产物结构，以及生成它们的工程流程。

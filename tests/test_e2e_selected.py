@@ -16,9 +16,9 @@ class SelectedProblemsE2ETest(unittest.TestCase):
     """使用真实 dataset 中的 1/2/4 验证 Easy/Medium/Hard 生成链路。"""
 
     CASES = {
-        "1": "easy/1-100/0001-two-sum.md",
-        "2": "medium/1-100/0002-add-two-numbers.md",
-        "4": "hard/1-100/0004-median-of-two-sorted-arrays.md",
+        "1": "easy/0001-0100/0001-two-sum.md",
+        "2": "medium/0001-0100/0002-add-two-numbers.md",
+        "4": "hard/0001-0100/0004-median-of-two-sorted-arrays.md",
     }
 
     def test_selected_problems_formal_flow_then_skip(self) -> None:

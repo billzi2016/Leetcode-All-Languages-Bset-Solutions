@@ -29,9 +29,9 @@ hard/
 Each difficulty directory is further split into 100-problem buckets, for example:
 
 ```text
-easy/1-100/0001-two-sum.md
-medium/1-100/0002-add-two-numbers.md
-hard/1-100/0004-median-of-two-sorted-arrays.md
+easy/0001-0100/0001-two-sum.md
+medium/0001-0100/0002-add-two-numbers.md
+hard/0001-0100/0004-median-of-two-sorted-arrays.md
 ```
 
 The documentation site should explain both the generated artifact structure and the engineering workflow used to produce it.

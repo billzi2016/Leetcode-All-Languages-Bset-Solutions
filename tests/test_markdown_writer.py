@@ -25,15 +25,17 @@ class MarkdownWriterTest(unittest.TestCase):
 
         problem = {"frontend_id": "1", "difficulty": "Easy", "problem_slug": "two-sum"}
         path = problem_output_path(problem, Path("/tmp/out"))
-        self.assertEqual("1-100", bucket_name(1))
-        self.assertEqual(Path("/tmp/out/easy/1-100/0001-two-sum.md"), path)
+        self.assertEqual("0001-0100", bucket_name(1))
+        self.assertEqual("0101-0200", bucket_name(101))
+        self.assertEqual("1301-1400", bucket_name(1301))
+        self.assertEqual(Path("/tmp/out/easy/0001-0100/0001-two-sum.md"), path)
 
     def test_write_and_read_languages(self) -> None:
         """写出的 Markdown 应能被 resume 逻辑读回语言标题。"""
 
         problem = {"frontend_id": "1", "difficulty": "Easy", "problem_slug": "two-sum", "title": "Two Sum"}
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "easy/1-100/0001-two-sum.md"
+            path = Path(tmp) / "easy/0001-0100/0001-two-sum.md"
             write_problem(path, problem, {"python3": "class Solution:\n    pass"})
             text = path.read_text(encoding="utf-8")
             languages = read_existing_languages(path)
@@ -48,7 +50,7 @@ class MarkdownWriterTest(unittest.TestCase):
 
         problem = {"frontend_id": "1", "difficulty": "Hard", "problem_slug": "two-sum", "title": "Two Sum"}
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "hard/1-100/0001-two-sum.md"
+            path = Path(tmp) / "hard/0001-0100/0001-two-sum.md"
             write_problem(path, problem, {"python3": "python code", "cpp": "cpp code"})
             solutions = read_existing_solutions(path, ["cpp", "python3", "kotlin"])
 
@@ -60,7 +62,7 @@ class MarkdownWriterTest(unittest.TestCase):
         """只有标题或空代码块不应被当作已完成语言。"""
 
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "hard/1-100/0004-median-of-two-sorted-arrays.md"
+            path = Path(tmp) / "hard/0001-0100/0004-median-of-two-sorted-arrays.md"
             path.parent.mkdir(parents=True)
             path.write_text(
                 "# 0004. Median of Two Sorted Arrays\n\n"

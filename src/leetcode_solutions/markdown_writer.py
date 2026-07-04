@@ -47,11 +47,11 @@ class ExistingSolutionSection:
 
 
 def bucket_name(frontend_id: int) -> str:
-    """返回每 100 题一个区间的目录名。"""
+    """返回每 100 题一个固定宽度范围目录名。"""
 
     start = ((frontend_id - 1) // 100) * 100 + 1
     end = start + 99
-    return f"{start}-{end}"
+    return f"{start:04d}-{end:04d}"
 
 
 def problem_output_path(problem: dict, output_root: Path) -> Path:
