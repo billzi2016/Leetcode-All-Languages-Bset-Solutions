@@ -4,3 +4,4 @@ logs/
 __pycache__/
 *.pyc
 docs-site-build/
+migrate/suspicious_solutions_report.md
