@@ -1,0 +1,694 @@
+# Hard 题目清单
+
+本清单由 `scripts/generate_difficulty_readmes.py` 根据 `dataset/merged_problems.json` 生成。
+
+题目数量：686
+
+| 编号 | 题目 | 分类 |
+| --- | --- | --- |
+| 0004 | [Median of Two Sorted Arrays](0001-0100/0004-median-of-two-sorted-arrays.md) | Array, Binary Search, Divide and Conquer |
+| 0010 | [Regular Expression Matching](0001-0100/0010-regular-expression-matching.md) | String, Dynamic Programming, Recursion |
+| 0023 | [Merge k Sorted Lists](0001-0100/0023-merge-k-sorted-lists.md) | Linked List, Divide and Conquer, Heap (Priority Queue), Merge Sort |
+| 0025 | [Reverse Nodes in k-Group](0001-0100/0025-reverse-nodes-in-k-group.md) | Linked List, Recursion |
+| 0030 | [Substring with Concatenation of All Words](0001-0100/0030-substring-with-concatenation-of-all-words.md) | Hash Table, String, Sliding Window |
+| 0032 | [Longest Valid Parentheses](0001-0100/0032-longest-valid-parentheses.md) | String, Dynamic Programming, Stack |
+| 0037 | [Sudoku Solver](0001-0100/0037-sudoku-solver.md) | Array, Hash Table, Backtracking, Matrix |
+| 0041 | [First Missing Positive](0001-0100/0041-first-missing-positive.md) | Array, Hash Table |
+| 0042 | [Trapping Rain Water](0001-0100/0042-trapping-rain-water.md) | Array, Two Pointers, Dynamic Programming, Stack, Monotonic Stack |
+| 0044 | [Wildcard Matching](0001-0100/0044-wildcard-matching.md) | String, Dynamic Programming, Greedy, Recursion |
+| 0051 | [N-Queens](0001-0100/0051-n-queens.md) | Array, Backtracking |
+| 0052 | [N-Queens II](0001-0100/0052-n-queens-ii.md) | Backtracking |
+| 0060 | [Permutation Sequence](0001-0100/0060-permutation-sequence.md) | Math, Recursion |
+| 0065 | [Valid Number](0001-0100/0065-valid-number.md) | String |
+| 0068 | [Text Justification](0001-0100/0068-text-justification.md) | Array, String, Simulation |
+| 0076 | [Minimum Window Substring](0001-0100/0076-minimum-window-substring.md) | Hash Table, String, Sliding Window |
+| 0084 | [Largest Rectangle in Histogram](0001-0100/0084-largest-rectangle-in-histogram.md) | Array, Stack, Monotonic Stack |
+| 0085 | [Maximal Rectangle](0001-0100/0085-maximal-rectangle.md) | Array, Dynamic Programming, Stack, Matrix, Monotonic Stack |
+| 0087 | [Scramble String](0001-0100/0087-scramble-string.md) | String, Dynamic Programming |
+| 0115 | [Distinct Subsequences](0101-0200/0115-distinct-subsequences.md) | String, Dynamic Programming |
+| 0123 | [Best Time to Buy and Sell Stock III](0101-0200/0123-best-time-to-buy-and-sell-stock-iii.md) | Array, Dynamic Programming |
+| 0124 | [Binary Tree Maximum Path Sum](0101-0200/0124-binary-tree-maximum-path-sum.md) | Dynamic Programming, Tree, Depth-First Search, Binary Tree |
+| 0126 | [Word Ladder II](0101-0200/0126-word-ladder-ii.md) | Hash Table, String, Backtracking, Breadth-First Search |
+| 0127 | [Word Ladder](0101-0200/0127-word-ladder.md) | Hash Table, String, Breadth-First Search |
+| 0132 | [Palindrome Partitioning II](0101-0200/0132-palindrome-partitioning-ii.md) | String, Dynamic Programming |
+| 0135 | [Candy](0101-0200/0135-candy.md) | Array, Greedy |
+| 0140 | [Word Break II](0101-0200/0140-word-break-ii.md) | Array, Hash Table, String, Dynamic Programming, Backtracking, Trie, Memoization |
+| 0149 | [Max Points on a Line](0101-0200/0149-max-points-on-a-line.md) | Array, Hash Table, Math, Geometry |
+| 0154 | [Find Minimum in Rotated Sorted Array II](0101-0200/0154-find-minimum-in-rotated-sorted-array-ii.md) | Array, Binary Search |
+| 0174 | [Dungeon Game](0101-0200/0174-dungeon-game.md) | Array, Dynamic Programming, Matrix |
+| 0185 | [Department Top Three Salaries](0101-0200/0185-department-top-three-salaries.md) | Database |
+| 0188 | [Best Time to Buy and Sell Stock IV](0101-0200/0188-best-time-to-buy-and-sell-stock-iv.md) | Array, Dynamic Programming |
+| 0212 | [Word Search II](0201-0300/0212-word-search-ii.md) | Array, String, Backtracking, Trie, Matrix |
+| 0214 | [Shortest Palindrome](0201-0300/0214-shortest-palindrome.md) | String, Rolling Hash, String Matching, Hash Function |
+| 0218 | [The Skyline Problem](0201-0300/0218-the-skyline-problem.md) | Array, Divide and Conquer, Binary Indexed Tree, Segment Tree, Line Sweep, Heap (Priority Queue), Ordered Set |
+| 0220 | [Contains Duplicate III](0201-0300/0220-contains-duplicate-iii.md) | Array, Sliding Window, Sorting, Bucket Sort, Ordered Set |
+| 0224 | [Basic Calculator](0201-0300/0224-basic-calculator.md) | Math, String, Stack, Recursion |
+| 0233 | [Number of Digit One](0201-0300/0233-number-of-digit-one.md) | Math, Dynamic Programming, Recursion |
+| 0239 | [Sliding Window Maximum](0201-0300/0239-sliding-window-maximum.md) | Array, Queue, Sliding Window, Heap (Priority Queue), Monotonic Queue |
+| 0262 | [Trips and Users](0201-0300/0262-trips-and-users.md) | Database |
+| 0273 | [Integer to English Words](0201-0300/0273-integer-to-english-words.md) | Math, String, Recursion |
+| 0282 | [Expression Add Operators](0201-0300/0282-expression-add-operators.md) | Math, String, Backtracking |
+| 0295 | [Find Median from Data Stream](0201-0300/0295-find-median-from-data-stream.md) | Two Pointers, Design, Sorting, Heap (Priority Queue), Data Stream |
+| 0297 | [Serialize and Deserialize Binary Tree](0201-0300/0297-serialize-and-deserialize-binary-tree.md) | String, Tree, Depth-First Search, Breadth-First Search, Design, Binary Tree |
+| 0301 | [Remove Invalid Parentheses](0301-0400/0301-remove-invalid-parentheses.md) | String, Backtracking, Breadth-First Search |
+| 0312 | [Burst Balloons](0301-0400/0312-burst-balloons.md) | Array, Dynamic Programming |
+| 0315 | [Count of Smaller Numbers After Self](0301-0400/0315-count-of-smaller-numbers-after-self.md) | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
+| 0321 | [Create Maximum Number](0301-0400/0321-create-maximum-number.md) | Array, Two Pointers, Stack, Greedy, Monotonic Stack |
+| 0327 | [Count of Range Sum](0301-0400/0327-count-of-range-sum.md) | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
+| 0329 | [Longest Increasing Path in a Matrix](0301-0400/0329-longest-increasing-path-in-a-matrix.md) | Array, Dynamic Programming, Depth-First Search, Breadth-First Search, Graph, Topological Sort, Memoization, Matrix |
+| 0330 | [Patching Array](0301-0400/0330-patching-array.md) | Array, Greedy |
+| 0332 | [Reconstruct Itinerary](0301-0400/0332-reconstruct-itinerary.md) | Depth-First Search, Graph, Eulerian Circuit |
+| 0335 | [Self Crossing](0301-0400/0335-self-crossing.md) | Array, Math, Geometry |
+| 0336 | [Palindrome Pairs](0301-0400/0336-palindrome-pairs.md) | Array, Hash Table, String, Trie |
+| 0352 | [Data Stream as Disjoint Intervals](0301-0400/0352-data-stream-as-disjoint-intervals.md) | Binary Search, Design, Ordered Set |
+| 0354 | [Russian Doll Envelopes](0301-0400/0354-russian-doll-envelopes.md) | Array, Binary Search, Dynamic Programming, Sorting |
+| 0363 | [Max Sum of Rectangle No Larger Than K](0301-0400/0363-max-sum-of-rectangle-no-larger-than-k.md) | Array, Binary Search, Matrix, Prefix Sum, Ordered Set |
+| 0381 | [Insert Delete GetRandom O(1) - Duplicates allowed](0301-0400/0381-insert-delete-getrandom-o1-duplicates-allowed.md) | Array, Hash Table, Math, Design, Randomized |
+| 0391 | [Perfect Rectangle](0301-0400/0391-perfect-rectangle.md) | Array, Hash Table, Math, Geometry, Line Sweep |
+| 0403 | [Frog Jump](0401-0500/0403-frog-jump.md) | Array, Dynamic Programming |
+| 0407 | [Trapping Rain Water II](0401-0500/0407-trapping-rain-water-ii.md) | Array, Breadth-First Search, Heap (Priority Queue), Matrix |
+| 0410 | [Split Array Largest Sum](0401-0500/0410-split-array-largest-sum.md) | Array, Binary Search, Dynamic Programming, Greedy, Prefix Sum |
+| 0420 | [Strong Password Checker](0401-0500/0420-strong-password-checker.md) | String, Greedy, Heap (Priority Queue) |
+| 0432 | [All O`one Data Structure](0401-0500/0432-all-oone-data-structure.md) | Hash Table, Linked List, Design, Doubly-Linked List |
+| 0440 | [K-th Smallest in Lexicographical Order](0401-0500/0440-k-th-smallest-in-lexicographical-order.md) | Trie |
+| 0446 | [Arithmetic Slices II - Subsequence](0401-0500/0446-arithmetic-slices-ii-subsequence.md) | Array, Dynamic Programming |
+| 0458 | [Poor Pigs](0401-0500/0458-poor-pigs.md) | Math, Dynamic Programming, Combinatorics |
+| 0460 | [LFU Cache](0401-0500/0460-lfu-cache.md) | Hash Table, Linked List, Design, Doubly-Linked List |
+| 0466 | [Count The Repetitions](0401-0500/0466-count-the-repetitions.md) | String, Dynamic Programming |
+| 0472 | [Concatenated Words](0401-0500/0472-concatenated-words.md) | Array, String, Dynamic Programming, Depth-First Search, Trie, Sorting |
+| 0479 | [Largest Palindrome Product](0401-0500/0479-largest-palindrome-product.md) | Math, Enumeration |
+| 0480 | [Sliding Window Median](0401-0500/0480-sliding-window-median.md) | Array, Hash Table, Sliding Window, Heap (Priority Queue) |
+| 0483 | [Smallest Good Base](0401-0500/0483-smallest-good-base.md) | Math, Binary Search |
+| 0488 | [Zuma Game](0401-0500/0488-zuma-game.md) | String, Dynamic Programming, Stack, Breadth-First Search, Memoization |
+| 0493 | [Reverse Pairs](0401-0500/0493-reverse-pairs.md) | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
+| 0502 | [IPO](0501-0600/0502-ipo.md) | Array, Greedy, Sorting, Heap (Priority Queue) |
+| 0514 | [Freedom Trail](0501-0600/0514-freedom-trail.md) | String, Dynamic Programming, Depth-First Search, Breadth-First Search |
+| 0517 | [Super Washing Machines](0501-0600/0517-super-washing-machines.md) | Array, Greedy |
+| 0546 | [Remove Boxes](0501-0600/0546-remove-boxes.md) | Array, Dynamic Programming, Memoization |
+| 0552 | [Student Attendance Record II](0501-0600/0552-student-attendance-record-ii.md) | Dynamic Programming |
+| 0564 | [Find the Closest Palindrome](0501-0600/0564-find-the-closest-palindrome.md) | Math, String |
+| 0587 | [Erect the Fence](0501-0600/0587-erect-the-fence.md) | Array, Math, Geometry |
+| 0591 | [Tag Validator](0501-0600/0591-tag-validator.md) | String, Stack |
+| 0600 | [Non-negative Integers without Consecutive Ones](0501-0600/0600-non-negative-integers-without-consecutive-ones.md) | Dynamic Programming |
+| 0601 | [Human Traffic of Stadium](0601-0700/0601-human-traffic-of-stadium.md) | Database |
+| 0629 | [K Inverse Pairs Array](0601-0700/0629-k-inverse-pairs-array.md) | Dynamic Programming |
+| 0630 | [Course Schedule III](0601-0700/0630-course-schedule-iii.md) | Array, Greedy, Sorting, Heap (Priority Queue) |
+| 0632 | [Smallest Range Covering Elements from K Lists](0601-0700/0632-smallest-range-covering-elements-from-k-lists.md) | Array, Hash Table, Greedy, Sliding Window, Sorting, Heap (Priority Queue) |
+| 0639 | [Decode Ways II](0601-0700/0639-decode-ways-ii.md) | String, Dynamic Programming |
+| 0664 | [Strange Printer](0601-0700/0664-strange-printer.md) | String, Dynamic Programming |
+| 0668 | [Kth Smallest Number in Multiplication Table](0601-0700/0668-kth-smallest-number-in-multiplication-table.md) | Math, Binary Search |
+| 0675 | [Cut Off Trees for Golf Event](0601-0700/0675-cut-off-trees-for-golf-event.md) | Array, Breadth-First Search, Heap (Priority Queue), Matrix |
+| 0679 | [24 Game](0601-0700/0679-24-game.md) | Array, Math, Backtracking |
+| 0685 | [Redundant Connection II](0601-0700/0685-redundant-connection-ii.md) | Depth-First Search, Breadth-First Search, Union Find, Graph |
+| 0689 | [Maximum Sum of 3 Non-Overlapping Subarrays](0601-0700/0689-maximum-sum-of-3-non-overlapping-subarrays.md) | Array, Dynamic Programming, Sliding Window, Prefix Sum |
+| 0691 | [Stickers to Spell Word](0601-0700/0691-stickers-to-spell-word.md) | Array, Hash Table, String, Dynamic Programming, Backtracking, Bit Manipulation, Memoization, Bitmask |
+| 0699 | [Falling Squares](0601-0700/0699-falling-squares.md) | Array, Segment Tree, Ordered Set |
+| 0710 | [Random Pick with Blacklist](0701-0800/0710-random-pick-with-blacklist.md) | Array, Hash Table, Math, Binary Search, Sorting, Randomized |
+| 0715 | [Range Module](0701-0800/0715-range-module.md) | Design, Segment Tree, Ordered Set |
+| 0719 | [Find K-th Smallest Pair Distance](0701-0800/0719-find-k-th-smallest-pair-distance.md) | Array, Two Pointers, Binary Search, Sorting |
+| 0726 | [Number of Atoms](0701-0800/0726-number-of-atoms.md) | Hash Table, String, Stack, Sorting |
+| 0730 | [Count Different Palindromic Subsequences](0701-0800/0730-count-different-palindromic-subsequences.md) | String, Dynamic Programming |
+| 0732 | [My Calendar III](0701-0800/0732-my-calendar-iii.md) | Binary Search, Design, Segment Tree, Prefix Sum, Ordered Set |
+| 0736 | [Parse Lisp Expression](0701-0800/0736-parse-lisp-expression.md) | Hash Table, String, Stack, Recursion |
+| 0741 | [Cherry Pickup](0701-0800/0741-cherry-pickup.md) | Array, Dynamic Programming, Matrix |
+| 0745 | [Prefix and Suffix Search](0701-0800/0745-prefix-and-suffix-search.md) | Array, Hash Table, String, Design, Trie |
+| 0749 | [Contain Virus](0701-0800/0749-contain-virus.md) | Array, Depth-First Search, Breadth-First Search, Matrix, Simulation |
+| 0753 | [Cracking the Safe](0701-0800/0753-cracking-the-safe.md) | Depth-First Search, Graph, Eulerian Circuit |
+| 0757 | [Set Intersection Size At Least Two](0701-0800/0757-set-intersection-size-at-least-two.md) | Array, Greedy, Sorting |
+| 0761 | [Special Binary String](0701-0800/0761-special-binary-string.md) | String, Recursion |
+| 0765 | [Couples Holding Hands](0701-0800/0765-couples-holding-hands.md) | Greedy, Depth-First Search, Breadth-First Search, Union Find, Graph |
+| 0768 | [Max Chunks To Make Sorted II](0701-0800/0768-max-chunks-to-make-sorted-ii.md) | Array, Stack, Greedy, Sorting, Monotonic Stack |
+| 0770 | [Basic Calculator IV](0701-0800/0770-basic-calculator-iv.md) | Hash Table, Math, String, Stack, Recursion |
+| 0773 | [Sliding Puzzle](0701-0800/0773-sliding-puzzle.md) | Array, Dynamic Programming, Backtracking, Breadth-First Search, Memoization, Matrix |
+| 0778 | [Swim in Rising Water](0701-0800/0778-swim-in-rising-water.md) | Array, Binary Search, Depth-First Search, Breadth-First Search, Union Find, Heap (Priority Queue), Matrix |
+| 0780 | [Reaching Points](0701-0800/0780-reaching-points.md) | Math |
+| 0782 | [Transform to Chessboard](0701-0800/0782-transform-to-chessboard.md) | Array, Math, Bit Manipulation, Matrix |
+| 0793 | [Preimage Size of Factorial Zeroes Function](0701-0800/0793-preimage-size-of-factorial-zeroes-function.md) | Math, Binary Search |
+| 0798 | [Smallest Rotation with Highest Score](0701-0800/0798-smallest-rotation-with-highest-score.md) | Array, Prefix Sum |
+| 0801 | [Minimum Swaps To Make Sequences Increasing](0801-0900/0801-minimum-swaps-to-make-sequences-increasing.md) | Array, Dynamic Programming |
+| 0803 | [Bricks Falling When Hit](0801-0900/0803-bricks-falling-when-hit.md) | Array, Union Find, Matrix |
+| 0805 | [Split Array With Same Average](0801-0900/0805-split-array-with-same-average.md) | Array, Math, Dynamic Programming, Bit Manipulation, Bitmask |
+| 0810 | [Chalkboard XOR Game](0801-0900/0810-chalkboard-xor-game.md) | Array, Math, Bit Manipulation, Brainteaser, Game Theory |
+| 0815 | [Bus Routes](0801-0900/0815-bus-routes.md) | Array, Hash Table, Breadth-First Search |
+| 0818 | [Race Car](0801-0900/0818-race-car.md) | Dynamic Programming |
+| 0827 | [Making A Large Island](0801-0900/0827-making-a-large-island.md) | Array, Depth-First Search, Breadth-First Search, Union Find, Matrix |
+| 0828 | [Count Unique Characters of All Substrings of a Given String](0801-0900/0828-count-unique-characters-of-all-substrings-of-a-given-string.md) | Hash Table, String, Dynamic Programming |
+| 0829 | [Consecutive Numbers Sum](0801-0900/0829-consecutive-numbers-sum.md) | Math, Enumeration |
+| 0834 | [Sum of Distances in Tree](0801-0900/0834-sum-of-distances-in-tree.md) | Dynamic Programming, Tree, Depth-First Search, Graph |
+| 0839 | [Similar String Groups](0801-0900/0839-similar-string-groups.md) | Array, Hash Table, String, Depth-First Search, Breadth-First Search, Union Find |
+| 0843 | [Guess the Word](0801-0900/0843-guess-the-word.md) | Array, Math, String, Interactive, Game Theory |
+| 0847 | [Shortest Path Visiting All Nodes](0801-0900/0847-shortest-path-visiting-all-nodes.md) | Dynamic Programming, Bit Manipulation, Breadth-First Search, Graph, Bitmask |
+| 0850 | [Rectangle Area II](0801-0900/0850-rectangle-area-ii.md) | Array, Segment Tree, Line Sweep, Ordered Set |
+| 0854 | [K-Similar Strings](0801-0900/0854-k-similar-strings.md) | Hash Table, String, Breadth-First Search |
+| 0857 | [Minimum Cost to Hire K Workers](0801-0900/0857-minimum-cost-to-hire-k-workers.md) | Array, Greedy, Sorting, Heap (Priority Queue) |
+| 0862 | [Shortest Subarray with Sum at Least K](0801-0900/0862-shortest-subarray-with-sum-at-least-k.md) | Array, Binary Search, Queue, Sliding Window, Heap (Priority Queue), Prefix Sum, Monotonic Queue |
+| 0864 | [Shortest Path to Get All Keys](0801-0900/0864-shortest-path-to-get-all-keys.md) | Array, Bit Manipulation, Breadth-First Search, Matrix |
+| 0871 | [Minimum Number of Refueling Stops](0801-0900/0871-minimum-number-of-refueling-stops.md) | Array, Dynamic Programming, Greedy, Heap (Priority Queue) |
+| 0878 | [Nth Magical Number](0801-0900/0878-nth-magical-number.md) | Math, Binary Search |
+| 0879 | [Profitable Schemes](0801-0900/0879-profitable-schemes.md) | Array, Dynamic Programming |
+| 0882 | [Reachable Nodes In Subdivided Graph](0801-0900/0882-reachable-nodes-in-subdivided-graph.md) | Graph, Heap (Priority Queue), Shortest Path |
+| 0887 | [Super Egg Drop](0801-0900/0887-super-egg-drop.md) | Math, Binary Search, Dynamic Programming |
+| 0891 | [Sum of Subsequence Widths](0801-0900/0891-sum-of-subsequence-widths.md) | Array, Math, Sorting |
+| 0895 | [Maximum Frequency Stack](0801-0900/0895-maximum-frequency-stack.md) | Hash Table, Stack, Design, Ordered Set |
+| 0899 | [Orderly Queue](0801-0900/0899-orderly-queue.md) | Math, String, Sorting |
+| 0902 | [Numbers At Most N Given Digit Set](0901-1000/0902-numbers-at-most-n-given-digit-set.md) | Array, Math, String, Binary Search, Dynamic Programming |
+| 0903 | [Valid Permutations for DI Sequence](0901-1000/0903-valid-permutations-for-di-sequence.md) | String, Dynamic Programming, Prefix Sum |
+| 0906 | [Super Palindromes](0901-1000/0906-super-palindromes.md) | Math, String, Enumeration |
+| 0913 | [Cat and Mouse](0901-1000/0913-cat-and-mouse.md) | Math, Dynamic Programming, Graph, Topological Sort, Memoization, Game Theory |
+| 0920 | [Number of Music Playlists](0901-1000/0920-number-of-music-playlists.md) | Math, Dynamic Programming, Combinatorics |
+| 0924 | [Minimize Malware Spread](0901-1000/0924-minimize-malware-spread.md) | Array, Hash Table, Depth-First Search, Breadth-First Search, Union Find, Graph |
+| 0927 | [Three Equal Parts](0901-1000/0927-three-equal-parts.md) | Array, Math |
+| 0928 | [Minimize Malware Spread II](0901-1000/0928-minimize-malware-spread-ii.md) | Array, Hash Table, Depth-First Search, Breadth-First Search, Union Find, Graph |
+| 0936 | [Stamping The Sequence](0901-1000/0936-stamping-the-sequence.md) | String, Stack, Greedy, Queue |
+| 0940 | [Distinct Subsequences II](0901-1000/0940-distinct-subsequences-ii.md) | String, Dynamic Programming |
+| 0943 | [Find the Shortest Superstring](0901-1000/0943-find-the-shortest-superstring.md) | Array, String, Dynamic Programming, Bit Manipulation, Bitmask |
+| 0952 | [Largest Component Size by Common Factor](0901-1000/0952-largest-component-size-by-common-factor.md) | Array, Hash Table, Math, Union Find, Number Theory |
+| 0956 | [Tallest Billboard](0901-1000/0956-tallest-billboard.md) | Array, Dynamic Programming |
+| 0960 | [Delete Columns to Make Sorted III](0901-1000/0960-delete-columns-to-make-sorted-iii.md) | Array, String, Dynamic Programming |
+| 0964 | [Least Operators to Express Number](0901-1000/0964-least-operators-to-express-number.md) | Math, Dynamic Programming, Memoization |
+| 0968 | [Binary Tree Cameras](0901-1000/0968-binary-tree-cameras.md) | Dynamic Programming, Tree, Depth-First Search, Binary Tree |
+| 0972 | [Equal Rational Numbers](0901-1000/0972-equal-rational-numbers.md) | Math, String |
+| 0975 | [Odd Even Jump](0901-1000/0975-odd-even-jump.md) | Array, Dynamic Programming, Stack, Sorting, Monotonic Stack, Ordered Set |
+| 0980 | [Unique Paths III](0901-1000/0980-unique-paths-iii.md) | Array, Backtracking, Bit Manipulation, Matrix |
+| 0982 | [Triples with Bitwise AND Equal To Zero](0901-1000/0982-triples-with-bitwise-and-equal-to-zero.md) | Array, Hash Table, Bit Manipulation |
+| 0987 | [Vertical Order Traversal of a Binary Tree](0901-1000/0987-vertical-order-traversal-of-a-binary-tree.md) | Hash Table, Tree, Depth-First Search, Breadth-First Search, Sorting, Binary Tree |
+| 0992 | [Subarrays with K Different Integers](0901-1000/0992-subarrays-with-k-different-integers.md) | Array, Hash Table, Sliding Window, Counting |
+| 0995 | [Minimum Number of K Consecutive Bit Flips](0901-1000/0995-minimum-number-of-k-consecutive-bit-flips.md) | Array, Bit Manipulation, Queue, Sliding Window, Prefix Sum |
+| 0996 | [Number of Squareful Arrays](0901-1000/0996-number-of-squareful-arrays.md) | Array, Hash Table, Math, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask |
+| 1000 | [Minimum Cost to Merge Stones](0901-1000/1000-minimum-cost-to-merge-stones.md) | Array, Dynamic Programming, Prefix Sum |
+| 1001 | [Grid Illumination](1001-1100/1001-grid-illumination.md) | Array, Hash Table |
+| 1012 | [Numbers With Repeated Digits](1001-1100/1012-numbers-with-repeated-digits.md) | Math, Dynamic Programming |
+| 1028 | [Recover a Tree From Preorder Traversal](1001-1100/1028-recover-a-tree-from-preorder-traversal.md) | String, Tree, Depth-First Search, Binary Tree |
+| 1032 | [Stream of Characters](1001-1100/1032-stream-of-characters.md) | Array, String, Design, Trie, Data Stream |
+| 1036 | [Escape a Large Maze](1001-1100/1036-escape-a-large-maze.md) | Array, Hash Table, Depth-First Search, Breadth-First Search |
+| 1044 | [Longest Duplicate Substring](1001-1100/1044-longest-duplicate-substring.md) | String, Binary Search, Sliding Window, Rolling Hash, Suffix Array, Hash Function |
+| 1074 | [Number of Submatrices That Sum to Target](1001-1100/1074-number-of-submatrices-that-sum-to-target.md) | Array, Hash Table, Matrix, Prefix Sum |
+| 1092 | [Shortest Common Supersequence](1001-1100/1092-shortest-common-supersequence.md) | String, Dynamic Programming |
+| 1095 | [Find in Mountain Array](1001-1100/1095-find-in-mountain-array.md) | Array, Binary Search, Interactive |
+| 1096 | [Brace Expansion II](1001-1100/1096-brace-expansion-ii.md) | String, Backtracking, Stack, Breadth-First Search |
+| 1106 | [Parsing A Boolean Expression](1101-1200/1106-parsing-a-boolean-expression.md) | String, Stack, Recursion |
+| 1125 | [Smallest Sufficient Team](1101-1200/1125-smallest-sufficient-team.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 1147 | [Longest Chunked Palindrome Decomposition](1101-1200/1147-longest-chunked-palindrome-decomposition.md) | Two Pointers, String, Dynamic Programming, Greedy, Rolling Hash, Hash Function |
+| 1157 | [Online Majority Element In Subarray](1101-1200/1157-online-majority-element-in-subarray.md) | Array, Binary Search, Design, Binary Indexed Tree, Segment Tree |
+| 1163 | [Last Substring in Lexicographical Order](1101-1200/1163-last-substring-in-lexicographical-order.md) | Two Pointers, String |
+| 1172 | [Dinner Plate Stacks](1101-1200/1172-dinner-plate-stacks.md) | Hash Table, Stack, Design, Heap (Priority Queue) |
+| 1178 | [Number of Valid Words for Each Puzzle](1101-1200/1178-number-of-valid-words-for-each-puzzle.md) | Array, Hash Table, String, Bit Manipulation, Trie |
+| 1187 | [Make Array Strictly Increasing](1101-1200/1187-make-array-strictly-increasing.md) | Array, Binary Search, Dynamic Programming, Sorting |
+| 1192 | [Critical Connections in a Network](1101-1200/1192-critical-connections-in-a-network.md) | Depth-First Search, Graph, Biconnected Component |
+| 1203 | [Sort Items by Groups Respecting Dependencies](1201-1300/1203-sort-items-by-groups-respecting-dependencies.md) | Depth-First Search, Breadth-First Search, Graph, Topological Sort |
+| 1206 | [Design Skiplist](1201-1300/1206-design-skiplist.md) | Linked List, Design |
+| 1210 | [Minimum Moves to Reach Target with Rotations](1201-1300/1210-minimum-moves-to-reach-target-with-rotations.md) | Array, Breadth-First Search, Matrix |
+| 1220 | [Count Vowels Permutation](1201-1300/1220-count-vowels-permutation.md) | Dynamic Programming |
+| 1223 | [Dice Roll Simulation](1201-1300/1223-dice-roll-simulation.md) | Array, Dynamic Programming |
+| 1224 | [Maximum Equal Frequency](1201-1300/1224-maximum-equal-frequency.md) | Array, Hash Table |
+| 1235 | [Maximum Profit in Job Scheduling](1201-1300/1235-maximum-profit-in-job-scheduling.md) | Array, Binary Search, Dynamic Programming, Sorting |
+| 1240 | [Tiling a Rectangle with the Fewest Squares](1201-1300/1240-tiling-a-rectangle-with-the-fewest-squares.md) | Backtracking |
+| 1250 | [Check If It Is a Good Array](1201-1300/1250-check-if-it-is-a-good-array.md) | Array, Math, Number Theory |
+| 1255 | [Maximum Score Words Formed by Letters](1201-1300/1255-maximum-score-words-formed-by-letters.md) | Array, String, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask |
+| 1263 | [Minimum Moves to Move a Box to Their Target Location](1201-1300/1263-minimum-moves-to-move-a-box-to-their-target-location.md) | Array, Breadth-First Search, Heap (Priority Queue), Matrix |
+| 1269 | [Number of Ways to Stay in the Same Place After Some Steps](1201-1300/1269-number-of-ways-to-stay-in-the-same-place-after-some-steps.md) | Dynamic Programming |
+| 1278 | [Palindrome Partitioning III](1201-1300/1278-palindrome-partitioning-iii.md) | String, Dynamic Programming |
+| 1284 | [Minimum Number of Flips to Convert Binary Matrix to Zero Matrix](1201-1300/1284-minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix.md) | Array, Hash Table, Bit Manipulation, Breadth-First Search, Matrix |
+| 1289 | [Minimum Falling Path Sum II](1201-1300/1289-minimum-falling-path-sum-ii.md) | Array, Dynamic Programming, Matrix |
+| 1293 | [Shortest Path in a Grid with Obstacles Elimination](1201-1300/1293-shortest-path-in-a-grid-with-obstacles-elimination.md) | Array, Breadth-First Search, Matrix |
+| 1298 | [Maximum Candies You Can Get from Boxes](1201-1300/1298-maximum-candies-you-can-get-from-boxes.md) | Array, Breadth-First Search, Graph |
+| 1301 | [Number of Paths with Max Score](1301-1400/1301-number-of-paths-with-max-score.md) | Array, Dynamic Programming, Matrix |
+| 1307 | [Verbal Arithmetic Puzzle](1301-1400/1307-verbal-arithmetic-puzzle.md) | Array, Math, String, Backtracking |
+| 1312 | [Minimum Insertion Steps to Make a String Palindrome](1301-1400/1312-minimum-insertion-steps-to-make-a-string-palindrome.md) | String, Dynamic Programming |
+| 1316 | [Distinct Echo Substrings](1301-1400/1316-distinct-echo-substrings.md) | String, Trie, Rolling Hash, Hash Function |
+| 1320 | [Minimum Distance to Type a Word Using Two Fingers](1301-1400/1320-minimum-distance-to-type-a-word-using-two-fingers.md) | String, Dynamic Programming |
+| 1326 | [Minimum Number of Taps to Open to Water a Garden](1301-1400/1326-minimum-number-of-taps-to-open-to-water-a-garden.md) | Array, Dynamic Programming, Greedy |
+| 1330 | [Reverse Subarray To Maximize Array Value](1301-1400/1330-reverse-subarray-to-maximize-array-value.md) | Array, Math, Greedy |
+| 1335 | [Minimum Difficulty of a Job Schedule](1301-1400/1335-minimum-difficulty-of-a-job-schedule.md) | Array, Dynamic Programming |
+| 1340 | [Jump Game V](1301-1400/1340-jump-game-v.md) | Array, Dynamic Programming, Sorting |
+| 1345 | [Jump Game IV](1301-1400/1345-jump-game-iv.md) | Array, Hash Table, Breadth-First Search |
+| 1349 | [Maximum Students Taking Exam](1301-1400/1349-maximum-students-taking-exam.md) | Array, Dynamic Programming, Bit Manipulation, Matrix, Bitmask |
+| 1354 | [Construct Target Array With Multiple Sums](1301-1400/1354-construct-target-array-with-multiple-sums.md) | Array, Heap (Priority Queue) |
+| 1359 | [Count All Valid Pickup and Delivery Options](1301-1400/1359-count-all-valid-pickup-and-delivery-options.md) | Math, Dynamic Programming, Combinatorics |
+| 1363 | [Largest Multiple of Three](1301-1400/1363-largest-multiple-of-three.md) | Array, Math, Dynamic Programming, Greedy, Sorting |
+| 1368 | [Minimum Cost to Make at Least One Valid Path in a Grid](1301-1400/1368-minimum-cost-to-make-at-least-one-valid-path-in-a-grid.md) | Array, Breadth-First Search, Graph, Heap (Priority Queue), Matrix, Shortest Path |
+| 1373 | [Maximum Sum BST in Binary Tree](1301-1400/1373-maximum-sum-bst-in-binary-tree.md) | Dynamic Programming, Tree, Depth-First Search, Binary Search Tree, Binary Tree |
+| 1377 | [Frog Position After T Seconds](1301-1400/1377-frog-position-after-t-seconds.md) | Tree, Depth-First Search, Breadth-First Search, Graph |
+| 1383 | [Maximum Performance of a Team](1301-1400/1383-maximum-performance-of-a-team.md) | Array, Greedy, Sorting, Heap (Priority Queue) |
+| 1388 | [Pizza With 3n Slices](1301-1400/1388-pizza-with-3n-slices.md) | Array, Dynamic Programming, Greedy, Heap (Priority Queue) |
+| 1392 | [Longest Happy Prefix](1301-1400/1392-longest-happy-prefix.md) | String, Rolling Hash, String Matching, Hash Function |
+| 1397 | [Find All Good Strings](1301-1400/1397-find-all-good-strings.md) | String, Dynamic Programming, String Matching |
+| 1402 | [Reducing Dishes](1401-1500/1402-reducing-dishes.md) | Array, Dynamic Programming, Greedy, Sorting |
+| 1406 | [Stone Game III](1401-1500/1406-stone-game-iii.md) | Array, Math, Dynamic Programming, Game Theory |
+| 1411 | [Number of Ways to Paint N × 3 Grid](1401-1500/1411-number-of-ways-to-paint-n-3-grid.md) | Dynamic Programming |
+| 1416 | [Restore The Array](1401-1500/1416-restore-the-array.md) | String, Dynamic Programming |
+| 1420 | [Build Array Where You Can Find The Maximum Exactly K Comparisons](1401-1500/1420-build-array-where-you-can-find-the-maximum-exactly-k-comparisons.md) | Dynamic Programming, Prefix Sum |
+| 1425 | [Constrained Subsequence Sum](1401-1500/1425-constrained-subsequence-sum.md) | Array, Dynamic Programming, Queue, Sliding Window, Heap (Priority Queue), Monotonic Queue |
+| 1434 | [Number of Ways to Wear Different Hats to Each Other](1401-1500/1434-number-of-ways-to-wear-different-hats-to-each-other.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 1439 | [Find the Kth Smallest Sum of a Matrix With Sorted Rows](1401-1500/1439-find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows.md) | Array, Binary Search, Heap (Priority Queue), Matrix |
+| 1444 | [Number of Ways of Cutting a Pizza](1401-1500/1444-number-of-ways-of-cutting-a-pizza.md) | Array, Dynamic Programming, Memoization, Matrix, Prefix Sum |
+| 1449 | [Form Largest Integer With Digits That Add up to Target](1401-1500/1449-form-largest-integer-with-digits-that-add-up-to-target.md) | Array, Dynamic Programming |
+| 1453 | [Maximum Number of Darts Inside of a Circular Dartboard](1401-1500/1453-maximum-number-of-darts-inside-of-a-circular-dartboard.md) | Array, Math, Geometry |
+| 1458 | [Max Dot Product of Two Subsequences](1401-1500/1458-max-dot-product-of-two-subsequences.md) | Array, Dynamic Programming |
+| 1463 | [Cherry Pickup II](1401-1500/1463-cherry-pickup-ii.md) | Array, Dynamic Programming, Matrix |
+| 1467 | [Probability of a Two Boxes Having The Same Number of Distinct Balls](1401-1500/1467-probability-of-a-two-boxes-having-the-same-number-of-distinct-balls.md) | Array, Math, Dynamic Programming, Backtracking, Combinatorics, Probability and Statistics |
+| 1473 | [Paint House III](1401-1500/1473-paint-house-iii.md) | Array, Dynamic Programming |
+| 1478 | [Allocate Mailboxes](1401-1500/1478-allocate-mailboxes.md) | Array, Math, Dynamic Programming, Sorting |
+| 1483 | [Kth Ancestor of a Tree Node](1401-1500/1483-kth-ancestor-of-a-tree-node.md) | Binary Search, Dynamic Programming, Tree, Depth-First Search, Breadth-First Search, Design |
+| 1489 | [Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree](1401-1500/1489-find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree.md) | Union Find, Graph, Sorting, Minimum Spanning Tree, Strongly Connected Component |
+| 1494 | [Parallel Courses II](1401-1500/1494-parallel-courses-ii.md) | Dynamic Programming, Bit Manipulation, Graph, Bitmask |
+| 1499 | [Max Value of Equation](1401-1500/1499-max-value-of-equation.md) | Array, Queue, Sliding Window, Heap (Priority Queue), Monotonic Queue |
+| 1505 | [Minimum Possible Integer After at Most K Adjacent Swaps On Digits](1501-1600/1505-minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits.md) | String, Greedy, Binary Indexed Tree, Segment Tree |
+| 1510 | [Stone Game IV](1501-1600/1510-stone-game-iv.md) | Math, Dynamic Programming, Game Theory |
+| 1515 | [Best Position for a Service Centre](1501-1600/1515-best-position-for-a-service-centre.md) | Array, Math, Geometry, Randomized |
+| 1520 | [Maximum Number of Non-Overlapping Substrings](1501-1600/1520-maximum-number-of-non-overlapping-substrings.md) | String, Greedy |
+| 1521 | [Find a Value of a Mysterious Function Closest to Target](1501-1600/1521-find-a-value-of-a-mysterious-function-closest-to-target.md) | Array, Binary Search, Bit Manipulation, Segment Tree |
+| 1526 | [Minimum Number of Increments on Subarrays to Form a Target Array](1501-1600/1526-minimum-number-of-increments-on-subarrays-to-form-a-target-array.md) | Array, Dynamic Programming, Stack, Greedy, Monotonic Stack |
+| 1531 | [String Compression II](1501-1600/1531-string-compression-ii.md) | String, Dynamic Programming |
+| 1537 | [Get the Maximum Score](1501-1600/1537-get-the-maximum-score.md) | Array, Two Pointers, Dynamic Programming, Greedy |
+| 1542 | [Find Longest Awesome Substring](1501-1600/1542-find-longest-awesome-substring.md) | Hash Table, String, Bit Manipulation |
+| 1547 | [Minimum Cost to Cut a Stick](1501-1600/1547-minimum-cost-to-cut-a-stick.md) | Array, Dynamic Programming, Sorting |
+| 1553 | [Minimum Number of Days to Eat N Oranges](1501-1600/1553-minimum-number-of-days-to-eat-n-oranges.md) | Dynamic Programming, Memoization |
+| 1563 | [Stone Game V](1501-1600/1563-stone-game-v.md) | Array, Math, Dynamic Programming, Game Theory |
+| 1568 | [Minimum Number of Days to Disconnect Island](1501-1600/1568-minimum-number-of-days-to-disconnect-island.md) | Array, Depth-First Search, Breadth-First Search, Matrix, Strongly Connected Component |
+| 1569 | [Number of Ways to Reorder Array to Get Same BST](1501-1600/1569-number-of-ways-to-reorder-array-to-get-same-bst.md) | Array, Math, Divide and Conquer, Dynamic Programming, Tree, Union Find, Binary Search Tree, Memoization, Combinatorics, Binary Tree |
+| 1575 | [Count All Possible Routes](1501-1600/1575-count-all-possible-routes.md) | Array, Dynamic Programming, Memoization |
+| 1579 | [Remove Max Number of Edges to Keep Graph Fully Traversable](1501-1600/1579-remove-max-number-of-edges-to-keep-graph-fully-traversable.md) | Union Find, Graph |
+| 1585 | [Check If String Is Transformable With Substring Sort Operations](1501-1600/1585-check-if-string-is-transformable-with-substring-sort-operations.md) | String, Greedy, Sorting |
+| 1591 | [Strange Printer II](1501-1600/1591-strange-printer-ii.md) | Array, Graph, Topological Sort, Matrix |
+| 1595 | [Minimum Cost to Connect Two Groups of Points](1501-1600/1595-minimum-cost-to-connect-two-groups-of-points.md) | Array, Dynamic Programming, Bit Manipulation, Matrix, Bitmask |
+| 1601 | [Maximum Number of Achievable Transfer Requests](1601-1700/1601-maximum-number-of-achievable-transfer-requests.md) | Array, Backtracking, Bit Manipulation, Enumeration |
+| 1606 | [Find Servers That Handled Most Number of Requests](1601-1700/1606-find-servers-that-handled-most-number-of-requests.md) | Array, Greedy, Heap (Priority Queue), Ordered Set |
+| 1610 | [Maximum Number of Visible Points](1601-1700/1610-maximum-number-of-visible-points.md) | Array, Math, Geometry, Sliding Window, Sorting |
+| 1611 | [Minimum One Bit Operations to Make Integers Zero](1601-1700/1611-minimum-one-bit-operations-to-make-integers-zero.md) | Dynamic Programming, Bit Manipulation, Memoization |
+| 1617 | [Count Subtrees With Max Distance Between Cities](1601-1700/1617-count-subtrees-with-max-distance-between-cities.md) | Dynamic Programming, Bit Manipulation, Tree, Enumeration, Bitmask |
+| 1622 | [Fancy Sequence](1601-1700/1622-fancy-sequence.md) | Math, Design, Segment Tree |
+| 1627 | [Graph Connectivity With Threshold](1601-1700/1627-graph-connectivity-with-threshold.md) | Array, Math, Union Find, Number Theory |
+| 1632 | [Rank Transform of a Matrix](1601-1700/1632-rank-transform-of-a-matrix.md) | Array, Union Find, Graph, Topological Sort, Sorting, Matrix |
+| 1639 | [Number of Ways to Form a Target String Given a Dictionary](1601-1700/1639-number-of-ways-to-form-a-target-string-given-a-dictionary.md) | Array, String, Dynamic Programming |
+| 1643 | [Kth Smallest Instructions](1601-1700/1643-kth-smallest-instructions.md) | Array, Math, Dynamic Programming, Combinatorics |
+| 1649 | [Create Sorted Array through Instructions](1601-1700/1649-create-sorted-array-through-instructions.md) | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
+| 1655 | [Distribute Repeating Integers](1601-1700/1655-distribute-repeating-integers.md) | Array, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask |
+| 1659 | [Maximize Grid Happiness](1601-1700/1659-maximize-grid-happiness.md) | Dynamic Programming, Bit Manipulation, Memoization, Bitmask |
+| 1665 | [Minimum Initial Energy to Finish Tasks](1601-1700/1665-minimum-initial-energy-to-finish-tasks.md) | Array, Greedy, Sorting |
+| 1671 | [Minimum Number of Removals to Make Mountain Array](1601-1700/1671-minimum-number-of-removals-to-make-mountain-array.md) | Array, Binary Search, Dynamic Programming, Greedy |
+| 1675 | [Minimize Deviation in Array](1601-1700/1675-minimize-deviation-in-array.md) | Array, Greedy, Heap (Priority Queue), Ordered Set |
+| 1681 | [Minimum Incompatibility](1601-1700/1681-minimum-incompatibility.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 1687 | [Delivering Boxes from Storage to Ports](1601-1700/1687-delivering-boxes-from-storage-to-ports.md) | Array, Dynamic Programming, Segment Tree, Queue, Heap (Priority Queue), Prefix Sum, Monotonic Queue |
+| 1691 | [Maximum Height by Stacking Cuboids](1601-1700/1691-maximum-height-by-stacking-cuboids.md) | Array, Dynamic Programming, Sorting |
+| 1697 | [Checking Existence of Edge Length Limited Paths](1601-1700/1697-checking-existence-of-edge-length-limited-paths.md) | Array, Two Pointers, Union Find, Graph, Sorting |
+| 1703 | [Minimum Adjacent Swaps for K Consecutive Ones](1701-1800/1703-minimum-adjacent-swaps-for-k-consecutive-ones.md) | Array, Greedy, Sliding Window, Prefix Sum |
+| 1707 | [Maximum XOR With an Element From Array](1701-1800/1707-maximum-xor-with-an-element-from-array.md) | Array, Bit Manipulation, Trie |
+| 1713 | [Minimum Operations to Make a Subsequence](1701-1800/1713-minimum-operations-to-make-a-subsequence.md) | Array, Hash Table, Binary Search, Greedy |
+| 1719 | [Number Of Ways To Reconstruct A Tree](1701-1800/1719-number-of-ways-to-reconstruct-a-tree.md) | Tree, Graph |
+| 1723 | [Find Minimum Time to Finish All Jobs](1701-1800/1723-find-minimum-time-to-finish-all-jobs.md) | Array, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask |
+| 1728 | [Cat and Mouse II](1701-1800/1728-cat-and-mouse-ii.md) | Array, Math, Dynamic Programming, Graph, Topological Sort, Memoization, Matrix, Game Theory |
+| 1735 | [Count Ways to Make Array With Product](1701-1800/1735-count-ways-to-make-array-with-product.md) | Array, Math, Dynamic Programming, Combinatorics, Number Theory |
+| 1739 | [Building Boxes](1701-1800/1739-building-boxes.md) | Math, Binary Search, Greedy |
+| 1745 | [Palindrome Partitioning IV](1701-1800/1745-palindrome-partitioning-iv.md) | String, Dynamic Programming |
+| 1751 | [Maximum Number of Events That Can Be Attended II](1701-1800/1751-maximum-number-of-events-that-can-be-attended-ii.md) | Array, Binary Search, Dynamic Programming, Sorting |
+| 1755 | [Closest Subsequence Sum](1701-1800/1755-closest-subsequence-sum.md) | Array, Two Pointers, Dynamic Programming, Bit Manipulation, Sorting, Bitmask |
+| 1761 | [Minimum Degree of a Connected Trio in a Graph](1701-1800/1761-minimum-degree-of-a-connected-trio-in-a-graph.md) | Graph, Enumeration |
+| 1766 | [Tree of Coprimes](1701-1800/1766-tree-of-coprimes.md) | Array, Math, Tree, Depth-First Search, Number Theory |
+| 1770 | [Maximum Score from Performing Multiplication Operations](1701-1800/1770-maximum-score-from-performing-multiplication-operations.md) | Array, Dynamic Programming |
+| 1771 | [Maximize Palindrome Length From Subsequences](1701-1800/1771-maximize-palindrome-length-from-subsequences.md) | String, Dynamic Programming |
+| 1776 | [Car Fleet II](1701-1800/1776-car-fleet-ii.md) | Array, Math, Stack, Heap (Priority Queue), Monotonic Stack |
+| 1782 | [Count Pairs Of Nodes](1701-1800/1782-count-pairs-of-nodes.md) | Array, Hash Table, Two Pointers, Binary Search, Graph, Sorting, Counting |
+| 1787 | [Make the XOR of All Segments Equal to Zero](1701-1800/1787-make-the-xor-of-all-segments-equal-to-zero.md) | Array, Dynamic Programming, Bit Manipulation |
+| 1793 | [Maximum Score of a Good Subarray](1701-1800/1793-maximum-score-of-a-good-subarray.md) | Array, Two Pointers, Binary Search, Stack, Monotonic Stack |
+| 1799 | [Maximize Score After N Operations](1701-1800/1799-maximize-score-after-n-operations.md) | Array, Math, Dynamic Programming, Backtracking, Bit Manipulation, Number Theory, Bitmask |
+| 1803 | [Count Pairs With XOR in a Range](1801-1900/1803-count-pairs-with-xor-in-a-range.md) | Array, Bit Manipulation, Trie |
+| 1808 | [Maximize Number of Nice Divisors](1801-1900/1808-maximize-number-of-nice-divisors.md) | Math, Recursion, Number Theory |
+| 1815 | [Maximum Number of Groups Getting Fresh Donuts](1801-1900/1815-maximum-number-of-groups-getting-fresh-donuts.md) | Array, Dynamic Programming, Bit Manipulation, Memoization, Bitmask |
+| 1819 | [Number of Different Subsequences GCDs](1801-1900/1819-number-of-different-subsequences-gcds.md) | Array, Math, Counting, Number Theory |
+| 1825 | [Finding MK Average](1801-1900/1825-finding-mk-average.md) | Design, Queue, Heap (Priority Queue), Data Stream, Ordered Set |
+| 1830 | [Minimum Number of Operations to Make String Sorted](1801-1900/1830-minimum-number-of-operations-to-make-string-sorted.md) | Math, String, Combinatorics |
+| 1835 | [Find XOR Sum of All Pairs Bitwise AND](1801-1900/1835-find-xor-sum-of-all-pairs-bitwise-and.md) | Array, Math, Bit Manipulation |
+| 1840 | [Maximum Building Height](1801-1900/1840-maximum-building-height.md) | Array, Math, Sorting |
+| 1847 | [Closest Room](1801-1900/1847-closest-room.md) | Array, Binary Search, Sorting, Ordered Set |
+| 1851 | [Minimum Interval to Include Each Query](1801-1900/1851-minimum-interval-to-include-each-query.md) | Array, Binary Search, Line Sweep, Sorting, Heap (Priority Queue) |
+| 1857 | [Largest Color Value in a Directed Graph](1801-1900/1857-largest-color-value-in-a-directed-graph.md) | Hash Table, Dynamic Programming, Graph, Topological Sort, Memoization, Counting |
+| 1862 | [Sum of Floored Pairs](1801-1900/1862-sum-of-floored-pairs.md) | Array, Math, Binary Search, Prefix Sum |
+| 1866 | [Number of Ways to Rearrange Sticks With K Sticks Visible](1801-1900/1866-number-of-ways-to-rearrange-sticks-with-k-sticks-visible.md) | Math, Dynamic Programming, Combinatorics |
+| 1872 | [Stone Game VIII](1801-1900/1872-stone-game-viii.md) | Array, Math, Dynamic Programming, Prefix Sum, Game Theory |
+| 1879 | [Minimum XOR Sum of Two Arrays](1801-1900/1879-minimum-xor-sum-of-two-arrays.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 1883 | [Minimum Skips to Arrive at Meeting On Time](1801-1900/1883-minimum-skips-to-arrive-at-meeting-on-time.md) | Array, Dynamic Programming |
+| 1889 | [Minimum Space Wasted From Packaging](1801-1900/1889-minimum-space-wasted-from-packaging.md) | Array, Binary Search, Sorting, Prefix Sum |
+| 1896 | [Minimum Cost to Change the Final Value of Expression](1801-1900/1896-minimum-cost-to-change-the-final-value-of-expression.md) | Math, String, Dynamic Programming, Stack |
+| 1900 | [The Earliest and Latest Rounds Where Players Compete](1801-1900/1900-the-earliest-and-latest-rounds-where-players-compete.md) | Dynamic Programming, Memoization |
+| 1912 | [Design Movie Rental System](1901-2000/1912-design-movie-rental-system.md) | Array, Hash Table, Design, Heap (Priority Queue), Ordered Set |
+| 1916 | [Count Ways to Build Rooms in an Ant Colony](1901-2000/1916-count-ways-to-build-rooms-in-an-ant-colony.md) | Math, Dynamic Programming, Tree, Graph, Topological Sort, Combinatorics |
+| 1923 | [Longest Common Subpath](1901-2000/1923-longest-common-subpath.md) | Array, Binary Search, Rolling Hash, Suffix Array, Hash Function |
+| 1928 | [Minimum Cost to Reach Destination in Time](1901-2000/1928-minimum-cost-to-reach-destination-in-time.md) | Array, Dynamic Programming, Graph |
+| 1931 | [Painting a Grid With Three Different Colors](1901-2000/1931-painting-a-grid-with-three-different-colors.md) | Dynamic Programming |
+| 1932 | [Merge BSTs to Create Single BST](1901-2000/1932-merge-bsts-to-create-single-bst.md) | Hash Table, Binary Search, Tree, Depth-First Search, Binary Tree |
+| 1938 | [Maximum Genetic Difference Query](1901-2000/1938-maximum-genetic-difference-query.md) | Array, Hash Table, Bit Manipulation, Depth-First Search, Trie |
+| 1944 | [Number of Visible People in a Queue](1901-2000/1944-number-of-visible-people-in-a-queue.md) | Array, Stack, Monotonic Stack |
+| 1948 | [Delete Duplicate Folders in System](1901-2000/1948-delete-duplicate-folders-in-system.md) | Array, Hash Table, String, Trie, Hash Function |
+| 1955 | [Count Number of Special Subsequences](1901-2000/1955-count-number-of-special-subsequences.md) | Array, Dynamic Programming |
+| 1960 | [Maximum Product of the Length of Two Palindromic Substrings](1901-2000/1960-maximum-product-of-the-length-of-two-palindromic-substrings.md) | String, Rolling Hash, Hash Function |
+| 1964 | [Find the Longest Valid Obstacle Course at Each Position](1901-2000/1964-find-the-longest-valid-obstacle-course-at-each-position.md) | Array, Binary Search, Binary Indexed Tree |
+| 1970 | [Last Day Where You Can Still Cross](1901-2000/1970-last-day-where-you-can-still-cross.md) | Array, Binary Search, Depth-First Search, Breadth-First Search, Union Find, Matrix |
+| 1977 | [Number of Ways to Separate Numbers](1901-2000/1977-number-of-ways-to-separate-numbers.md) | String, Dynamic Programming, Suffix Array |
+| 1982 | [Find Array Given Subset Sums](1901-2000/1982-find-array-given-subset-sums.md) | Array, Divide and Conquer |
+| 1987 | [Number of Unique Good Subsequences](1901-2000/1987-number-of-unique-good-subsequences.md) | String, Dynamic Programming |
+| 1994 | [The Number of Good Subsets](1901-2000/1994-the-number-of-good-subsets.md) | Array, Hash Table, Math, Dynamic Programming, Bit Manipulation, Counting, Number Theory, Bitmask |
+| 1998 | [GCD Sort of an Array](1901-2000/1998-gcd-sort-of-an-array.md) | Array, Math, Union Find, Sorting, Number Theory |
+| 2003 | [Smallest Missing Genetic Value in Each Subtree](2001-2100/2003-smallest-missing-genetic-value-in-each-subtree.md) | Dynamic Programming, Tree, Depth-First Search, Union Find |
+| 2009 | [Minimum Number of Operations to Make Array Continuous](2001-2100/2009-minimum-number-of-operations-to-make-array-continuous.md) | Array, Hash Table, Binary Search, Sliding Window |
+| 2014 | [Longest Subsequence Repeated k Times](2001-2100/2014-longest-subsequence-repeated-k-times.md) | String, Backtracking, Greedy, Counting, Enumeration |
+| 2019 | [The Score of Students Solving Math Expression](2001-2100/2019-the-score-of-students-solving-math-expression.md) | Array, Math, String, Dynamic Programming, Stack, Memoization |
+| 2025 | [Maximum Number of Ways to Partition an Array](2001-2100/2025-maximum-number-of-ways-to-partition-an-array.md) | Array, Hash Table, Counting, Enumeration, Prefix Sum |
+| 2030 | [Smallest K-Length Subsequence With Occurrences of a Letter](2001-2100/2030-smallest-k-length-subsequence-with-occurrences-of-a-letter.md) | String, Stack, Greedy, Monotonic Stack |
+| 2035 | [Partition Array Into Two Arrays to Minimize Sum Difference](2001-2100/2035-partition-array-into-two-arrays-to-minimize-sum-difference.md) | Array, Two Pointers, Binary Search, Dynamic Programming, Bit Manipulation, Ordered Set, Bitmask |
+| 2040 | [Kth Smallest Product of Two Sorted Arrays](2001-2100/2040-kth-smallest-product-of-two-sorted-arrays.md) | Array, Binary Search |
+| 2045 | [Second Minimum Time to Reach Destination](2001-2100/2045-second-minimum-time-to-reach-destination.md) | Breadth-First Search, Graph, Shortest Path |
+| 2050 | [Parallel Courses III](2001-2100/2050-parallel-courses-iii.md) | Array, Dynamic Programming, Graph, Topological Sort |
+| 2056 | [Number of Valid Move Combinations On Chessboard](2001-2100/2056-number-of-valid-move-combinations-on-chessboard.md) | Array, String, Backtracking, Simulation |
+| 2060 | [Check if an Original String Exists Given Two Encoded Strings](2001-2100/2060-check-if-an-original-string-exists-given-two-encoded-strings.md) | String, Dynamic Programming |
+| 2065 | [Maximum Path Quality of a Graph](2001-2100/2065-maximum-path-quality-of-a-graph.md) | Array, Backtracking, Graph |
+| 2071 | [Maximum Number of Tasks You Can Assign](2001-2100/2071-maximum-number-of-tasks-you-can-assign.md) | Array, Two Pointers, Binary Search, Greedy, Queue, Sorting, Monotonic Queue |
+| 2076 | [Process Restricted Friend Requests](2001-2100/2076-process-restricted-friend-requests.md) | Union Find, Graph |
+| 2081 | [Sum of k-Mirror Numbers](2001-2100/2081-sum-of-k-mirror-numbers.md) | Math, Enumeration |
+| 2088 | [Count Fertile Pyramids in a Land](2001-2100/2088-count-fertile-pyramids-in-a-land.md) | Array, Dynamic Programming, Matrix |
+| 2092 | [Find All People With Secret](2001-2100/2092-find-all-people-with-secret.md) | Depth-First Search, Breadth-First Search, Union Find, Graph, Sorting |
+| 2097 | [Valid Arrangement of Pairs](2001-2100/2097-valid-arrangement-of-pairs.md) | Depth-First Search, Graph, Eulerian Circuit |
+| 2102 | [Sequentially Ordinal Rank Tracker](2101-2200/2102-sequentially-ordinal-rank-tracker.md) | Design, Heap (Priority Queue), Data Stream, Ordered Set |
+| 2106 | [Maximum Fruits Harvested After at Most K Steps](2101-2200/2106-maximum-fruits-harvested-after-at-most-k-steps.md) | Array, Binary Search, Sliding Window, Prefix Sum |
+| 2111 | [Minimum Operations to Make the Array K-Increasing](2101-2200/2111-minimum-operations-to-make-the-array-k-increasing.md) | Array, Binary Search |
+| 2117 | [Abbreviating the Product of a Range](2101-2200/2117-abbreviating-the-product-of-a-range.md) | Math |
+| 2122 | [Recover the Original Array](2101-2200/2122-recover-the-original-array.md) | Array, Hash Table, Two Pointers, Sorting, Enumeration |
+| 2127 | [Maximum Employees to Be Invited to a Meeting](2101-2200/2127-maximum-employees-to-be-invited-to-a-meeting.md) | Depth-First Search, Graph, Topological Sort |
+| 2132 | [Stamping the Grid](2101-2200/2132-stamping-the-grid.md) | Array, Greedy, Matrix, Prefix Sum |
+| 2136 | [Earliest Possible Day of Full Bloom](2101-2200/2136-earliest-possible-day-of-full-bloom.md) | Array, Greedy, Sorting |
+| 2141 | [Maximum Running Time of N Computers](2101-2200/2141-maximum-running-time-of-n-computers.md) | Array, Binary Search, Greedy, Sorting |
+| 2147 | [Number of Ways to Divide a Long Corridor](2101-2200/2147-number-of-ways-to-divide-a-long-corridor.md) | Math, String, Dynamic Programming |
+| 2151 | [Maximum Good People Based on Statements](2101-2200/2151-maximum-good-people-based-on-statements.md) | Array, Backtracking, Bit Manipulation, Enumeration |
+| 2156 | [Find Substring With Given Hash Value](2101-2200/2156-find-substring-with-given-hash-value.md) | String, Sliding Window, Rolling Hash, Hash Function |
+| 2157 | [Groups of Strings](2101-2200/2157-groups-of-strings.md) | String, Bit Manipulation, Union Find |
+| 2163 | [Minimum Difference in Sums After Removal of Elements](2101-2200/2163-minimum-difference-in-sums-after-removal-of-elements.md) | Array, Dynamic Programming, Heap (Priority Queue) |
+| 2167 | [Minimum Time to Remove All Cars Containing Illegal Goods](2101-2200/2167-minimum-time-to-remove-all-cars-containing-illegal-goods.md) | String, Dynamic Programming |
+| 2172 | [Maximum AND Sum of Array](2101-2200/2172-maximum-and-sum-of-array.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 2179 | [Count Good Triplets in an Array](2101-2200/2179-count-good-triplets-in-an-array.md) | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
+| 2183 | [Count Array Pairs Divisible by K](2101-2200/2183-count-array-pairs-divisible-by-k.md) | Array, Math, Number Theory |
+| 2188 | [Minimum Time to Finish the Race](2101-2200/2188-minimum-time-to-finish-the-race.md) | Array, Dynamic Programming |
+| 2193 | [Minimum Number of Moves to Make Palindrome](2101-2200/2193-minimum-number-of-moves-to-make-palindrome.md) | Two Pointers, String, Greedy, Binary Indexed Tree |
+| 2197 | [Replace Non-Coprime Numbers in Array](2101-2200/2197-replace-non-coprime-numbers-in-array.md) | Array, Math, Stack, Number Theory |
+| 2203 | [Minimum Weighted Subgraph With the Required Paths](2201-2300/2203-minimum-weighted-subgraph-with-the-required-paths.md) | Graph, Shortest Path |
+| 2209 | [Minimum White Tiles After Covering With Carpets](2201-2300/2209-minimum-white-tiles-after-covering-with-carpets.md) | String, Dynamic Programming, Prefix Sum |
+| 2213 | [Longest Substring of One Repeating Character](2201-2300/2213-longest-substring-of-one-repeating-character.md) | Array, String, Segment Tree, Ordered Set |
+| 2218 | [Maximum Value of K Coins From Piles](2201-2300/2218-maximum-value-of-k-coins-from-piles.md) | Array, Dynamic Programming, Prefix Sum |
+| 2223 | [Sum of Scores of Built Strings](2201-2300/2223-sum-of-scores-of-built-strings.md) | String, Binary Search, Rolling Hash, Suffix Array, String Matching, Hash Function |
+| 2227 | [Encrypt and Decrypt Strings](2201-2300/2227-encrypt-and-decrypt-strings.md) | Array, Hash Table, String, Design, Trie |
+| 2234 | [Maximum Total Beauty of the Gardens](2201-2300/2234-maximum-total-beauty-of-the-gardens.md) | Array, Two Pointers, Binary Search, Greedy, Sorting, Enumeration, Prefix Sum |
+| 2242 | [Maximum Score of a Node Sequence](2201-2300/2242-maximum-score-of-a-node-sequence.md) | Array, Graph, Sorting, Enumeration |
+| 2246 | [Longest Path With Different Adjacent Characters](2201-2300/2246-longest-path-with-different-adjacent-characters.md) | Array, String, Tree, Depth-First Search, Graph, Topological Sort |
+| 2251 | [Number of Flowers in Full Bloom](2201-2300/2251-number-of-flowers-in-full-bloom.md) | Array, Hash Table, Binary Search, Sorting, Prefix Sum, Ordered Set |
+| 2258 | [Escape the Spreading Fire](2201-2300/2258-escape-the-spreading-fire.md) | Array, Binary Search, Breadth-First Search, Matrix |
+| 2262 | [Total Appeal of A String](2201-2300/2262-total-appeal-of-a-string.md) | Hash Table, String, Dynamic Programming |
+| 2267 | [Check if There Is a Valid Parentheses String Path](2201-2300/2267-check-if-there-is-a-valid-parentheses-string-path.md) | Array, Dynamic Programming, Matrix |
+| 2272 | [Substring With Largest Variance](2201-2300/2272-substring-with-largest-variance.md) | Array, Dynamic Programming |
+| 2276 | [Count Integers in Intervals](2201-2300/2276-count-integers-in-intervals.md) | Design, Segment Tree, Ordered Set |
+| 2281 | [Sum of Total Strength of Wizards](2201-2300/2281-sum-of-total-strength-of-wizards.md) | Array, Stack, Monotonic Stack, Prefix Sum |
+| 2286 | [Booking Concert Tickets in Groups](2201-2300/2286-booking-concert-tickets-in-groups.md) | Binary Search, Design, Binary Indexed Tree, Segment Tree |
+| 2290 | [Minimum Obstacle Removal to Reach Corner](2201-2300/2290-minimum-obstacle-removal-to-reach-corner.md) | Array, Breadth-First Search, Graph, Heap (Priority Queue), Matrix, Shortest Path |
+| 2296 | [Design a Text Editor](2201-2300/2296-design-a-text-editor.md) | Linked List, String, Stack, Design, Simulation, Doubly-Linked List |
+| 2301 | [Match Substring After Replacement](2301-2400/2301-match-substring-after-replacement.md) | Array, Hash Table, String, String Matching |
+| 2302 | [Count Subarrays With Score Less Than K](2301-2400/2302-count-subarrays-with-score-less-than-k.md) | Array, Binary Search, Sliding Window, Prefix Sum |
+| 2306 | [Naming a Company](2301-2400/2306-naming-a-company.md) | Array, Hash Table, String, Bit Manipulation, Enumeration |
+| 2312 | [Selling Pieces of Wood](2301-2400/2312-selling-pieces-of-wood.md) | Array, Dynamic Programming, Memoization |
+| 2318 | [Number of Distinct Roll Sequences](2301-2400/2318-number-of-distinct-roll-sequences.md) | Dynamic Programming, Memoization |
+| 2321 | [Maximum Score Of Spliced Array](2301-2400/2321-maximum-score-of-spliced-array.md) | Array, Dynamic Programming |
+| 2322 | [Minimum Score After Removals on a Tree](2301-2400/2322-minimum-score-after-removals-on-a-tree.md) | Array, Bit Manipulation, Tree, Depth-First Search |
+| 2328 | [Number of Increasing Paths in a Grid](2301-2400/2328-number-of-increasing-paths-in-a-grid.md) | Array, Dynamic Programming, Depth-First Search, Breadth-First Search, Graph, Topological Sort, Memoization, Matrix |
+| 2334 | [Subarray With Elements Greater Than Varying Threshold](2301-2400/2334-subarray-with-elements-greater-than-varying-threshold.md) | Array, Stack, Union Find, Monotonic Stack |
+| 2338 | [Count the Number of Ideal Arrays](2301-2400/2338-count-the-number-of-ideal-arrays.md) | Math, Dynamic Programming, Combinatorics, Number Theory |
+| 2344 | [Minimum Deletions to Make Array Divisible](2301-2400/2344-minimum-deletions-to-make-array-divisible.md) | Array, Math, Sorting, Heap (Priority Queue), Number Theory |
+| 2350 | [Shortest Impossible Sequence of Rolls](2301-2400/2350-shortest-impossible-sequence-of-rolls.md) | Array, Hash Table, Greedy |
+| 2354 | [Number of Excellent Pairs](2301-2400/2354-number-of-excellent-pairs.md) | Array, Hash Table, Binary Search, Bit Manipulation |
+| 2360 | [Longest Cycle in a Graph](2301-2400/2360-longest-cycle-in-a-graph.md) | Depth-First Search, Breadth-First Search, Graph, Topological Sort |
+| 2366 | [Minimum Replacements to Sort the Array](2301-2400/2366-minimum-replacements-to-sort-the-array.md) | Array, Math, Greedy |
+| 2376 | [Count Special Integers](2301-2400/2376-count-special-integers.md) | Math, Dynamic Programming |
+| 2382 | [Maximum Segment Sum After Removals](2301-2400/2382-maximum-segment-sum-after-removals.md) | Array, Union Find, Prefix Sum, Ordered Set |
+| 2386 | [Find the K-Sum of an Array](2301-2400/2386-find-the-k-sum-of-an-array.md) | Array, Sorting, Heap (Priority Queue) |
+| 2392 | [Build a Matrix With Conditions](2301-2400/2392-build-a-matrix-with-conditions.md) | Array, Graph, Topological Sort, Matrix |
+| 2398 | [Maximum Number of Robots Within Budget](2301-2400/2398-maximum-number-of-robots-within-budget.md) | Array, Binary Search, Queue, Sliding Window, Heap (Priority Queue), Prefix Sum, Monotonic Queue |
+| 2402 | [Meeting Rooms III](2401-2500/2402-meeting-rooms-iii.md) | Array, Hash Table, Sorting, Heap (Priority Queue), Simulation |
+| 2407 | [Longest Increasing Subsequence II](2401-2500/2407-longest-increasing-subsequence-ii.md) | Array, Divide and Conquer, Dynamic Programming, Binary Indexed Tree, Segment Tree, Queue, Monotonic Queue |
+| 2412 | [Minimum Money Required Before Transactions](2401-2500/2412-minimum-money-required-before-transactions.md) | Array, Greedy, Sorting |
+| 2416 | [Sum of Prefix Scores of Strings](2401-2500/2416-sum-of-prefix-scores-of-strings.md) | Array, String, Trie, Counting |
+| 2421 | [Number of Good Paths](2401-2500/2421-number-of-good-paths.md) | Array, Hash Table, Tree, Union Find, Graph, Sorting |
+| 2426 | [Number of Pairs Satisfying Inequality](2401-2500/2426-number-of-pairs-satisfying-inequality.md) | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
+| 2430 | [Maximum Deletions on a String](2401-2500/2430-maximum-deletions-on-a-string.md) | String, Dynamic Programming, Rolling Hash, String Matching, Hash Function |
+| 2435 | [Paths in Matrix Whose Sum Is Divisible by K](2401-2500/2435-paths-in-matrix-whose-sum-is-divisible-by-k.md) | Array, Dynamic Programming, Matrix |
+| 2440 | [Create Components With Same Value](2401-2500/2440-create-components-with-same-value.md) | Array, Math, Tree, Depth-First Search, Enumeration |
+| 2444 | [Count Subarrays With Fixed Bounds](2401-2500/2444-count-subarrays-with-fixed-bounds.md) | Array, Queue, Sliding Window, Monotonic Queue |
+| 2448 | [Minimum Cost to Make Array Equal](2401-2500/2448-minimum-cost-to-make-array-equal.md) | Array, Binary Search, Greedy, Sorting, Prefix Sum |
+| 2449 | [Minimum Number of Operations to Make Arrays Similar](2401-2500/2449-minimum-number-of-operations-to-make-arrays-similar.md) | Array, Greedy, Sorting |
+| 2454 | [Next Greater Element IV](2401-2500/2454-next-greater-element-iv.md) | Array, Binary Search, Stack, Sorting, Heap (Priority Queue), Monotonic Stack |
+| 2458 | [Height of Binary Tree After Subtree Removal Queries](2401-2500/2458-height-of-binary-tree-after-subtree-removal-queries.md) | Array, Tree, Depth-First Search, Breadth-First Search, Binary Tree |
+| 2463 | [Minimum Total Distance Traveled](2401-2500/2463-minimum-total-distance-traveled.md) | Array, Dynamic Programming, Sorting |
+| 2468 | [Split Message Based on Limit](2401-2500/2468-split-message-based-on-limit.md) | String, Binary Search, Enumeration |
+| 2472 | [Maximum Number of Non-overlapping Palindrome Substrings](2401-2500/2472-maximum-number-of-non-overlapping-palindrome-substrings.md) | Two Pointers, String, Dynamic Programming, Greedy |
+| 2478 | [Number of Beautiful Partitions](2401-2500/2478-number-of-beautiful-partitions.md) | String, Dynamic Programming |
+| 2484 | [Count Palindromic Subsequences](2401-2500/2484-count-palindromic-subsequences.md) | String, Dynamic Programming |
+| 2488 | [Count Subarrays With Median K](2401-2500/2488-count-subarrays-with-median-k.md) | Array, Hash Table, Prefix Sum |
+| 2493 | [Divide Nodes Into the Maximum Number of Groups](2401-2500/2493-divide-nodes-into-the-maximum-number-of-groups.md) | Depth-First Search, Breadth-First Search, Union Find, Graph |
+| 2499 | [Minimum Total Cost to Make Arrays Unequal](2401-2500/2499-minimum-total-cost-to-make-arrays-unequal.md) | Array, Hash Table, Greedy, Counting |
+| 2503 | [Maximum Number of Points From Grid Queries](2501-2600/2503-maximum-number-of-points-from-grid-queries.md) | Array, Two Pointers, Breadth-First Search, Union Find, Sorting, Heap (Priority Queue), Matrix |
+| 2508 | [Add Edges to Make Degrees of All Nodes Even](2501-2600/2508-add-edges-to-make-degrees-of-all-nodes-even.md) | Hash Table, Graph |
+| 2509 | [Cycle Length Queries in a Tree](2501-2600/2509-cycle-length-queries-in-a-tree.md) | Array, Tree, Binary Tree |
+| 2514 | [Count Anagrams](2501-2600/2514-count-anagrams.md) | Hash Table, Math, String, Combinatorics, Counting |
+| 2518 | [Number of Great Partitions](2501-2600/2518-number-of-great-partitions.md) | Array, Dynamic Programming |
+| 2528 | [Maximize the Minimum Powered City](2501-2600/2528-maximize-the-minimum-powered-city.md) | Array, Binary Search, Greedy, Queue, Sliding Window, Prefix Sum |
+| 2532 | [Time to Cross a Bridge](2501-2600/2532-time-to-cross-a-bridge.md) | Array, Heap (Priority Queue), Simulation |
+| 2538 | [Difference Between Maximum and Minimum Price Sum](2501-2600/2538-difference-between-maximum-and-minimum-price-sum.md) | Array, Dynamic Programming, Tree, Depth-First Search |
+| 2543 | [Check if Point Is Reachable](2501-2600/2543-check-if-point-is-reachable.md) | Math, Number Theory |
+| 2547 | [Minimum Cost to Split an Array](2501-2600/2547-minimum-cost-to-split-an-array.md) | Array, Hash Table, Dynamic Programming, Counting |
+| 2551 | [Put Marbles in Bags](2501-2600/2551-put-marbles-in-bags.md) | Array, Greedy, Sorting, Heap (Priority Queue) |
+| 2552 | [Count Increasing Quadruplets](2501-2600/2552-count-increasing-quadruplets.md) | Array, Dynamic Programming, Binary Indexed Tree, Enumeration, Prefix Sum |
+| 2561 | [Rearranging Fruits](2501-2600/2561-rearranging-fruits.md) | Array, Hash Table, Greedy, Sort |
+| 2565 | [Subsequence With the Minimum Score](2501-2600/2565-subsequence-with-the-minimum-score.md) | Two Pointers, String, Binary Search |
+| 2569 | [Handling Sum Queries After Update](2501-2600/2569-handling-sum-queries-after-update.md) | Array, Segment Tree |
+| 2573 | [Find the String with LCP](2501-2600/2573-find-the-string-with-lcp.md) | Array, String, Dynamic Programming, Greedy, Union Find, Matrix |
+| 2577 | [Minimum Time to Visit a Cell In a Grid](2501-2600/2577-minimum-time-to-visit-a-cell-in-a-grid.md) | Array, Breadth-First Search, Graph, Heap (Priority Queue), Matrix, Shortest Path |
+| 2581 | [Count Number of Possible Root Nodes](2501-2600/2581-count-number-of-possible-root-nodes.md) | Array, Hash Table, Dynamic Programming, Tree, Depth-First Search |
+| 2584 | [Split the Array to Make Coprime Products](2501-2600/2584-split-the-array-to-make-coprime-products.md) | Array, Hash Table, Math, Number Theory |
+| 2585 | [Number of Ways to Earn Points](2501-2600/2585-number-of-ways-to-earn-points.md) | Array, Dynamic Programming |
+| 2589 | [Minimum Time to Complete All Tasks](2501-2600/2589-minimum-time-to-complete-all-tasks.md) | Array, Binary Search, Stack, Greedy, Sorting |
+| 2603 | [Collect Coins in a Tree](2601-2700/2603-collect-coins-in-a-tree.md) | Array, Tree, Graph, Topological Sort |
+| 2608 | [Shortest Cycle in a Graph](2601-2700/2608-shortest-cycle-in-a-graph.md) | Breadth-First Search, Graph |
+| 2612 | [Minimum Reverse Operations](2601-2700/2612-minimum-reverse-operations.md) | Array, Breadth-First Search, Ordered Set |
+| 2617 | [Minimum Number of Visited Cells in a Grid](2601-2700/2617-minimum-number-of-visited-cells-in-a-grid.md) | Array, Dynamic Programming, Stack, Breadth-First Search, Union Find, Heap (Priority Queue), Matrix, Monotonic Stack |
+| 2630 | [Memoize II](2601-2700/2630-memoize-ii.md) | - |
+| 2642 | [Design Graph With Shortest Path Calculator](2601-2700/2642-design-graph-with-shortest-path-calculator.md) | Graph, Design, Heap (Priority Queue), Shortest Path |
+| 2646 | [Minimize the Total Price of the Trips](2601-2700/2646-minimize-the-total-price-of-the-trips.md) | Array, Dynamic Programming, Tree, Depth-First Search, Graph |
+| 2650 | [Design Cancellable Function](2601-2700/2650-design-cancellable-function.md) | - |
+| 2659 | [Make Array Empty](2601-2700/2659-make-array-empty.md) | Array, Binary Search, Greedy, Binary Indexed Tree, Segment Tree, Sorting, Ordered Set |
+| 2663 | [Lexicographically Smallest Beautiful String](2601-2700/2663-lexicographically-smallest-beautiful-string.md) | String, Greedy |
+| 2681 | [Power of Heroes](2601-2700/2681-power-of-heroes.md) | Array, Math, Dynamic Programming, Sorting, Prefix Sum |
+| 2699 | [Modify Graph Edge Weights](2601-2700/2699-modify-graph-edge-weights.md) | Graph, Heap (Priority Queue), Shortest Path |
+| 2709 | [Greatest Common Divisor Traversal](2701-2800/2709-greatest-common-divisor-traversal.md) | Array, Math, Union Find, Number Theory |
+| 2713 | [Maximum Strictly Increasing Cells in a Matrix](2701-2800/2713-maximum-strictly-increasing-cells-in-a-matrix.md) | Array, Hash Table, Binary Search, Dynamic Programming, Memoization, Sorting, Matrix, Ordered Set |
+| 2719 | [Count of Integers](2701-2800/2719-count-of-integers.md) | Math, String, Dynamic Programming |
+| 2732 | [Find a Good Subset of the Matrix](2701-2800/2732-find-a-good-subset-of-the-matrix.md) | Array, Hash Table, Bit Manipulation, Matrix |
+| 2736 | [Maximum Sum Queries](2701-2800/2736-maximum-sum-queries.md) | Array, Binary Search, Stack, Binary Indexed Tree, Segment Tree, Sorting, Monotonic Stack |
+| 2742 | [Painting the Walls](2701-2800/2742-painting-the-walls.md) | Array, Dynamic Programming |
+| 2751 | [Robot Collisions](2701-2800/2751-robot-collisions.md) | Array, Stack, Sorting, Simulation |
+| 2763 | [Sum of Imbalance Numbers of All Subarrays](2701-2800/2763-sum-of-imbalance-numbers-of-all-subarrays.md) | Array, Hash Table, Ordered Set |
+| 2781 | [Length of the Longest Valid Substring](2701-2800/2781-length-of-the-longest-valid-substring.md) | Array, Hash Table, String, Sliding Window |
+| 2790 | [Maximum Number of Groups With Increasing Length](2701-2800/2790-maximum-number-of-groups-with-increasing-length.md) | Array, Math, Binary Search, Greedy, Sorting |
+| 2791 | [Count Paths That Can Form a Palindrome in a Tree](2701-2800/2791-count-paths-that-can-form-a-palindrome-in-a-tree.md) | Dynamic Programming, Bit Manipulation, Tree, Depth-First Search, Bitmask |
+| 2801 | [Count Stepping Numbers in Range](2801-2900/2801-count-stepping-numbers-in-range.md) | String, Dynamic Programming |
+| 2809 | [Minimum Time to Make Array Sum At Most x](2801-2900/2809-minimum-time-to-make-array-sum-at-most-x.md) | Array, Dynamic Programming, Sorting |
+| 2813 | [Maximum Elegance of a K-Length Subsequence](2801-2900/2813-maximum-elegance-of-a-k-length-subsequence.md) | Array, Hash Table, Stack, Greedy, Sorting, Heap (Priority Queue) |
+| 2818 | [Apply Operations to Maximize Score](2801-2900/2818-apply-operations-to-maximize-score.md) | Array, Math, Stack, Greedy, Sorting, Monotonic Stack, Number Theory |
+| 2827 | [Number of Beautiful Integers in the Range](2801-2900/2827-number-of-beautiful-integers-in-the-range.md) | Math, Dynamic Programming |
+| 2835 | [Minimum Operations to Form Subsequence With Target Sum](2801-2900/2835-minimum-operations-to-form-subsequence-with-target-sum.md) | Array, Greedy, Bit Manipulation |
+| 2836 | [Maximize Value of Function in a Ball Passing Game](2801-2900/2836-maximize-value-of-function-in-a-ball-passing-game.md) | Array, Dynamic Programming, Bit Manipulation |
+| 2842 | [Count K-Subsequences of a String With Maximum Beauty](2801-2900/2842-count-k-subsequences-of-a-string-with-maximum-beauty.md) | Hash Table, Math, String, Greedy, Combinatorics |
+| 2846 | [Minimum Edge Weight Equilibrium Queries in a Tree](2801-2900/2846-minimum-edge-weight-equilibrium-queries-in-a-tree.md) | Array, Tree, Graph, Strongly Connected Component |
+| 2851 | [String Transformation](2801-2900/2851-string-transformation.md) | Math, String, Dynamic Programming, String Matching |
+| 2858 | [Minimum Edge Reversals So Every Node Is Reachable](2801-2900/2858-minimum-edge-reversals-so-every-node-is-reachable.md) | Dynamic Programming, Depth-First Search, Breadth-First Search, Graph |
+| 2862 | [Maximum Element-Sum of a Complete Subset of Indices](2801-2900/2862-maximum-element-sum-of-a-complete-subset-of-indices.md) | Array, Math, Number Theory |
+| 2867 | [Count Valid Paths in a Tree](2801-2900/2867-count-valid-paths-in-a-tree.md) | Math, Dynamic Programming, Tree, Depth-First Search, Number Theory |
+| 2872 | [Maximum Number of K-Divisible Components](2801-2900/2872-maximum-number-of-k-divisible-components.md) | Tree, Depth-First Search |
+| 2876 | [Count Visited Nodes in a Directed Graph](2801-2900/2876-count-visited-nodes-in-a-directed-graph.md) | Dynamic Programming, Graph, Memoization |
+| 2897 | [Apply Operations on Array to Maximize Sum of Squares](2801-2900/2897-apply-operations-on-array-to-maximize-sum-of-squares.md) | Array, Hash Table, Greedy, Bit Manipulation |
+| 2902 | [Count of Sub-Multisets With Bounded Sum](2901-3000/2902-count-of-sub-multisets-with-bounded-sum.md) | Array, Hash Table, Dynamic Programming, Sliding Window |
+| 2911 | [Minimum Changes to Make K Semi-palindromes](2901-3000/2911-minimum-changes-to-make-k-semi-palindromes.md) | Two Pointers, String, Dynamic Programming |
+| 2916 | [Subarrays Distinct Element Sum of Squares II](2901-3000/2916-subarrays-distinct-element-sum-of-squares-ii.md) | Array, Dynamic Programming, Binary Indexed Tree, Segment Tree |
+| 2920 | [Maximum Points After Collecting Coins From All Nodes](2901-3000/2920-maximum-points-after-collecting-coins-from-all-nodes.md) | Array, Dynamic Programming, Bit Manipulation, Tree, Depth-First Search, Memoization |
+| 2926 | [Maximum Balanced Subsequence Sum](2901-3000/2926-maximum-balanced-subsequence-sum.md) | Array, Binary Search, Dynamic Programming, Binary Indexed Tree, Segment Tree |
+| 2931 | [Maximum Spending After Buying Items](2901-3000/2931-maximum-spending-after-buying-items.md) | Array, Greedy, Sorting, Heap (Priority Queue), Matrix |
+| 2935 | [Maximum Strong Pair XOR II](2901-3000/2935-maximum-strong-pair-xor-ii.md) | Array, Hash Table, Bit Manipulation, Trie, Sliding Window |
+| 2940 | [Find Building Where Alice and Bob Can Meet](2901-3000/2940-find-building-where-alice-and-bob-can-meet.md) | Array, Binary Search, Stack, Binary Indexed Tree, Segment Tree, Heap (Priority Queue), Monotonic Stack |
+| 2945 | [Find Maximum Non-decreasing Array Length](2901-3000/2945-find-maximum-non-decreasing-array-length.md) | Array, Binary Search, Dynamic Programming, Stack, Queue, Monotonic Stack, Monotonic Queue |
+| 2949 | [Count Beautiful Substrings II](2901-3000/2949-count-beautiful-substrings-ii.md) | Hash Table, Math, String, Number Theory, Prefix Sum |
+| 2953 | [Count Complete Substrings](2901-3000/2953-count-complete-substrings.md) | Hash Table, String, Sliding Window |
+| 2954 | [Count the Number of Infection Sequences](2901-3000/2954-count-the-number-of-infection-sequences.md) | Array, Math, Combinatorics |
+| 2959 | [Number of Possible Sets of Closing Branches](2901-3000/2959-number-of-possible-sets-of-closing-branches.md) | Bit Manipulation, Graph, Heap (Priority Queue), Enumeration, Shortest Path |
+| 2963 | [Count the Number of Good Partitions](2901-3000/2963-count-the-number-of-good-partitions.md) | Array, Hash Table, Math, Combinatorics |
+| 2968 | [Apply Operations to Maximize Frequency Score](2901-3000/2968-apply-operations-to-maximize-frequency-score.md) | Array, Binary Search, Sliding Window, Sorting, Prefix Sum |
+| 2972 | [Count the Number of Incremovable Subarrays II](2901-3000/2972-count-the-number-of-incremovable-subarrays-ii.md) | Array, Two Pointers, Binary Search |
+| 2973 | [Find Number of Coins to Place in Tree Nodes](2901-3000/2973-find-number-of-coins-to-place-in-tree-nodes.md) | Dynamic Programming, Tree, Depth-First Search, Sorting, Heap (Priority Queue) |
+| 2977 | [Minimum Cost to Convert String II](2901-3000/2977-minimum-cost-to-convert-string-ii.md) | Array, String, Dynamic Programming, Graph, Trie, Shortest Path |
+| 2983 | [Palindrome Rearrangement Queries](2901-3000/2983-palindrome-rearrangement-queries.md) | Hash Table, String, Prefix Sum |
+| 2999 | [Count the Number of Powerful Integers](2901-3000/2999-count-the-number-of-powerful-integers.md) | Math, String, Dynamic Programming |
+| 3003 | [Maximize the Number of Partitions After Operations](3001-3100/3003-maximize-the-number-of-partitions-after-operations.md) | String, Dynamic Programming, Bit Manipulation, Bitmask |
+| 3008 | [Find Beautiful Indices in the Given Array II](3001-3100/3008-find-beautiful-indices-in-the-given-array-ii.md) | Two Pointers, String, Binary Search, Rolling Hash, String Matching, Hash Function |
+| 3013 | [Divide an Array Into Subarrays With Minimum Cost II](3001-3100/3013-divide-an-array-into-subarrays-with-minimum-cost-ii.md) | Array, Hash Table, Sliding Window, Heap (Priority Queue) |
+| 3017 | [Count the Number of Houses at a Certain Distance II](3001-3100/3017-count-the-number-of-houses-at-a-certain-distance-ii.md) | Graph, Prefix Sum |
+| 3022 | [Minimize OR of Remaining Elements Using Operations](3001-3100/3022-minimize-or-of-remaining-elements-using-operations.md) | Array, Greedy, Bit Manipulation |
+| 3027 | [Find the Number of Ways to Place People II](3001-3100/3027-find-the-number-of-ways-to-place-people-ii.md) | Array, Math, Geometry, Sorting, Enumeration |
+| 3031 | [Minimum Time to Revert Word to Initial State II](3001-3100/3031-minimum-time-to-revert-word-to-initial-state-ii.md) | String, Rolling Hash, String Matching, Hash Function |
+| 3036 | [Number of Subarrays That Match a Pattern II](3001-3100/3036-number-of-subarrays-that-match-a-pattern-ii.md) | Array, Rolling Hash, String Matching, Hash Function |
+| 3041 | [Maximize Consecutive Elements in an Array After Modification](3001-3100/3041-maximize-consecutive-elements-in-an-array-after-modification.md) | Array, Dynamic Programming, Sorting |
+| 3045 | [Count Prefix and Suffix Pairs II](3001-3100/3045-count-prefix-and-suffix-pairs-ii.md) | Array, String, Trie, Rolling Hash, String Matching, Hash Function |
+| 3049 | [Earliest Second to Mark Indices II](3001-3100/3049-earliest-second-to-mark-indices-ii.md) | Array, Binary Search, Greedy, Heap (Priority Queue) |
+| 3068 | [Find the Maximum Sum of Node Values](3001-3100/3068-find-the-maximum-sum-of-node-values.md) | Array, Dynamic Programming, Greedy, Bit Manipulation, Tree, Sorting |
+| 3072 | [Distribute Elements Into Two Arrays II](3001-3100/3072-distribute-elements-into-two-arrays-ii.md) | Array, Binary Indexed Tree, Segment Tree, Simulation |
+| 3077 | [Maximum Strength of K Disjoint Subarrays](3001-3100/3077-maximum-strength-of-k-disjoint-subarrays.md) | Array, Dynamic Programming, Prefix Sum |
+| 3082 | [Find the Sum of the Power of All Subsequences](3001-3100/3082-find-the-sum-of-the-power-of-all-subsequences.md) | Array, Dynamic Programming |
+| 3086 | [Minimum Moves to Pick K Ones](3001-3100/3086-minimum-moves-to-pick-k-ones.md) | Array, Greedy, Sliding Window, Prefix Sum |
+| 3093 | [Longest Common Suffix Queries](3001-3100/3093-longest-common-suffix-queries.md) | Array, String, Trie |
+| 3098 | [Find the Sum of Subsequence Powers](3001-3100/3098-find-the-sum-of-subsequence-powers.md) | Array, Dynamic Programming, Sorting |
+| 3102 | [Minimize Manhattan Distances](3101-3200/3102-minimize-manhattan-distances.md) | Array, Math, Geometry, Sorting, Ordered Set |
+| 3108 | [Minimum Cost Walk in Weighted Graph](3101-3200/3108-minimum-cost-walk-in-weighted-graph.md) | Array, Bit Manipulation, Union Find, Graph |
+| 3113 | [Find the Number of Subarrays Where Boundary Elements Are Maximum](3101-3200/3113-find-the-number-of-subarrays-where-boundary-elements-are-maximum.md) | Array, Binary Search, Stack, Monotonic Stack |
+| 3116 | [Kth Smallest Amount With Single Denomination Combination](3101-3200/3116-kth-smallest-amount-with-single-denomination-combination.md) | Array, Math, Binary Search, Bit Manipulation, Combinatorics, Number Theory |
+| 3117 | [Minimum Sum of Values by Dividing Array](3101-3200/3117-minimum-sum-of-values-by-dividing-array.md) | Array, Binary Search, Dynamic Programming, Bit Manipulation, Segment Tree, Queue |
+| 3123 | [Find Edges in Shortest Paths](3101-3200/3123-find-edges-in-shortest-paths.md) | Depth-First Search, Breadth-First Search, Graph, Heap (Priority Queue), Shortest Path |
+| 3130 | [Find All Possible Stable Binary Arrays II](3101-3200/3130-find-all-possible-stable-binary-arrays-ii.md) | Dynamic Programming, Prefix Sum |
+| 3134 | [Find the Median of the Uniqueness Array](3101-3200/3134-find-the-median-of-the-uniqueness-array.md) | Array, Hash Table, Binary Search, Sliding Window |
+| 3139 | [Minimum Cost to Equalize Array](3101-3200/3139-minimum-cost-to-equalize-array.md) | Array, Greedy, Enumeration |
+| 3145 | [Find Products of Elements of Big Array](3101-3200/3145-find-products-of-elements-of-big-array.md) | Array, Binary Search, Bit Manipulation |
+| 3149 | [Find the Minimum Cost Array Permutation](3101-3200/3149-find-the-minimum-cost-array-permutation.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 3154 | [Find Number of Ways to Reach the K-th Stair](3101-3200/3154-find-number-of-ways-to-reach-the-k-th-stair.md) | Math, Dynamic Programming, Bit Manipulation, Memoization, Combinatorics |
+| 3161 | [Block Placement Queries](3101-3200/3161-block-placement-queries.md) | Array, Binary Search, Binary Indexed Tree, Segment Tree |
+| 3165 | [Maximum Sum of Subsequence With Non-adjacent Elements](3101-3200/3165-maximum-sum-of-subsequence-with-non-adjacent-elements.md) | Array, Divide and Conquer, Dynamic Programming, Segment Tree |
+| 3171 | [Find Subarray With Bitwise OR Closest to K](3101-3200/3171-find-subarray-with-bitwise-or-closest-to-k.md) | Array, Binary Search, Bit Manipulation, Segment Tree |
+| 3177 | [Find the Maximum Length of a Good Subsequence II](3101-3200/3177-find-the-maximum-length-of-a-good-subsequence-ii.md) | Array, Hash Table, Dynamic Programming |
+| 3181 | [Maximum Total Reward Using Operations II](3101-3200/3181-maximum-total-reward-using-operations-ii.md) | Array, Dynamic Programming, Bit Manipulation |
+| 3187 | [Peaks in Array](3101-3200/3187-peaks-in-array.md) | Array, Binary Indexed Tree, Segment Tree |
+| 3193 | [Count the Number of Inversions](3101-3200/3193-count-the-number-of-inversions.md) | Array, Dynamic Programming |
+| 3197 | [Find the Minimum Area to Cover All Ones II](3101-3200/3197-find-the-minimum-area-to-cover-all-ones-ii.md) | Array, Matrix, Enumeration |
+| 3203 | [Find Minimum Diameter After Merging Two Trees](3201-3300/3203-find-minimum-diameter-after-merging-two-trees.md) | Tree, Depth-First Search, Breadth-First Search, Graph |
+| 3209 | [Number of Subarrays With AND Value of K](3201-3300/3209-number-of-subarrays-with-and-value-of-k.md) | Array, Binary Search, Bit Manipulation, Segment Tree |
+| 3213 | [Construct String with Minimum Cost](3201-3300/3213-construct-string-with-minimum-cost.md) | Array, String, Dynamic Programming, Suffix Array |
+| 3219 | [Minimum Cost for Cutting Cake II](3201-3300/3219-minimum-cost-for-cutting-cake-ii.md) | Array, Greedy, Sorting |
+| 3225 | [Maximum Score From Grid Operations](3201-3300/3225-maximum-score-from-grid-operations.md) | Array, Dynamic Programming, Matrix, Prefix Sum |
+| 3229 | [Minimum Operations to Make Array Equal to Target](3201-3300/3229-minimum-operations-to-make-array-equal-to-target.md) | Array, Dynamic Programming, Stack, Greedy, Monotonic Stack |
+| 3235 | [Check if the Rectangle Corner Is Reachable](3201-3300/3235-check-if-the-rectangle-corner-is-reachable.md) | Array, Math, Depth-First Search, Breadth-First Search, Union Find, Geometry |
+| 3241 | [Time Taken to Mark All Nodes](3201-3300/3241-time-taken-to-mark-all-nodes.md) | Dynamic Programming, Tree, Depth-First Search, Graph |
+| 3244 | [Shortest Distance After Road Addition Queries II](3201-3300/3244-shortest-distance-after-road-addition-queries-ii.md) | Array, Greedy, Graph, Ordered Set |
+| 3245 | [Alternating Groups III](3201-3300/3245-alternating-groups-iii.md) | Array, Binary Indexed Tree |
+| 3250 | [Find the Count of Monotonic Pairs I](3201-3300/3250-find-the-count-of-monotonic-pairs-i.md) | Array, Math, Dynamic Programming, Combinatorics, Prefix Sum |
+| 3251 | [Find the Count of Monotonic Pairs II](3201-3300/3251-find-the-count-of-monotonic-pairs-ii.md) | Array, Math, Dynamic Programming, Combinatorics, Prefix Sum |
+| 3256 | [Maximum Value Sum by Placing Three Rooks I](3201-3300/3256-maximum-value-sum-by-placing-three-rooks-i.md) | Array, Dynamic Programming, Matrix, Enumeration |
+| 3257 | [Maximum Value Sum by Placing Three Rooks II](3201-3300/3257-maximum-value-sum-by-placing-three-rooks-ii.md) | Array, Dynamic Programming, Matrix, Enumeration |
+| 3260 | [Find the Largest Palindrome Divisible by K](3201-3300/3260-find-the-largest-palindrome-divisible-by-k.md) | Math, String, Dynamic Programming, Greedy, Number Theory |
+| 3261 | [Count Substrings That Satisfy K-Constraint II](3201-3300/3261-count-substrings-that-satisfy-k-constraint-ii.md) | Array, String, Binary Search, Sliding Window, Prefix Sum |
+| 3266 | [Final Array State After K Multiplication Operations II](3201-3300/3266-final-array-state-after-k-multiplication-operations-ii.md) | Array, Heap (Priority Queue), Simulation |
+| 3267 | [Count Almost Equal Pairs II](3201-3300/3267-count-almost-equal-pairs-ii.md) | Array, Hash Table, Sorting, Counting, Enumeration |
+| 3272 | [Find the Count of Good Integers](3201-3300/3272-find-the-count-of-good-integers.md) | Hash Table, Math, Combinatorics, Enumeration |
+| 3273 | [Minimum Amount of Damage Dealt to Bob](3201-3300/3273-minimum-amount-of-damage-dealt-to-bob.md) | Array, Greedy, Sorting |
+| 3276 | [Select Cells in Grid With Maximum Score](3201-3300/3276-select-cells-in-grid-with-maximum-score.md) | Array, Dynamic Programming, Bit Manipulation, Matrix, Bitmask |
+| 3277 | [Maximum XOR Score Subarray Queries](3201-3300/3277-maximum-xor-score-subarray-queries.md) | Array, Dynamic Programming |
+| 3283 | [Maximum Number of Moves to Kill All Pawns](3201-3300/3283-maximum-number-of-moves-to-kill-all-pawns.md) | Array, Math, Bit Manipulation, Breadth-First Search, Game Theory, Bitmask |
+| 3287 | [Find the Maximum Sequence Value of Array](3201-3300/3287-find-the-maximum-sequence-value-of-array.md) | Array, Dynamic Programming, Bit Manipulation |
+| 3288 | [Length of the Longest Increasing Path](3201-3300/3288-length-of-the-longest-increasing-path.md) | Array, Binary Search, Sorting |
+| 3292 | [Minimum Number of Valid Strings to Form Target II](3201-3300/3292-minimum-number-of-valid-strings-to-form-target-ii.md) | Array, String, Binary Search, Dynamic Programming, Segment Tree, Rolling Hash, String Matching, Hash Function |
+| 3298 | [Count Substrings That Can Be Rearranged to Contain a String II](3201-3300/3298-count-substrings-that-can-be-rearranged-to-contain-a-string-ii.md) | Hash Table, String, Sliding Window |
+| 3303 | [Find the Occurrence of First Almost Equal Substring](3301-3400/3303-find-the-occurrence-of-first-almost-equal-substring.md) | String, String Matching |
+| 3307 | [Find the K-th Character in String Game II](3301-3400/3307-find-the-k-th-character-in-string-game-ii.md) | Math, Bit Manipulation, Recursion |
+| 3311 | [Construct 2D Grid Matching Graph Layout](3301-3400/3311-construct-2d-grid-matching-graph-layout.md) | Array, Hash Table, Graph, Matrix |
+| 3312 | [Sorted GCD Pair Queries](3301-3400/3312-sorted-gcd-pair-queries.md) | Array, Hash Table, Math, Binary Search, Combinatorics, Counting, Number Theory, Prefix Sum |
+| 3317 | [Find the Number of Possible Ways for an Event](3301-3400/3317-find-the-number-of-possible-ways-for-an-event.md) | Math, Dynamic Programming, Combinatorics |
+| 3320 | [Count The Number of Winning Sequences](3301-3400/3320-count-the-number-of-winning-sequences.md) | String, Dynamic Programming |
+| 3321 | [Find X-Sum of All K-Long Subarrays II](3301-3400/3321-find-x-sum-of-all-k-long-subarrays-ii.md) | Array, Hash Table, Sliding Window, Heap (Priority Queue) |
+| 3327 | [Check if DFS Strings Are Palindromes](3301-3400/3327-check-if-dfs-strings-are-palindromes.md) | Array, Hash Table, String, Tree, Depth-First Search, Hash Function |
+| 3333 | [Find the Original Typed String II](3301-3400/3333-find-the-original-typed-string-ii.md) | String, Dynamic Programming, Prefix Sum |
+| 3336 | [Find the Number of Subsequences With Equal GCD](3301-3400/3336-find-the-number-of-subsequences-with-equal-gcd.md) | Array, Math, Dynamic Programming, Number Theory |
+| 3337 | [Total Characters in String After Transformations II](3301-3400/3337-total-characters-in-string-after-transformations-ii.md) | Hash Table, Math, String, Dynamic Programming, Counting |
+| 3343 | [Count Number of Balanced Permutations](3301-3400/3343-count-number-of-balanced-permutations.md) | Math, String, Dynamic Programming, Combinatorics |
+| 3347 | [Maximum Frequency of an Element After Performing Operations II](3301-3400/3347-maximum-frequency-of-an-element-after-performing-operations-ii.md) | Array, Binary Search, Sliding Window, Sorting, Prefix Sum |
+| 3348 | [Smallest Divisible Digit Product II](3301-3400/3348-smallest-divisible-digit-product-ii.md) | Math, String, Backtracking, Greedy, Number Theory |
+| 3351 | [Sum of Good Subsequences](3301-3400/3351-sum-of-good-subsequences.md) | Array, Hash Table, Dynamic Programming |
+| 3352 | [Count K-Reducible Numbers Less Than N](3301-3400/3352-count-k-reducible-numbers-less-than-n.md) | Math, String, Dynamic Programming, Combinatorics |
+| 3357 | [Minimize the Maximum Adjacent Element Difference](3301-3400/3357-minimize-the-maximum-adjacent-element-difference.md) | Array, Binary Search, Greedy |
+| 3363 | [Find the Maximum Number of Fruits Collected](3301-3400/3363-find-the-maximum-number-of-fruits-collected.md) | Array, Dynamic Programming, Matrix |
+| 3367 | [Maximize Sum of Weights after Edge Removals](3301-3400/3367-maximize-sum-of-weights-after-edge-removals.md) | Dynamic Programming, Tree, Depth-First Search |
+| 3373 | [Maximize the Number of Target Nodes After Connecting Trees II](3301-3400/3373-maximize-the-number-of-target-nodes-after-connecting-trees-ii.md) | Tree, Depth-First Search, Breadth-First Search |
+| 3374 | [First Letter Capitalization II](3301-3400/3374-first-letter-capitalization-ii.md) | Database |
+| 3378 | [Count Connected Components in LCM Graph](3301-3400/3378-count-connected-components-in-lcm-graph.md) | Array, Hash Table, Math, Union Find, Number Theory |
+| 3382 | [Maximum Area Rectangle With Point Constraints II](3301-3400/3382-maximum-area-rectangle-with-point-constraints-ii.md) | Array, Math, Binary Indexed Tree, Segment Tree, Geometry, Sorting |
+| 3389 | [Minimum Operations to Make Character Frequencies Equal](3301-3400/3389-minimum-operations-to-make-character-frequencies-equal.md) | Hash Table, String, Dynamic Programming, Counting, Enumeration |
+| 3395 | [Subsequences with a Unique Middle Mode I](3301-3400/3395-subsequences-with-a-unique-middle-mode-i.md) | Array, Hash Table, Math, Combinatorics |
+| 3398 | [Smallest Substring With Identical Characters I](3301-3400/3398-smallest-substring-with-identical-characters-i.md) | Array, Binary Search, Enumeration |
+| 3399 | [Smallest Substring With Identical Characters II](3301-3400/3399-smallest-substring-with-identical-characters-ii.md) | String, Binary Search |
+| 3405 | [Count the Number of Arrays with K Matching Adjacent Elements](3401-3500/3405-count-the-number-of-arrays-with-k-matching-adjacent-elements.md) | Math, Combinatorics |
+| 3410 | [Maximize Subarray Sum After Removing All Occurrences of One Element](3401-3500/3410-maximize-subarray-sum-after-removing-all-occurrences-of-one-element.md) | Array, Dynamic Programming, Segment Tree |
+| 3414 | [Maximum Score of Non-overlapping Intervals](3401-3500/3414-maximum-score-of-non-overlapping-intervals.md) | Array, Binary Search, Dynamic Programming, Sorting |
+| 3420 | [Count Non-Decreasing Subarrays After K Operations](3401-3500/3420-count-non-decreasing-subarrays-after-k-operations.md) | Array, Stack, Segment Tree, Queue, Sliding Window, Monotonic Stack, Monotonic Queue |
+| 3425 | [Longest Special Path](3401-3500/3425-longest-special-path.md) | Array, Hash Table, Tree, Depth-First Search, Prefix Sum |
+| 3426 | [Manhattan Distances of All Arrangements of Pieces](3401-3500/3426-manhattan-distances-of-all-arrangements-of-pieces.md) | Math, Combinatorics |
+| 3430 | [Maximum and Minimum Sums of at Most Size K Subarrays](3401-3500/3430-maximum-and-minimum-sums-of-at-most-size-k-subarrays.md) | Array, Math, Stack, Monotonic Stack |
+| 3435 | [Frequencies of Shortest Supersequences](3401-3500/3435-frequencies-of-shortest-supersequences.md) | Array, String, Bit Manipulation, Graph, Topological Sort, Enumeration |
+| 3441 | [Minimum Cost Good Caption](3401-3500/3441-minimum-cost-good-caption.md) | String, Dynamic Programming |
+| 3444 | [Minimum Increments for Target Multiples in an Array](3401-3500/3444-minimum-increments-for-target-multiples-in-an-array.md) | Array, Math, Dynamic Programming, Bit Manipulation, Number Theory, Bitmask |
+| 3445 | [Maximum Difference Between Even and Odd Frequency II](3401-3500/3445-maximum-difference-between-even-and-odd-frequency-ii.md) | String, Sliding Window, Enumeration, Prefix Sum |
+| 3448 | [Count Substrings Divisible By Last Digit](3401-3500/3448-count-substrings-divisible-by-last-digit.md) | String, Dynamic Programming |
+| 3449 | [Maximize the Minimum Game Score](3401-3500/3449-maximize-the-minimum-game-score.md) | Array, Binary Search, Greedy |
+| 3451 | [Find Invalid IP Addresses](3401-3500/3451-find-invalid-ip-addresses.md) | Database |
+| 3454 | [Separate Squares II](3401-3500/3454-separate-squares-ii.md) | Array, Binary Search, Segment Tree, Line Sweep |
+| 3455 | [Shortest Matching Substring](3401-3500/3455-shortest-matching-substring.md) | Two Pointers, String, Binary Search, String Matching |
+| 3459 | [Length of Longest V-Shaped Diagonal Segment](3401-3500/3459-length-of-longest-v-shaped-diagonal-segment.md) | Array, Dynamic Programming, Memoization, Matrix |
+| 3463 | [Check If Digits Are Equal in String After Operations II](3401-3500/3463-check-if-digits-are-equal-in-string-after-operations-ii.md) | Math, String, Combinatorics, Number Theory |
+| 3464 | [Maximize the Distance Between Points on a Square](3401-3500/3464-maximize-the-distance-between-points-on-a-square.md) | Array, Binary Search, Greedy |
+| 3470 | [Permutations IV](3401-3500/3470-permutations-iv.md) | Array, Math, Combinatorics, Enumeration |
+| 3474 | [Lexicographically Smallest Generated String](3401-3500/3474-lexicographically-smallest-generated-string.md) | String, Greedy, String Matching |
+| 3480 | [Maximize Subarrays After Removing One Conflicting Pair](3401-3500/3480-maximize-subarrays-after-removing-one-conflicting-pair.md) | Array, Segment Tree, Enumeration, Prefix Sum |
+| 3482 | [Analyze Organization Hierarchy](3401-3500/3482-analyze-organization-hierarchy.md) | Database |
+| 3485 | [Longest Common Prefix of K Strings After Removal](3401-3500/3485-longest-common-prefix-of-k-strings-after-removal.md) | Array, String, Trie |
+| 3486 | [Longest Special Path II](3401-3500/3486-longest-special-path-ii.md) | Array, Hash Table, Tree, Depth-First Search, Prefix Sum |
+| 3490 | [Count Beautiful Numbers](3401-3500/3490-count-beautiful-numbers.md) | Dynamic Programming |
+| 3495 | [Minimum Operations to Make Array Elements Zero](3401-3500/3495-minimum-operations-to-make-array-elements-zero.md) | Array, Math, Bit Manipulation |
+| 3500 | [Minimum Cost to Divide Array Into Subarrays](3401-3500/3500-minimum-cost-to-divide-array-into-subarrays.md) | Array, Dynamic Programming, Prefix Sum |
+| 3501 | [Maximize Active Section with Trade II](3501-3600/3501-maximize-active-section-with-trade-ii.md) | Array, String, Binary Search, Segment Tree |
+| 3504 | [Longest Palindrome After Substring Concatenation II](3501-3600/3504-longest-palindrome-after-substring-concatenation-ii.md) | Two Pointers, String, Dynamic Programming |
+| 3505 | [Minimum Operations to Make Elements Within K Subarrays Equal](3501-3600/3505-minimum-operations-to-make-elements-within-k-subarrays-equal.md) | Array, Hash Table, Math, Dynamic Programming, Sliding Window, Heap (Priority Queue) |
+| 3509 | [Maximum Product of Subsequences With an Alternating Sum Equal to K](3501-3600/3509-maximum-product-of-subsequences-with-an-alternating-sum-equal-to-k.md) | Array, Hash Table, Dynamic Programming |
+| 3510 | [Minimum Pair Removal to Sort Array II](3501-3600/3510-minimum-pair-removal-to-sort-array-ii.md) | Array, Hash Table, Linked List, Heap (Priority Queue), Simulation, Doubly-Linked List, Ordered Set |
+| 3515 | [Shortest Path in a Weighted Tree](3501-3600/3515-shortest-path-in-a-weighted-tree.md) | Array, Tree, Depth-First Search, Binary Indexed Tree, Segment Tree |
+| 3518 | [Smallest Palindromic Rearrangement II](3501-3600/3518-smallest-palindromic-rearrangement-ii.md) | Hash Table, Math, String, Combinatorics, Counting |
+| 3519 | [Count Numbers with Non-Decreasing Digits](3501-3600/3519-count-numbers-with-non-decreasing-digits.md) | Math, String, Dynamic Programming |
+| 3525 | [Find X Value of Array II](3501-3600/3525-find-x-value-of-array-ii.md) | Array, Math, Segment Tree |
+| 3530 | [Maximum Profit from Valid Topological Order in DAG](3501-3600/3530-maximum-profit-from-valid-topological-order-in-dag.md) | Array, Dynamic Programming, Bit Manipulation, Graph, Topological Sort, Bitmask |
+| 3533 | [Concatenated Divisibility](3501-3600/3533-concatenated-divisibility.md) | Array, Dynamic Programming, Bit Manipulation, Bitmask |
+| 3534 | [Path Existence Queries in a Graph II](3501-3600/3534-path-existence-queries-in-a-graph-ii.md) | Array, Binary Search, Greedy, Graph, Sorting |
+| 3538 | [Merge Operations for Minimum Travel Time](3501-3600/3538-merge-operations-for-minimum-travel-time.md) | Array, Dynamic Programming, Prefix Sum |
+| 3539 | [Find Sum of Array Product of Magical Sequences](3501-3600/3539-find-sum-of-array-product-of-magical-sequences.md) | Array, Math, Dynamic Programming, Bit Manipulation, Combinatorics, Bitmask |
+| 3544 | [Subtree Inversion Sum](3501-3600/3544-subtree-inversion-sum.md) | Array, Dynamic Programming, Tree, Depth-First Search |
+| 3547 | [Maximum Sum of Edge Values in a Graph](3501-3600/3547-maximum-sum-of-edge-values-in-a-graph.md) | Greedy, Depth-First Search, Graph, Sorting |
+| 3548 | [Equal Sum Grid Partition II](3501-3600/3548-equal-sum-grid-partition-ii.md) | Array, Hash Table, Matrix, Enumeration, Prefix Sum |
+| 3553 | [Minimum Weighted Subgraph With the Required Paths II](3501-3600/3553-minimum-weighted-subgraph-with-the-required-paths-ii.md) | Array, Tree, Depth-First Search |
+| 3554 | [Find Category Recommendation Pairs](3501-3600/3554-find-category-recommendation-pairs.md) | Database |
+| 3559 | [Number of Ways to Assign Edge Weights II](3501-3600/3559-number-of-ways-to-assign-edge-weights-ii.md) | Array, Math, Dynamic Programming, Tree, Depth-First Search |
+| 3562 | [Maximum Profit from Trading Stocks with Discounts](3501-3600/3562-maximum-profit-from-trading-stocks-with-discounts.md) | Array, Dynamic Programming, Tree, Depth-First Search |
+| 3563 | [Lexicographically Smallest String After Adjacent Removals](3501-3600/3563-lexicographically-smallest-string-after-adjacent-removals.md) | String, Dynamic Programming |
+| 3569 | [Maximize Count of Distinct Primes After Split](3501-3600/3569-maximize-count-of-distinct-primes-after-split.md) | Array, Math, Segment Tree, Number Theory |
+| 3574 | [Maximize Subarray GCD Score](3501-3600/3574-maximize-subarray-gcd-score.md) | Array, Math, Enumeration, Number Theory |
+| 3575 | [Maximum Good Subtree Score](3501-3600/3575-maximum-good-subtree-score.md) | Array, Dynamic Programming, Bit Manipulation, Tree, Depth-First Search, Bitmask |
+| 3579 | [Minimum Steps to Convert String with Operations](3501-3600/3579-minimum-steps-to-convert-string-with-operations.md) | String, Dynamic Programming, Greedy |
+| 3585 | [Find Weighted Median Node in Tree](3501-3600/3585-find-weighted-median-node-in-tree.md) | Array, Binary Search, Dynamic Programming, Tree, Depth-First Search |
+| 3590 | [Kth Smallest Path XOR Sum](3501-3600/3590-kth-smallest-path-xor-sum.md) | Array, Tree, Depth-First Search, Ordered Set |
+| 3594 | [Minimum Time to Transport All Individuals](3501-3600/3594-minimum-time-to-transport-all-individuals.md) | Array, Dynamic Programming, Bit Manipulation, Graph, Heap (Priority Queue), Shortest Path, Bitmask |
+| 3600 | [Maximize Spanning Tree Stability with Upgrades](3501-3600/3600-maximize-spanning-tree-stability-with-upgrades.md) | Binary Search, Greedy, Union Find, Graph, Minimum Spanning Tree |
+| 3605 | [Minimum Stability Factor of Array](3601-3700/3605-minimum-stability-factor-of-array.md) | Array, Math, Binary Search, Greedy, Segment Tree, Number Theory |
+| 3609 | [Minimum Moves to Reach Target in Grid](3601-3700/3609-minimum-moves-to-reach-target-in-grid.md) | Math |
+| 3614 | [Process String with Special Operations II](3601-3700/3614-process-string-with-special-operations-ii.md) | String, Simulation |
+| 3615 | [Longest Palindromic Path in Graph](3601-3700/3615-longest-palindromic-path-in-graph.md) | String, Dynamic Programming, Bit Manipulation, Graph, Bitmask |
+| 3617 | [Find Students with Study Spiral Pattern](3601-3700/3617-find-students-with-study-spiral-pattern.md) | - |
+| 3620 | [Network Recovery Pathways](3601-3700/3620-network-recovery-pathways.md) | Array, Binary Search, Dynamic Programming, Graph, Topological Sort, Heap (Priority Queue), Shortest Path |
+| 3621 | [Number of Integers With Popcount-Depth Equal to K I](3601-3700/3621-number-of-integers-with-popcount-depth-equal-to-k-i.md) | Math, Dynamic Programming, Combinatorics |
+| 3624 | [Number of Integers With Popcount-Depth Equal to K II](3601-3700/3624-number-of-integers-with-popcount-depth-equal-to-k-ii.md) | Array, Segment Tree |
+| 3625 | [Count Number of Trapezoids II](3601-3700/3625-count-number-of-trapezoids-ii.md) | Array, Hash Table, Math, Geometry |
+| 3630 | [Partition Array for Maximum XOR and AND](3601-3700/3630-partition-array-for-maximum-xor-and-and.md) | Array, Math, Greedy, Enumeration |
+| 3636 | [Threshold Majority Queries](3601-3700/3636-threshold-majority-queries.md) | - |
+| 3640 | [Trionic Array II](3601-3700/3640-trionic-array-ii.md) | - |
