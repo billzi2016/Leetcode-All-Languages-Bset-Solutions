@@ -4,7 +4,7 @@
 
 文档站点：
 
-- https://billzi2016.github.io/Leetcode-All-Languages-Bset-Solutions/
+- https://billzi2016.github.io/Leetcode-All-Languages-Best-Solutions/
 
 ## 支持语言
 

@@ -6,7 +6,7 @@ This documentation site is available in English and Chinese.
 
 GitHub repository:
 
-- [billzi2016/Leetcode-All-Languages-Bset-Solutions](https://github.com/billzi2016/Leetcode-All-Languages-Bset-Solutions)
+- [billzi2016/Leetcode-All-Languages-Best-Solutions](https://github.com/billzi2016/Leetcode-All-Languages-Best-Solutions)
 
 ## Language
 

@@ -4,7 +4,7 @@ This project generates and organizes accurate optimal LeetCode solutions for eve
 
 Documentation site:
 
-- https://billzi2016.github.io/Leetcode-All-Languages-Bset-Solutions/
+- https://billzi2016.github.io/Leetcode-All-Languages-Best-Solutions/
 
 ## Supported Languages
 
