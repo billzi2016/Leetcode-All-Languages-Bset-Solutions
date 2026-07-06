@@ -162,10 +162,12 @@ Validate Pro should also write Markdown audit reports:
 
 ```text
 Leetcode-QC/validate-pro/reports/adapter_support.md
+Leetcode-QC/validate-pro/reports/adapter_support.cn.md
 Leetcode-QC/validate-pro/reports/generation_audit.md
+Leetcode-QC/validate-pro/reports/generation_audit.cn.md
 ```
 
-`adapter_support.md` lists every problem-shape kind discovered in the selected dataset and whether a Python reference adapter exists. `generation_audit.md` summarizes retained cases, unsupported kinds, rejected candidate reasons, and detailed failures.
+`adapter_support.md` and `adapter_support.cn.md` list every problem-shape kind discovered in the selected dataset and whether a Python reference adapter exists. `generation_audit.md` and `generation_audit.cn.md` summarize retained cases, unsupported kinds, rejected candidate reasons, and detailed failures. `reports/` stores local audit results produced by each run.
 
 ## 6. High-Level Pipeline
 
@@ -565,7 +567,7 @@ Leetcode-QC/
     smoke/
 ```
 
-`cases/`, `reports/`, and `work/` should be ignored by Git because they are generated artifacts.
+`cases/`, `reports/`, and `work/` store run-specific local outputs.
 
 `tests/unit/` should contain all unit tests for this module. The validate-pro test suite should cover dataset parsing, prompt construction, candidate JSON parsing, reference solver adapters, candidate rejection rules, retained-case persistence, CSV report generation, audit report generation, and CLI argument parsing.
 
@@ -646,7 +648,7 @@ The Docker runner should:
 - isolate generated harness files in a work directory,
 - return `0` in CSV for compile/runtime failures,
 - avoid modifying solution Markdown,
-- keep generated reports under ignored directories.
+- keep audit reports under `reports/`.
 
 ## 15. Relationship With Existing Tools
 

@@ -42,9 +42,9 @@ Leetcode-QC/validate-pro/reports/
 Leetcode-QC/validate-pro/work/
 ```
 
-These directories are local generated artifacts.
+`reports/` stores local audit results produced by each run.
 
-`reports/adapter_support.md` lists the adapter support matrix for the selected dataset. `reports/generation_audit.md` summarizes retained cases, unsupported problem kinds, rejected candidates, and failure reasons.
+`reports/adapter_support.md` and `reports/adapter_support.cn.md` list the adapter support matrix for the selected dataset. `reports/generation_audit.md` and `reports/generation_audit.cn.md` summarize retained cases, unsupported problem kinds, rejected candidates, and failure reasons.
 
 ## File Tree
 

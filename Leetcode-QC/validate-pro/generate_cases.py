@@ -8,7 +8,13 @@ from pathlib import Path
 
 from validate_pro.adapters import get_adapter
 from validate_pro.case_store import build_case_file, case_file_path, load_case_file, write_case_file
-from validate_pro.coverage import GenerationEvent, write_adapter_support_report, write_generation_audit_report
+from validate_pro.coverage import (
+    GenerationEvent,
+    write_adapter_support_report,
+    write_adapter_support_report_cn,
+    write_generation_audit_report,
+    write_generation_audit_report_cn,
+)
 from validate_pro.dataset import load_problems, select_problems
 from validate_pro.llm_case_generator import OllamaCaseGenerator
 from validate_pro.prompt_builder import build_case_prompt
@@ -128,7 +134,9 @@ def main() -> int:
             written += 1
 
     write_adapter_support_report(reports_dir / "adapter_support.md", problems)
+    write_adapter_support_report_cn(reports_dir / "adapter_support.cn.md", problems)
     write_generation_audit_report(reports_dir / "generation_audit.md", problems, events, cases_dir)
+    write_generation_audit_report_cn(reports_dir / "generation_audit.cn.md", problems, events, cases_dir)
     print(f"Wrote retained case files: {written}")
     print(f"Wrote audit reports: {reports_dir}")
     return 0

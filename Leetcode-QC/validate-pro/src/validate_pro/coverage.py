@@ -78,6 +78,26 @@ def write_adapter_support_report(path: Path, problems: list[Problem]) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def write_adapter_support_report_cn(path: Path, problems: list[Problem]) -> None:
+    """Write the adapter support matrix as Chinese Markdown."""
+
+    lines = [
+        "# Validate Pro Adapter 支持矩阵",
+        "",
+        "本报告列出所选 dataset 中出现的题型 kind，并说明 validate-pro 是否已经有对应的 Python 参考 adapter。",
+        "",
+        "| Kind | 是否支持 | Adapter | 题目数量 | 示例题目 |",
+        "| --- | --- | --- | ---: | --- |",
+    ]
+    for row in adapter_support_rows(problems):
+        supported = "是" if row["supported"] == "yes" else "否"
+        lines.append(
+            f"| `{row['kind']}` | {supported} | `{row['adapter']}` | {row['problem_count']} | {row['examples']} |"
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def write_generation_audit_report(path: Path, problems: list[Problem], events: list[GenerationEvent], cases_dir: Path) -> None:
     """Write retained-case summary and failure reasons as Markdown."""
 
@@ -121,6 +141,56 @@ def write_generation_audit_report(path: Path, problems: list[Problem], events: l
 
     failures = [event for event in events if event.status != "retained"]
     lines.extend(["", "## Detailed Failures", "", "| Problem | Difficulty | Kind | Status | Reason |", "| --- | --- | --- | --- | --- |"])
+    for event in failures:
+        lines.append(f"| {event.frontend_id} {event.title} | {event.difficulty} | `{event.kind}` | `{event.status}` | `{event.reason}` |")
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_generation_audit_report_cn(path: Path, problems: list[Problem], events: list[GenerationEvent], cases_dir: Path) -> None:
+    """Write retained-case summary and failure reasons as Chinese Markdown."""
+
+    counts = retained_case_counts(cases_dir)
+    status_counts = Counter(event.status for event in events)
+    reason_counts = Counter(event.reason for event in events if event.reason)
+    difficulty_counts = Counter(problem.difficulty for problem in problems)
+    supported_count = sum(1 for problem in problems if problem.kind in ADAPTERS)
+    sorted_problems = sorted(problems, key=lambda problem: int(problem.frontend_id) if problem.frontend_id.isdigit() else 0)
+
+    lines = [
+        "# Validate Pro 生成审计报告",
+        "",
+        "本报告由 `Leetcode-QC/validate-pro/generate_cases.py` 生成。",
+        "",
+        "## 汇总",
+        "",
+        f"- 选中题目数：{len(problems)}",
+        f"- 已有 adapter 支持的题目数：{supported_count}",
+        f"- 已生成保留样例 JSON 的题目数：{len(counts)}",
+        "",
+        "## 难度覆盖",
+        "",
+        "| 难度 | 题目数量 |",
+        "| --- | ---: |",
+    ]
+    for difficulty in DIFFICULTY_ORDER:
+        lines.append(f"| {difficulty} | {difficulty_counts[difficulty]} |")
+
+    lines.extend(["", "## 事件状态", "", "| 状态 | 数量 |", "| --- | ---: |"])
+    for status, count in sorted(status_counts.items()):
+        lines.append(f"| `{status}` | {count} |")
+
+    lines.extend(["", "## 失败原因", "", "| 原因 | 数量 |", "| --- | ---: |"])
+    for reason, count in sorted(reason_counts.items()):
+        lines.append(f"| `{reason}` | {count} |")
+
+    lines.extend(["", "## 保留样例", "", "| 题目 | 难度 | Kind | 保留样例数 |", "| --- | --- | --- | ---: |"])
+    for problem in sorted_problems:
+        lines.append(f"| {problem.frontend_id} {problem.title} | {problem.difficulty} | `{problem.kind}` | {counts.get(problem.frontend_id, 0)} |")
+
+    failures = [event for event in events if event.status != "retained"]
+    lines.extend(["", "## 失败明细", "", "| 题目 | 难度 | Kind | 状态 | 原因 |", "| --- | --- | --- | --- | --- |"])
     for event in failures:
         lines.append(f"| {event.frontend_id} {event.title} | {event.difficulty} | `{event.kind}` | `{event.status}` | `{event.reason}` |")
 

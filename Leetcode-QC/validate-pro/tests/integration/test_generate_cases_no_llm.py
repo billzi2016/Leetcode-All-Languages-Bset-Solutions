@@ -59,7 +59,9 @@ class GenerateCasesNoLlmIntegrationTest(unittest.TestCase):
             self.assertEqual(0, result)
             self.assertTrue((cases_dir / "0001-two-sum.json").exists())
             self.assertTrue((reports_dir / "adapter_support.md").exists())
+            self.assertTrue((reports_dir / "adapter_support.cn.md").exists())
             self.assertTrue((reports_dir / "generation_audit.md").exists())
+            self.assertTrue((reports_dir / "generation_audit.cn.md").exists())
 
 
 if __name__ == "__main__":

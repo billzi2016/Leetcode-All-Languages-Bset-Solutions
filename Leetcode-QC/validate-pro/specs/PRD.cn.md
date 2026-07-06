@@ -162,10 +162,12 @@ Validate Pro 还应写出 Markdown 审计报告：
 
 ```text
 Leetcode-QC/validate-pro/reports/adapter_support.md
+Leetcode-QC/validate-pro/reports/adapter_support.cn.md
 Leetcode-QC/validate-pro/reports/generation_audit.md
+Leetcode-QC/validate-pro/reports/generation_audit.cn.md
 ```
 
-`adapter_support.md` 列出所选 dataset 中出现的每一种题型 kind，以及是否已经存在 Python 参考 adapter。`generation_audit.md` 汇总保留样例、暂不支持的题型、候选样例拒绝原因和详细失败项。
+`adapter_support.md` 和 `adapter_support.cn.md` 列出所选 dataset 中出现的每一种题型 kind，以及是否已经存在 Python 参考 adapter。`generation_audit.md` 和 `generation_audit.cn.md` 汇总保留样例、暂不支持的题型、候选样例拒绝原因和详细失败项。`reports/` 用于保存每次运行产生的本地审计结果。
 
 ## 6. 高层流程
 
@@ -565,7 +567,7 @@ Leetcode-QC/
     smoke/
 ```
 
-`cases/`、`reports/` 和 `work/` 应加入 Git 忽略，因为它们是生成产物。
+`cases/`、`reports/` 和 `work/` 用于保存每次运行产生的本地输出。
 
 `tests/unit/` 用于放置该模块的全部 unittest。validate-pro 的测试应覆盖 dataset 解析、prompt 构造、候选 JSON 解析、参考解 adapter、候选样例拒绝规则、保留样例持久化、CSV 报告生成、审计报告生成和 CLI 参数解析。
 
@@ -646,7 +648,7 @@ Docker runner 应该：
 - 把临时 harness 文件隔离到 work 目录；
 - 编译失败或运行失败时在 CSV 中写 `0`；
 - 不修改题解 Markdown；
-- 把生成报告放到被 Git 忽略的目录。
+- 把审计报告写入 `reports/`。
 
 ## 15. 和现有工具的关系
 
