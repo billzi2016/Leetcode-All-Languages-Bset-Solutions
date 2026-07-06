@@ -15,6 +15,8 @@ The core idea is differential testing:
 
 The module should produce higher-confidence validation than fixed examples alone, especially for boundary cases, tricky constraints, and model-generated edge cases.
 
+The defining design principle is controlled AI: the model is used for targeted test-case discovery, not for final truth. ReAct-style reasoning helps the model propose one purposeful candidate at a time, while deterministic local validation decides whether the candidate is allowed into the retained case set.
+
 ## 2. Non-Goals
 
 - Do not call the solution generator.
@@ -66,7 +68,36 @@ validate/
 
 `validate-pro/` should produce validated test cases in a format that can be consumed by a Docker-based runner derived from the current `validate/` architecture.
 
-## 4. Outputs
+## 4. Controlled AI Design
+
+`validate-pro/` should present the LLM as a constrained test designer inside a deterministic verification loop.
+
+The control loop is:
+
+```text
+Problem context -> ReAct case proposal -> JSON parser -> schema checker
+-> constraint checker -> Python reference solver -> normalization
+-> retained case store -> Docker multi-language runner -> CSV report
+```
+
+The LLM can:
+
+- identify uncovered edge conditions;
+- propose one candidate input;
+- explain the intended testing purpose inside a structured field;
+- suggest an expected output.
+
+The LLM cannot:
+
+- directly decide that a case is correct;
+- write into the retained case store without local verification;
+- bypass constraint checks;
+- bypass reference-solver comparison;
+- modify generated solution Markdown.
+
+This makes the system AI-assisted but locally controlled. The retained test set is not a raw model transcript; it is a verified artifact produced by combining model exploration with deterministic reference execution.
+
+## 5. Outputs
 
 ### Generated Test Case Store
 
@@ -125,7 +156,7 @@ Each CSV row is a problem. Each language column is:
 0 = did not pass all retained generated cases
 ```
 
-## 5. High-Level Pipeline
+## 6. High-Level Pipeline
 
 ### Step 1: Load Problem
 
@@ -217,6 +248,21 @@ The set should include:
 - cases with multiple valid answers when the problem allows them,
 - cases targeting each major topic or constraint.
 
+Coverage should be explicit, not accidental. Each retained case should have a `purpose` string that maps to a coverage category such as:
+
+| Category | Examples |
+| --- | --- |
+| Minimum size | Empty list when allowed, single node, one-character string, one-row matrix |
+| Small exhaustive | Array length small enough for brute force, short strings covering all character classes |
+| Boundary values | Minimum and maximum numeric values allowed by constraints |
+| Duplicates | All equal values, repeated keys, repeated characters, repeated rows |
+| Sign handling | Negative-only, positive-only, mixed sign, zero-heavy inputs |
+| Ordering | Already sorted, reverse sorted, nearly sorted, cyclic order |
+| Shape | Skewed tree, balanced tree, disconnected graph, single-cell grid |
+| Ambiguity | Multiple valid answers, answer order does not matter, set-like outputs |
+| Failure path | No match, impossible target, empty result, false boolean answer |
+| Stress within budget | Largest input that still keeps the reference solver comfortably fast |
+
 Suggested defaults:
 
 ```text
@@ -237,7 +283,7 @@ The execution layer should reuse the design from `validate/`:
 - compare output against retained expected answers,
 - write per-difficulty CSV matrices.
 
-## 6. GPT-OSS Prompt Requirements
+## 7. GPT-OSS Prompt Requirements
 
 The test case generation prompt must contain enough context to make the model behave like a careful test designer.
 
@@ -282,7 +328,132 @@ Example final JSON shape:
 }
 ```
 
-## 7. Candidate Rejection Rules
+## 8. Example Case Generation Strategies
+
+This module should include concrete generation strategies by problem shape. The model prompt should request one of these strategies at a time, and the reference adapter should verify the candidate before storing it.
+
+### Array Search
+
+Example problem shapes:
+
+- `Two Sum`
+- `Contains Duplicate`
+- `Search Insert Position`
+
+Candidate purposes:
+
+- pair at both ends of the array;
+- pair using negative and positive values;
+- duplicate values that are not part of the answer;
+- smallest valid array;
+- multiple possible pairs when the problem permits any valid answer;
+- target absent for problems that return insertion position or boolean false.
+
+### String and Stack
+
+Example problem shapes:
+
+- `Valid Parentheses`
+- `Longest Common Prefix`
+- `Valid Palindrome`
+
+Candidate purposes:
+
+- empty string when allowed;
+- one-character string;
+- nested structures;
+- adjacent structures;
+- early mismatch;
+- late mismatch;
+- non-letter characters when the original problem allows them;
+- case-insensitive comparisons where required.
+
+### Linked List
+
+Example problem shapes:
+
+- `Add Two Numbers`
+- `Merge Two Sorted Lists`
+- `Remove Duplicates from Sorted List`
+
+Candidate purposes:
+
+- empty list;
+- one empty list and one non-empty list;
+- carry propagation across all digits;
+- duplicate runs of different lengths;
+- all nodes from one list before the other;
+- alternating merge order.
+
+### Tree
+
+Example problem shapes:
+
+- `Maximum Depth of Binary Tree`
+- `Same Tree`
+- `Symmetric Tree`
+
+Candidate purposes:
+
+- empty tree;
+- single node;
+- fully skewed tree;
+- balanced tree;
+- same values but different structure;
+- mirror structure with one deep mismatch.
+
+### Graph and Grid
+
+Example problem shapes:
+
+- `Number of Islands`
+- `Flood Fill`
+- `Course Schedule`
+
+Candidate purposes:
+
+- single-cell grid;
+- all water or all land;
+- diagonal adjacency that should not count;
+- disconnected components;
+- cycle in dependency graph;
+- long chain without cycle.
+
+### Dynamic Programming
+
+Example problem shapes:
+
+- `Climbing Stairs`
+- `House Robber`
+- `Maximum Subarray`
+
+Candidate purposes:
+
+- minimum `n`;
+- repeated equal values;
+- all negative values when allowed;
+- local optimum differs from global optimum;
+- alternating high and low values;
+- input size near safe reference-solver limit.
+
+### SQL, Shell, and Pandas
+
+These should use separate adapters instead of ordinary algorithm adapters.
+
+Candidate purposes:
+
+- empty table;
+- duplicate rows;
+- null values;
+- ties in ranking;
+- missing join partner;
+- single-line file;
+- file with trailing newline;
+- mixed whitespace.
+
+The expected answer for these problems should be computed by a controlled local evaluator such as SQLite, pandas, or a temporary shell fixture, depending on the problem type.
+
+## 9. Candidate Rejection Rules
 
 Reject a generated case when:
 
@@ -291,12 +462,15 @@ Reject a generated case when:
 - Input types do not match the function signature.
 - It violates problem constraints.
 - It is too large for the reference solver budget.
+- It is too expensive for the Docker language runner budget.
 - It is ambiguous and the problem does not allow multiple outputs.
 - Expected output disagrees with the reference solver after normalization.
 - It relies on hidden assumptions not present in the original problem.
 - It is only a duplicate of an already retained case.
+- It covers the same purpose as an existing retained case without adding new behavior.
+- It cannot be serialized into the retained JSON format.
 
-## 8. Reference Solver Requirements
+## 10. Reference Solver Requirements
 
 Each reference solver should expose:
 
@@ -329,7 +503,17 @@ Example:
 - Problems returning sets or paths may need sorted normalization.
 - Floating-point problems need tolerance.
 
-## 9. Directory Design
+Reference solvers should also expose a safe input budget, for example:
+
+```python
+MAX_N = 30
+MAX_GRID_CELLS = 400
+MAX_TREE_NODES = 200
+```
+
+The budget should be adapter-specific. A brute-force reference may choose a smaller maximum than a linear reference. This keeps generated cases useful without allowing a single case to dominate runtime.
+
+## 11. Directory Design
 
 Suggested structure:
 
@@ -367,7 +551,7 @@ validate-pro/
 
 `tests/` should contain all unit tests for this module. The validate-pro test suite should cover dataset parsing, prompt construction, candidate JSON parsing, reference solver adapters, candidate rejection rules, retained-case persistence, CSV report generation, and CLI argument parsing.
 
-## 10. CLI Design
+## 12. CLI Design
 
 Generate cases for one problem:
 
@@ -400,7 +584,7 @@ docker build -f validate-pro/Dockerfile -t leetcode-validate-pro .
 docker run --rm -v "$PWD":/workspace leetcode-validate-pro
 ```
 
-## 11. Runtime Controls
+## 13. Runtime Controls
 
 Recommended controls:
 
@@ -414,6 +598,8 @@ Recommended controls:
 --languages
 --reports-dir
 --cases-dir
+--coverage-profile
+--token-budget
 ```
 
 Generation should be resumable:
@@ -421,12 +607,16 @@ Generation should be resumable:
 - If a retained case file already exists, read it first.
 - Generate only missing cases.
 - Never overwrite retained cases unless explicitly requested.
+- Track attempted purposes to avoid repeatedly asking for the same style of case.
+- Stop generation when the configured token budget or case budget is reached.
 
-## 12. Safety and Reliability
+## 14. Safety and Reliability
 
 The system should treat the LLM as an untrusted test-case proposer.
 
 The Python reference solver is the authority. A case only becomes part of the validation set after deterministic local verification.
+
+The ReAct trace is useful for exploration, but it is not trusted output. Only strict JSON from the final answer should enter the parser, and only reference-verified JSON should enter `validate-pro/cases/`.
 
 The Docker runner should:
 
@@ -436,7 +626,7 @@ The Docker runner should:
 - avoid modifying solution Markdown,
 - keep generated reports under ignored directories.
 
-## 13. Relationship With Existing Tools
+## 15. Relationship With Existing Tools
 
 Existing tools:
 
@@ -454,15 +644,17 @@ Suggested workflow:
 4. Use `validate-pro/` for generated edge-case validation.
 5. Repair failed solutions by rerunning generation, applying mechanical migrations, or editing specific Markdown code blocks.
 
-## 14. Success Criteria
+## 16. Success Criteria
 
 The first usable version should:
 
 - read problems from `dataset/merged_problems.json`;
 - support at least several common algorithm shapes;
 - generate candidate cases with `gpt-oss:120b` high reasoning mode;
+- use a controlled AI loop where ReAct proposes candidates and local deterministic checks decide retention;
 - reject invalid AI cases automatically;
 - retain only reference-verified cases;
+- retain purpose-labeled cases across boundary, duplicate, ordering, ambiguity, and stress-within-budget categories;
 - run generated Markdown solutions in Docker;
 - write `easy.csv`, `medium.csv`, and `hard.csv`;
 - keep all generated case and report artifacts out of Git;
