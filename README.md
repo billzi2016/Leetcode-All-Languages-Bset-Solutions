@@ -332,3 +332,18 @@ Resume detection is based on the target Markdown file for each problem.
 ## Implementation Principles
 
 The generator follows SOLID and DRY principles in the core workflow. Dataset loading, prompt construction, model calls, resume detection, audit reporting, logging, and Markdown writing live in separate modules with narrow responsibilities. Markdown parsing rules are centralized so resume, audit, and repair behavior use the same definition of a completed language section.
+
+## Project Scope
+
+This repository is more than a collection of saved answers. It is a complete generation and quality-control system around LeetCode solution production:
+
+- dataset-driven prompt construction from `dataset/merged_problems.json`
+- multilingual solution generation with stable Markdown output rules
+- fixed-width difficulty buckets and generated difficulty indexes
+- MkDocs documentation and GitHub Pages deployment
+- missing-language audit and suspicious-output audit tools
+- migration utilities for historical output cleanup
+- Docker-based fast validation under `Leetcode-QC/validate/`
+- controlled-AI differential validation design under `Leetcode-QC/validate-pro/`
+
+The intended result is a repository where solution files, generation scripts, audit tools, validation tools, migration scripts, and documentation all use the same path rules and language-section rules. That consistency is what makes large batch generation, resume, cleanup, indexing, documentation, and later validation manageable as one engineering workflow.
