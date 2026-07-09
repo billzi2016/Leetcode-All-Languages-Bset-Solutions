@@ -58,6 +58,12 @@ Apply the rename:
 python migrate/rename_bucket_dirs.py --apply
 ```
 
+If the fixed-width target bucket already exists, the script merges files from the old bucket into the target bucket. Existing files are protected by default. To replace same-name files during archival import:
+
+```bash
+python migrate/rename_bucket_dirs.py --apply --overwrite-files
+```
+
 This migration is intentionally separate from the generator. The generator only writes new paths; this script handles historical directory names when needed.
 
 ## `normalize_markdown_language_sections.py`

@@ -58,6 +58,12 @@ python migrate/rename_bucket_dirs.py
 python migrate/rename_bucket_dirs.py --apply
 ```
 
+如果固定宽度目标分桶已经存在，脚本会把旧分桶里的文件合并到目标分桶。默认保护已有同名文件，不会覆盖。归档导入时确认要用新文件替换同名旧文件，可以加：
+
+```bash
+python migrate/rename_bucket_dirs.py --apply --overwrite-files
+```
+
 这个迁移逻辑刻意和生成器分开。生成器只负责按新规则写新路径；历史目录需要调整时，用这个脚本单独处理。
 
 ## `normalize_markdown_language_sections.py`

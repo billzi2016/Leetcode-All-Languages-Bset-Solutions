@@ -1,0 +1,10 @@
+# 2882. Drop Duplicate Rows
+
+## Pythondata
+
+```pythondata
+import pandas as pd
+
+def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
+    return customers.drop_duplicates(subset="email", keep="first")
+```
